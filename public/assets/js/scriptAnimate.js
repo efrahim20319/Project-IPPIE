@@ -45,3 +45,7 @@ $('.nav li:first').addClass('active');
         $(window).scroll(function () {
           checkSection();
         });
+/*
+  @auth Nelson Simão
+  @auth Simba Tamako
+*/
