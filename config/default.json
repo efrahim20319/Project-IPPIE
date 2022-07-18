@@ -1,5 +1,12 @@
 {
-    "app": {
-        "porta": 3000
-    }
+  "app": {
+    "porta": 3000
+  },
+  "mysql": {
+    "host": "127.0.0.1",
+    "database": "IPPIE",
+    "password": "splinter20319",
+    "user": "root",
+    "port": 3308
+  }
 }

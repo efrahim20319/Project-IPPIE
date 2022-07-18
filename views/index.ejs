@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900" rel="stylesheet">
 
-    <title>Instituição Privada ippie</title>
+    <title>IPPIE</title>
     
     <!-- Bootstrap core CSS -->
     <link href="../public/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -150,7 +150,6 @@
                   <div class="col-md-6">
                     <h4>Mecanica</h4>
                     <p>Você pode modificar esse layout HTML editando o conteúdo e adicionando mais páginas conforme necessário. Como este modelo possui opções para adicionar menus suspensos, você pode colocar muitas páginas HTML.</p> 
-                    <p>Talvez você comece, para que as pontas da pá sejam grandes, a dor esteja livre do ódio das lembranças e, às vezes, até mais do que o gato não fazia antes.</p>
                   </div>
                 </div>
               </article>
@@ -210,26 +209,26 @@
             <div class="top-content">
               <h6>Registra-se para receber <em>Notificações</em> da Instituição</h6>
             </div>
-            <form id="contact" action="" method="get">
+            <form id="contact" action="http://localhost:3000/api/usuario" method="post">
               <div class="row">
                 <div class="col-md-12">
                   <fieldset>
-                    <input name="name" type="text" class="form-control" id="name" placeholder="Your Name" required="">
+                    <input name="nome" type="text" class="form-control" id="name" placeholder="Seu Nome" required="" pattern="^([a-z]{5, 140})$">
                   </fieldset>
                 </div>
                 <div class="col-md-12">
                   <fieldset>
-                    <input name="email" type="text" class="form-control" id="email" placeholder="Your Email" required="">
+                    <input name="email" type="text" class="form-control" id="email" placeholder="Seu Email" required="" pattern="^(\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+)$">
                   </fieldset>
                 </div>
                 <div class="col-md-12">
                   <fieldset>
-                    <input name="phone-number" type="text" class="form-control" id="phone-number" placeholder="Your Phone Number" required="">
+                    <input name="numero_telefone" type="text" class="form-control" id="phone-number" placeholder="Seu número de telefone" required="">
                   </fieldset>
                 </div>
                 <div class="col-md-12">
                   <fieldset>
-                    <button type="submit" id="form-submit" class="button">OBTÊ-LO AGORA</button>
+                    <button type="submit" id="form-submit" class="button">CADASTRA-SE</button>
                   </fieldset>
                 </div>
               </div>

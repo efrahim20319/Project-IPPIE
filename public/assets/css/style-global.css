@@ -233,7 +233,7 @@ a.menu-link { display: none; }
 }
 
 .main-menu li .sub-menu li {
-    display: block;
+    display: flex;
     line-height: 20px;
     margin-left: 0px;
     margin-bottom: 15px;
