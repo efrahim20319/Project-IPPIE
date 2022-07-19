@@ -25,4 +25,20 @@ module.exports = class Usuario {
         }
         await repositorio.adiciona(dados)
     }
+
+    static async pegarPorId(id) {
+        return await repositorio.pegarPorId(id)
+    }
+
+    static async deleta(id) {
+        await repositorio.deleta(id)
+    }
+
+    static async atualiza(dados, id) {
+        await repositorio.atualiza(dados, id)
+    }
+
+    static async lista() {
+        return await repositorio.lista()
+    }
 }
