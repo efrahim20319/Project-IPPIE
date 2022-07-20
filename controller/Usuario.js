@@ -1,7 +1,7 @@
-const roteador = require("express").Router()
+const { Router } = require("express")
 const Usuario = require("../model/Usuario")
 
-
+const roteador = new Router();
 roteador.route("/usuario")
     .post(async (req, res) => { //rota para cadastrar usuario, não vi necessidade de encriptar os dados
         try {
@@ -17,9 +17,7 @@ roteador.route("/usuario")
     .get(async (req, res) => {
         const dados = await Usuario.lista()
         res.status(200).json(dados)
-    })
-
-
+    });
 
 roteador.route(/^\/usuario\/(\d+)$/)
     .get(async (req, res) => {
@@ -37,6 +35,6 @@ roteador.route(/^\/usuario\/(\d+)$/)
         const dados = req.body
         await Usuario.atualiza(dados, id)
         res.status(204).end()
-    })
+    });
 
 module.exports = roteador
