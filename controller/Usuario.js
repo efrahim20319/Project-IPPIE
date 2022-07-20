@@ -4,15 +4,22 @@ const Usuario = require("../model/Usuario")
 
 roteador.route("/usuario")
     .post(async (req, res) => { //rota para cadastrar usuario, não vi necessidade de encriptar os dados
-        const { nome, email, numero_telefone } = req.body
-        const usuario = new Usuario(nome, email, numero_telefone)
-        await usuario.adiciona()
-        res.status(204).end()
+        try {
+            const { nome, email, numero_telefone } = req.body
+            const usuario = new Usuario(nome, email, numero_telefone)
+            usuario.valida()
+            await usuario.adiciona()
+            res.status(200).end()
+        } catch (erro) {
+            res.status(400).json({erro: erro.message})
+        }
     })
     .get(async (req, res) => {
         const dados = await Usuario.lista()
         res.status(200).json(dados)
     })
+
+
 
 roteador.route(/^\/usuario\/(\d+)$/)
     .get(async (req, res) => {

@@ -1,5 +1,5 @@
+const { DadosEmFalta } = require("../errors/errors")
 const repositorio = require("../repo/Usuario")
-
 module.exports = class Usuario {
     constructor(nome, email, numero_telefone) {
         this._nome = nome
@@ -15,6 +15,12 @@ module.exports = class Usuario {
     }
     get numero_telefone() {
         return this._numero_telefone
+    }
+
+    valida() {
+        if (!this.nome) throw new DadosEmFalta("nome")
+        if (!this.email) throw new DadosEmFalta("email")
+        if (!this.numero_telefone) throw new DadosEmFalta("numero de telefone")
     }
 
     async adiciona() {
