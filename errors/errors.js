@@ -1,6 +1,8 @@
 const DadosEmFalta = require("./dadosEmFalta")
+const ErroDeFormato = require("./erroDeFormato")
 
 
 module.exports = {
-    DadosEmFalta: DadosEmFalta
+    DadosEmFalta: DadosEmFalta,
+    ErroDeFormato: ErroDeFormato
 }
