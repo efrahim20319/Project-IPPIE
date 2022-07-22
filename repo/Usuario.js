@@ -25,4 +25,9 @@ module.exports = class Usuario {
         const query = "SELECT codigo, nome, email, numero_telefone FROM Usuario;"
         return await executaQuery(query)
     }
+
+    static async pegarPorEmail(email) {
+        const query = "SELECT * FROM Usuario WHERE email = ? LIMIT 1"
+        return await executaQuery(query, email)
+    }
 }

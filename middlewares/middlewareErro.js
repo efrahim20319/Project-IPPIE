@@ -8,9 +8,10 @@ module.exports = (erro, req, res, next) => {
     let code = 500
     if (erro instanceof erros.DadosEmFalta || erro instanceof erros.ErroDeFormato) {
         code = 400
-        res.status(code).json(criaObjetoErro(erro))
-        return
+    }
+    if (erro instanceof erros.EmailJaCadastrado) {
+        code = 406
     }
 
-    res.status(code).send(erro.message)
+    res.status(code).send(criaObjetoErro(erro))
 }

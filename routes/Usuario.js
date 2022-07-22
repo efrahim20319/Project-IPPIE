@@ -10,4 +10,7 @@ roteador.route(/^\/usuario\/(\d+)$/)
     .delete(usuarioControlador.deletarPorID)
     .put(usuarioControlador.atualizarPorID)
 
+roteador.route(/^\/usuario\/email\/(\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+)$/)
+    .get(usuarioControlador.obterPorEmail)
+
 module.exports = roteador

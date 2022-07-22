@@ -1,7 +1,11 @@
 module.exports = class DadosEmFalta extends Error {
-    constructor(campo) {
-        super(`Campo ${campo} não foi enviado`)
-        this.name = "Dados em falta"
-        this.idErro = 1
-    }
-}
+  constructor(campo) {
+    let mensagem;
+    campo
+      ? (mensagem = `Campo ${campo} não foi enviado`)
+      : (mensagem = "Não foram enviados dados");
+    super(mensagem);
+    this.name = "Dados em falta";
+    this.idErro = 1;
+  }
+};

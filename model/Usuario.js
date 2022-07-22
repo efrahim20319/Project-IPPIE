@@ -26,18 +26,23 @@ module.exports = class Usuario {
         return this._numero_telefone
     }
 
-    valida(options = { BloquearNaAusencia: true }) {
+    async valida(options = { BloquearNaAusencia: true, BloquearEmailCadastrado: true }) {
         const emailPattern = /^(\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+)$/
         const nomePattern = /^([A-Za-zÃÕÁÉÍÓÚÂÊÎÔÛÇãõáéíóúâêîôûç]+)([\sA-Za-zÃÕÁÉÍÓÚÂÊÎÔÛÇãõáéíóúâêîôûç]+)*$/
-        const telefonePattern = /^(\+244\s{0,2})*(\d{3}[-\s]?\d{3}[-\s]?\d{3})$/
+        const telefonePattern = /^(\+244\s{0,2})?(9\d{2}([-\s]?)\d{3}(\3)\d{3})$/
         if (options.BloquearNaAusencia) { //Condicao para dispara erros casos na ausencia de dados
             if (!this.nome) throw new erros.DadosEmFalta("nome")
             if (!this.email) throw new erros.DadosEmFalta("email")
             if (!this.numero_telefone) throw new erros.DadosEmFalta("numero de telefone")
         }
-        if (!emailPattern.test(String(this.email).trim())) throw new erros.ErroDeFormato("Formato de email invalido.")
-        if (!nomePattern.test(String(this.nome).trim())) throw new erros.ErroDeFormato("Nome inválido")
-        if (!telefonePattern.test(String(this.numero_telefone).trim())) throw new erros.ErroDeFormato("Número de telefone inválido")
+        if (options.BloquearEmailCadastrado) {
+            const usuario = await Usuario.pegarPorEmail(this.email)
+            if (usuario.length) throw new erros.EmailJaCadastrado(this.email)
+        }
+
+        if (this.nome && !nomePattern.test(String(this.nome).trim())) throw new erros.ErroDeFormato("Nome inválido")
+        if (this.email && !emailPattern.test(String(this.email).trim())) throw new erros.ErroDeFormato("Formato de email invalido.")
+        if (this.numero_telefone && !telefonePattern.test(String(this.numero_telefone).trim())) throw new erros.ErroDeFormato("Número de telefone inválido")
         if (String(this.nome).length > 150) throw new erros.ErroDeFormato("Nome demaiado longo")
         if (String(this.email).length > 150) throw new erros.ErroDeFormato("Email demasiado longo")
     }
@@ -64,13 +69,21 @@ module.exports = class Usuario {
         const props = ["nome", "email", "numero_telefone"]
         const dadosParaAtualizar = {}
         dados.forEach((dado, indice) => {
-            if (dado) dadosParaAtualizar[`${props[indice]}`] = dado
+            if (dado) {
+                dadosParaAtualizar[`${props[indice]}`] = dado
+                this[`${props[indice]}`] = dado
+            } 
         });
-        this.valida({ BloquearNaAusencia: false })
+        if (!(Object.keys(dadosParaAtualizar).length)) throw new erros.DadosEmFalta()
+        await this.valida({ BloquearNaAusencia: false, BloquearEmailCadastrado: true })
         await repositorio.atualiza(dadosParaAtualizar, id)
     }
 
     static async lista() {
         return await repositorio.lista()
+    }
+
+    static async pegarPorEmail(email) {
+        return await repositorio.pegarPorEmail(email)
     }
 }
