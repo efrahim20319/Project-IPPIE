@@ -307,6 +307,27 @@ a.menu-link { display: none; }
     left: 0;
     bottom: 7px;
     width: 100%;
+    height: 100%;
+}
+.google_map {
+  width: 100%;
+}
+.content-hide p {
+  text-align: justify;
+  font-size: 1.1em;
+  line-height: 1.1em;
+  letter-spacing: 1px;
+}
+.logo {
+  display: flex;
+  gap: .8em;
+  align-items: center;
+  
+}
+.logo img {
+  height: 60px;
+  width: 60px;
+  border-radius: 100%;
 }
 
 .main-banner .caption {
@@ -491,12 +512,16 @@ section.why-us {
 #tabs ul {
   margin: 0;
   padding: 0;
-  -webkit-column-count: 3;
+  display: flex;
+  justify-content: center;
+  gap: 2em;
+  
+  /* -webkit-column-count: 3;
   -moz-column-count: 3;
   column-count: 3;
   -webkit-column-gap: 0;
   -moz-column-gap: 0;
-  column-gap: 0;
+  column-gap: 0; */
 }
 #tabs ul::after {
   clear: both;
@@ -1078,7 +1103,7 @@ section.video .left-content .main-button {
 
 .mfp-loading.mfp-figure {
   display: none;
-}
+  }
 
 .mfp-hide {
   display: none !important;
@@ -1583,6 +1608,38 @@ footer p a:hover {
     letter-spacing: 0.25px;
   }
 }
+
+@media screen and (max-width: 418px) {
+  .main-banner .caption h6 {
+    display: none;
+  }
+
+  .main-banner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #tabs ul {
+    justify-content: space-between;
+  }
+   
+  #tabs ul li a {
+    font-size: .56em;
+  }
+
+  .main-banner .caption h2  {
+    font-size: 1.4em;
+  }
+  .main-banner .caption h2 em {
+    font-size: 1.4em;
+  }
+
+  .counter div span {
+    
+  }
+}
+
 /*
   @auth Nelson Simão
   @auth Simba Tamako

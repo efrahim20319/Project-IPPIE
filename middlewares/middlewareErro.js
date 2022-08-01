@@ -9,9 +9,13 @@ module.exports = (erro, req, res, next) => {
     if (erro instanceof erros.DadosEmFalta || erro instanceof erros.ErroDeFormato) {
         code = 400
     }
+
+    if (erro instanceof erros.UsuarioNaoEncontrado)
+        code = 404
+
     if (erro instanceof erros.EmailJaCadastrado) {
         code = 406
     }
 
-    res.status(code).send(criaObjetoErro(erro))
+    res.status(code).send({ erro: criaObjetoErro(erro) })
 }

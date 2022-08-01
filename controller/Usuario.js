@@ -17,15 +17,24 @@ module.exports = {
     const dados = await Usuario.lista();
     res.status(200).json(dados);
   },
-  obterPorID: async (req, res) => {
-    const id = Number(req.params[0]);
-    const dados = await Usuario.pegarPorId(id);
-    res.status(200).json(dados);
+  obterPorID: async (req, res, next) => {
+    try {
+      const id = Number(req.params[0]);
+      const dados = await Usuario.pegarPorId(id);
+      const usuario = dados[0]
+      res.status(200).json({ usuario });
+    } catch (erro) {
+      next(erro)
+    }
   },
-  deletarPorID: async (req, res) => {
-    const id = Number(req.params[0]);
-    await Usuario.deleta(id);
-    res.status(204).end();
+  deletarPorID: async (req, res, next) => {
+    try {
+      const id = Number(req.params[0]);
+      await Usuario.deleta(id);
+      res.status(204).end();
+    } catch (erro) {
+      next(erro)
+    }
   },
   atualizarPorID: async (req, res, next) => {
     try {
@@ -41,8 +50,9 @@ module.exports = {
   obterPorEmail: async (req, res, next) => {
     try {
       const email = req.params[0];
-      const usuario = await Usuario.pegarPorEmail(email);
-      res.status(200).send(usuario);
+      const dados = await Usuario.pegarPorEmail(email);
+      const usuario = dados[0]
+      res.status(200).json({ usuario });
     } catch (erro) {
       next(erro);
     }

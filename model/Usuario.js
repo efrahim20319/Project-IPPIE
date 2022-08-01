@@ -26,17 +26,18 @@ module.exports = class Usuario {
         return this._numero_telefone
     }
 
-    async valida(options = { BloquearNaAusencia: true, BloquearEmailCadastrado: true }) {
+    async valida(options_default = { BloquearNaAusencia: true, BloquearEmailCadastrado: true }) {
+        const options = Object.assign({ BloquearNaAusencia: true, BloquearEmailCadastrado: true }, options_default);
         const emailPattern = /^(\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+)$/
         const nomePattern = /^([A-Za-zÃÕÁÉÍÓÚÂÊÎÔÛÇãõáéíóúâêîôûç]+)([\sA-Za-zÃÕÁÉÍÓÚÂÊÎÔÛÇãõáéíóúâêîôûç]+)*$/
         const telefonePattern = /^(\+244\s{0,2})?(9\d{2}([-\s]?)\d{3}(\3)\d{3})$/
-        if (options.BloquearNaAusencia) { //Condicao para dispara erros casos na ausencia de dados
+        if (options.BloquearNaAusencia) { //Condicao para disparar erros casos na ausencia de dados
             if (!this.nome) throw new erros.DadosEmFalta("nome")
             if (!this.email) throw new erros.DadosEmFalta("email")
             if (!this.numero_telefone) throw new erros.DadosEmFalta("numero de telefone")
         }
         if (options.BloquearEmailCadastrado) {
-            const usuario = await Usuario.pegarPorEmail(this.email)
+            const usuario = await Usuario.pegarPorEmail(this.email, { BloquearNaAusencia: false })
             if (usuario.length) throw new erros.EmailJaCadastrado(this.email)
         }
 
@@ -57,14 +58,18 @@ module.exports = class Usuario {
     }
 
     static async pegarPorId(id) {
-        return await repositorio.pegarPorId(id)
+        const dados = await repositorio.pegarPorId(id)
+        if (!dados.length) throw new erros.UsuarioNaoEncontrado({ id: id })
+        return dados
     }
 
     static async deleta(id) {
+        await Usuario.pegarPorId(id) //Verificar se o usuario existe
         await repositorio.deleta(id)
     }
 
     async atualiza(id) {
+        await Usuario.pegarPorId(id)
         const dados = [this.nome, this.email, this.numero_telefone]
         const props = ["nome", "email", "numero_telefone"]
         const dadosParaAtualizar = {}
@@ -72,10 +77,10 @@ module.exports = class Usuario {
             if (dado) {
                 dadosParaAtualizar[`${props[indice]}`] = dado
                 this[`${props[indice]}`] = dado
-            } 
+            }
         });
         if (!(Object.keys(dadosParaAtualizar).length)) throw new erros.DadosEmFalta()
-        await this.valida({ BloquearNaAusencia: false, BloquearEmailCadastrado: true })
+        await this.valida({ BloquearNaAusencia: false })
         await repositorio.atualiza(dadosParaAtualizar, id)
     }
 
@@ -83,7 +88,10 @@ module.exports = class Usuario {
         return await repositorio.lista()
     }
 
-    static async pegarPorEmail(email) {
-        return await repositorio.pegarPorEmail(email)
+    static async pegarPorEmail(email, options_default = { BloquearNaAusencia: true }) {
+        const options = Object.assign({ BloquearNaAusencia: true }, options_default)
+        const dados = await repositorio.pegarPorEmail(email)
+        if (!dados.length && options.BloquearNaAusencia) throw new erros.UsuarioNaoEncontrado({ email: email })
+        return dados
     }
 }

@@ -1,0 +1,12 @@
+@media screen and (max-width: 380px) {
+  .caption h6 {
+    margin: 0;
+  }
+
+  .caption h2 {
+    position: relative;
+    margin: 0;
+    top: 1em;
+    font-size: 1.4em;
+  }
+}
