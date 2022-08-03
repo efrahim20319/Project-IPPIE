@@ -1,0 +1,15 @@
+.curso-desc_text {
+
+
+}
+.curso-desc_text * {
+    color: white;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.curso-desc_text span {
+    font-size: 1.5em;
+}
+.curso-desc_text h2 {
+    white-space: nowrap;
+    font-size: 3em;
+}

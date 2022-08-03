@@ -1,6 +1,18 @@
 {
     "files.exclude": {
         "node_modules": true,
-        "package-lock.json": true
+        "package-lock.json": true,
+        "authentication/": false,
+        "config/": false,
+        "custom/": false,
+        "database/": false,
+        "errors/": false,
+        "model/": false,
+        "repo/": false,
+        "routes/": false,
+        "middlewares/": false,
+        "controller/": false,
+        "public/": false,
+        "views/": false,
     }
 }

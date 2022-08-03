@@ -1,0 +1,19 @@
+@import url("./reset.css");
+@import url("./normalize.css");
+@import url("./cabecalho/cabecalho.css");
+@import url("./cabecalho/cabecalho_logo.css");
+@import url("./cabecalho/logo_img.css");
+@import url("./cabecalho/logo_text.css");
+@import url("./cabecalho/cabecalho_list.css");
+@import url("./cabecalho/cabecalho_list_item.css");
+@import url("./cabecalho/first_header.css");
+
+@import url("./cabecalho/header_banner.css");
+
+@import url("./cabecalho/header_banner_path.css");
+
+@import url("./curso-desc/curso-desc.css");
+
+@import url("./curso-desc/curso-desc_img.css");
+
+@import url("./curso-desc/curso-desc_text.css");
