@@ -5,8 +5,8 @@
   "mysql": {
     "host": "127.0.0.1",
     "database": "IPPIE",
-    "password": "splinter20319",
+    "password": "admin",
     "user": "root",
-    "port": 3308
+    "port": 3306
   }
 }
