@@ -1,20 +1,13 @@
-.header_banner {
+.header__banner {
   width: 100%;
   background-size: cover;
-  background-image: url("../../../img/svgs/low-poly-grid-haikei.svg");
-  
-  /* background: -webkit-linear-gradient(
-    to right,
-    #243b55,
-    #141e30
-  );  
-  background: linear-gradient(
-    to right,
-    #243b55,
-    #141e30
-  );  */
-
   background-position: 50% 35%;
   background-repeat: no-repeat;
   height: calc(100vh - 10em);
+}
+
+
+
+.header__banner--eletrico {
+  background-image: url("../../../img/svgs/low-poly-grid-haikei.svg");
 }

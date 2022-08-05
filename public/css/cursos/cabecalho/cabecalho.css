@@ -4,7 +4,7 @@
     display: flex;
     height: 5em;
     justify-content: space-between;
-    background-color: rgba(22,34,57,0.95);
+    background-color: #152036;
     align-items: center;
     padding: .5em 3em;
 }
