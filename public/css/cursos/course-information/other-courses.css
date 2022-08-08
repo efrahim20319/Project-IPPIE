@@ -1,4 +1,5 @@
 .other-courses {
+    padding: 1em;
     height: 100%;
     background-color: #f5a425;
 }
@@ -7,9 +8,8 @@
 }
 
 .other-courses h2 {
-    margin: 1em 0;
+    margin: .3em 0;
     font-weight: 800;
     text-align: center;
     font-family: 'Montserrat', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-
 }

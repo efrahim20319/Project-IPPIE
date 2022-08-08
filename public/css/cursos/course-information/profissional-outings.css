@@ -1,4 +1,13 @@
 .profissional-outings {
 
+} 
 
+.profissional-outings ul {
+    padding-left: 2em;
+
+} 
+
+.profissional-outings ul li {
+    list-style-image: url("../../../assets/images/favicon.png");
+    /* list-style-image: url("../../../img/icons/check-mark.png"); */
 }

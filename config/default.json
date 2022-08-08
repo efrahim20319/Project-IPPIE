@@ -7,6 +7,6 @@
     "database": "IPPIE",
     "password": "splinter20319",
     "user": "root",
-    "port": 3308
+    "port": 3306
   }
 }
