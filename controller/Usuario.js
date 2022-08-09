@@ -20,11 +20,10 @@ module.exports = {
   obterPorID: async (req, res, next) => {
     try {
       const id = Number(req.params[0]);
-      const dados = await Usuario.pegarPorId(id);
-      const usuario = dados[0]
+      const usuario = await Usuario.pegarPorId(id);
       res.status(200).json({ usuario });
     } catch (erro) {
-      next(erro)
+      next(erro);
     }
   },
   deletarPorID: async (req, res, next) => {
@@ -33,7 +32,7 @@ module.exports = {
       await Usuario.deleta(id);
       res.status(204).end();
     } catch (erro) {
-      next(erro)
+      next(erro);
     }
   },
   atualizarPorID: async (req, res, next) => {
@@ -50,8 +49,7 @@ module.exports = {
   obterPorEmail: async (req, res, next) => {
     try {
       const email = req.params[0];
-      const dados = await Usuario.pegarPorEmail(email);
-      const usuario = dados[0]
+      const usuario = await Usuario.pegarPorEmail(email);
       res.status(200).json({ usuario });
     } catch (erro) {
       next(erro);
