@@ -1,7 +1,4 @@
-.curso-desc_text {
 
-
-}
 .curso-desc_text * {
     color: white;
     font-family: 'Montserrat', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -10,14 +7,25 @@
     font-size: 1.5em;
 }
 .curso-desc_text h2 {
-    white-space: nowrap;
-    font-size: 3em;
-    font-weight: 800;
+    width: 100%;
+    white-space: wrap;
+    font-size: 2.5em;
+    font-weight: 700;
 }
-
 .curso-desc_text h2::after {
     content: "";
     height: 10px;
     display: block;
-    background-color: rgb(46, 60, 165);
 }
+@media only screen and (max-width: 600px) {
+    .curso-desc_text h2 {
+       font-size: 1.5em;
+       text-align: center;
+    }
+  }
+@media only screen and (max-width: 906px) {
+    .course-information {
+        display: flex;
+        flex-wrap: wrap;
+    }
+  }

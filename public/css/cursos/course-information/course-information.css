@@ -4,5 +4,10 @@
     gap: 1em;
     padding: 2.4em;
     background-color: rgb(244, 244, 244);
-   
 }
+@media only screen and (max-width: 906px) {
+    .course-information {
+        display: flex;
+        flex-wrap: wrap;
+    }
+  }
