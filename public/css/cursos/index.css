@@ -1,5 +1,6 @@
 @import url("./reset.css");
 @import url("./normalize.css");
+@import url("./global-style.css");
 @import url("./cabecalho/cabecalho.css");
 @import url("./cabecalho/cabecalho_logo.css");
 @import url("./cabecalho/logo_img.css");
@@ -17,3 +18,20 @@
 @import url("./curso-desc/curso-desc_img.css");
 
 @import url("./curso-desc/curso-desc_text.css");
+
+@import url("./course-information/course-information.css");
+
+@import url("./course-information/course-advantages.css");
+
+@import url("./course-information/other-courses.css");
+
+@import url("./course-information/profissional-outings.css");
+
+@import url("./course-information/course-goals.css");
+
+@import url("./course-information/course-duration.css");
+@import url("./course-information/other-courses-list.css");
+
+@import url("./course-information/other-courses-item.css");
+
+@import url("./course-information/course-category.css");

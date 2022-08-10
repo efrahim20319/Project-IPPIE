@@ -1,0 +1,8 @@
+.course-information {
+    display: grid;
+    grid-template-columns: 60vw auto;
+    gap: 1em;
+    padding: 2.4em;
+    background-color: rgb(244, 244, 244);
+   
+}

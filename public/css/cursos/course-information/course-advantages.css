@@ -1,0 +1,19 @@
+.course-advantages {
+
+
+}
+
+.course-advantages * {
+    font-family: 'Montserrat', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.course-advantages p {
+    line-height: 1.4em;
+    font-size: 1.1em;
+}
+
+.course-advantages h2 {
+    font-weight: 700;
+}
+
+
