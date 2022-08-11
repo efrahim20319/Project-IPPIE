@@ -1,4 +1,4 @@
-module.exports = class DadosEmFalta extends Error {
+export default class DadosEmFalta extends Error {
   constructor(campo) {
     let mensagem;
     campo

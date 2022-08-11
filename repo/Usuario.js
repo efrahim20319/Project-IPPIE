@@ -1,6 +1,6 @@
-const executaQuery = require("../database/executaQuery");
+import executaQuery from "../database/executaQuery";
 
-module.exports = class Usuario {
+export default class Usuario {
     static async adiciona(dados) {
         const query = "INSERT INTO Usuario SET ?"
         await executaQuery(query, dados)

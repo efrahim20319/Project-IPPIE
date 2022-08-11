@@ -1,4 +1,4 @@
-module.exports = class ErroDeFormato extends Error {
+export default class ErroDeFormato extends Error {
     constructor(message) {
         super(message);
         this.name = "Erro de formato"

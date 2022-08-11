@@ -1,12 +1,10 @@
-const mysql = require("mysql")
-const config = require("config")
-
+import mysql from "mysql"
 const conexao = mysql.createConnection({
-    host: config.get("mysql.host"),
-    database: config.get("mysql.database"),
-    password: config.get("mysql.password"),
-    user: config.get("mysql.user"),
-    port: config.get("mysql.port")
+    host: process.env.DBASE_HOST,
+    database: process.env.DBASE_NAME,
+    password: process.env.DBASE_PASS,
+    user: process.env.DBASE_USER,
+    port: process.env.DBASE_PORT
 })
 
-module.exports = conexao
+export default conexao

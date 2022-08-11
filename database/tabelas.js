@@ -1,6 +1,6 @@
-const executaQuery = require("./executaQuery");
+import executaQuery from "./executaQuery";
 
-module.exports = class Tabelas {
+export default class Tabelas {
     static async init() {
         await this.criarTbUsuario()
     }

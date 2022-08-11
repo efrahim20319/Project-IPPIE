@@ -1,18 +1,18 @@
-const app = require("./custom/expressConfig")
-const telas = require("./routes/telas")
-const config = require("config")
-const conexao = require("./database/conexao")
-const port = config.get("app.porta")
-const RotasUsuario = require("./routes/Usuario")
-const Tabelas = require("./database/tabelas")
-const middlewares = require("./middlewares/middlewares")
+require("dotenv").config()
+import app from "./custom/expressConfig"
+import telas from "./routes/telas"
+import conexao from "./database/conexao"
+const port = process.env.APP_PORT
+import RotasUsuario from "./routes/Usuario"
+import tabelas from "./database/tabelas"
+import middlewares from "./middlewares/middlewares"
 
 
 conexao.connect(async (erro) => {
     if (erro) {
         console.error(erro);
     } else {
-        await Tabelas.init() // inicializacao das tabelas da base de dados
+        await tabelas.init() // inicializacao das tabelas da base de dados
         app.use("/", telas) // telas do site estarão aqui
         app.use("/api", RotasUsuario) // todas as rotas da para a api começarão com o prefixo api
         app.use(middlewares.middlewareErro)

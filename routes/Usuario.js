@@ -1,16 +1,17 @@
-const roteador = require("express").Router()
-const usuarioControlador = require("../controller/Usuario")
+import { Router } from "express"
+const roteador = Router()
+import { criarUsuario, listarUsuarios, obterPorID, deletarPorID, atualizarPorID, obterPorEmail } from "../controller/Usuario"
 
 roteador.route("/usuario")
-    .post(usuarioControlador.criarUsuario)
-    .get(usuarioControlador.listarUsuarios)
+    .post(criarUsuario)
+    .get(listarUsuarios)
 
 roteador.route(/^\/usuario\/(\d+)$/)
-    .get(usuarioControlador.obterPorID)
-    .delete(usuarioControlador.deletarPorID)
-    .put(usuarioControlador.atualizarPorID)
+    .get(obterPorID)
+    .delete(deletarPorID)
+    .put(atualizarPorID)
 
 roteador.route(/^\/usuario\/email\/(\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+)$/)
-    .get(usuarioControlador.obterPorEmail)
+    .get(obterPorEmail)
 
-module.exports = roteador
+export default roteador

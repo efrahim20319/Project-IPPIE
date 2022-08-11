@@ -1,6 +1,6 @@
-const conexao = require("./conexao");
+import conexao from "./conexao";
 
-module.exports = function executaQuery(query, parametros = "") {
+export default function executaQuery(query, parametros = "") {
     return new Promise((resolve, reject) => {
         conexao.query(query, parametros, (erro, resultado) => {
             if (erro) {

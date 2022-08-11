@@ -1,4 +1,4 @@
-module.exports = class EmailJaCadastrado extends Error {
+export default class EmailJaCadastrado extends Error {
     constructor(email) {
         const mensagem = `O email ${email} já foi cadastrado`
         super(mensagem)

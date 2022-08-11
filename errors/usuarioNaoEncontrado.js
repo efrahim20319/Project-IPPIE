@@ -1,4 +1,4 @@
-module.exports = class UsuarioNaoEncontrado extends Error {
+export default class UsuarioNaoEncontrado extends Error {
     constructor(info = { id, email }) {
         let key, value
         if (info.id) {

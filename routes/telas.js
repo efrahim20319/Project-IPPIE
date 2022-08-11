@@ -1,4 +1,4 @@
-const { Router } = require("express")
+import { Router } from "express"
 
 const roteador = Router()
 
@@ -14,4 +14,4 @@ rotasCursos.get("/eletricidade-baixa-tensao", (req, res) => {
 
 roteador.use("/cursos", rotasCursos)
 
-module.exports = roteador
+export default roteador

@@ -1,10 +1,9 @@
-const DadosEmFalta = require("./dadosEmFalta")
-const EmailJaCadastrado = require("./EmailJaCadastrado")
-const ErroDeFormato = require("./erroDeFormato")
-const UsuarioNaoEncontrado = require("./usuarioNaoEncontrado")
+import DadosEmFalta from "./dadosEmFalta"
+import EmailJaCadastrado from "./EmailJaCadastrado"
+import ErroDeFormato from "./erroDeFormato"
+import UsuarioNaoEncontrado from "./usuarioNaoEncontrado"
 
-
-module.exports = {
+export default {
     DadosEmFalta,
     ErroDeFormato,
     EmailJaCadastrado,

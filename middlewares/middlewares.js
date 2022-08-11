@@ -1,5 +1,5 @@
-const middlewareErro = require("./middlewareErro");
+import middlewareErro from "./middlewareErro";
 
-module.exports = {
+export default {
     middlewareErro
 }
