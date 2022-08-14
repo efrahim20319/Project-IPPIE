@@ -1,7 +1,6 @@
 .header__banner {
   width: 100%;
   background-size: cover;
-  background-position: 50% 35%;
   background-attachment: fixed;
   background-repeat: no-repeat;
   height: calc(100vh - 10em);

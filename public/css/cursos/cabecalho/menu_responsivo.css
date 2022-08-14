@@ -2,8 +2,12 @@
     display: none;
     background: none;
     color: transparent;
+    outline: none;
 }
 @media(max-width: 600px){
+    .cabecalho {
+        padding: 0 1em;
+    }
     .cabecalho_list{
         display: none;
     }
