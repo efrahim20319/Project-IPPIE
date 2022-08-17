@@ -1,17 +1,17 @@
 import { Router } from "express"
+import UsuarioControlador from "../controller/Usuario"
 const roteador = Router()
-import { criarUsuario, listarUsuarios, obterPorID, deletarPorID, atualizarPorID, obterPorEmail } from "../controller/Usuario"
 
 roteador.route("/usuario")
-    .post(criarUsuario)
-    .get(listarUsuarios)
+    .post(UsuarioControlador.criarUsuario)
+    .get(UsuarioControlador.listarUsuarios)
 
 roteador.route(/^\/usuario\/(\d+)$/)
-    .get(obterPorID)
-    .delete(deletarPorID)
-    .put(atualizarPorID)
+    .get(UsuarioControlador.obterPorID)
+    .delete(UsuarioControlador.deletarPorID)
+    .put(UsuarioControlador.atualizarPorID)
 
 roteador.route(/^\/usuario\/email\/(\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+)$/)
-    .get(obterPorEmail)
+    .get(UsuarioControlador.obterPorEmail)
 
 export default roteador

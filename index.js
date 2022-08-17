@@ -5,7 +5,7 @@ import conexao from "./database/conexao"
 const port = process.env.APP_PORT
 import RotasUsuario from "./routes/Usuario"
 import tabelas from "./database/tabelas"
-import middlewares from "./middlewares/middlewares"
+import middlewares from "./middlewares"
 
 
 conexao.connect(async (erro) => {

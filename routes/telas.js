@@ -3,7 +3,7 @@ import { Router } from "express"
 const roteador = Router()
 
 roteador.get("/", (req, res) => {
-    res.render("index")
+    res.render("home")
 })
 
 //rotas cursos

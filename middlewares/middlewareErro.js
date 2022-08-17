@@ -1,4 +1,4 @@
-import erros from "../errors/errors"
+import erros from "../errors"
 
 function criaObjetoErro(erro) {
     return { "Tipo de Erro": erro.name, "Mensagem": erro.message, "ID de Erro": erro.idErro }
