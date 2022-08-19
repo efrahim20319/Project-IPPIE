@@ -6,8 +6,6 @@
   height: calc(100vh - 10em);
 }
 
-
-
 .header__banner--eletrico {
   background-image: url("../../../img/svgs/symbol-scatter-haikei.svg");
 }
@@ -27,4 +25,8 @@
 
 .header__banner--maquinas-motores {
   background-image: url("../../../img/svgs/blob-scene-haikei.svg");
+}
+
+.header__banner--404 {
+  background-image: url("../../../img/svgs/blob-haikei.svg");
 }
