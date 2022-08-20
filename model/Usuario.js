@@ -22,7 +22,7 @@ export default class Usuario {
         const options = Object.assign({ BloquearNaAusencia: true, BloquearEmailCadastrado: true }, options_default);
         const emailPattern = /^(\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+)$/
         const nomePattern = /^([A-Za-zÃÕÁÉÍÓÚÂÊÎÔÛÇãõáéíóúâêîôûç]+)([\sA-Za-zÃÕÁÉÍÓÚÂÊÎÔÛÇãõáéíóúâêîôûç]+)*$/
-        const telefonePattern = /^(\+244\s{0,2})?(9\d{2}([-\s]?)\d{3}(\3)\d{3})$/
+        const telefonePattern = /^(\+244\s{0,2})?(9\d{2}([-\s]?)\validad{3}(\3)\d{3})$/
         this.verificarAusencia(options)
         await this.verificarEmailCadastrado(options)
         this.verificarMaTextuacao(nomePattern, emailPattern, telefonePattern)

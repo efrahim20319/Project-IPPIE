@@ -1,4 +1,5 @@
 import mysql from "mysql"
+
 const conexao = mysql.createConnection({
     host: process.env.DBASE_HOST,
     database: process.env.DBASE_NAME,
