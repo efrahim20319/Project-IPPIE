@@ -1,4 +1,4 @@
-import erros from "../errors/errors"
+import erros from "../errors"
 import Repositorio from "../repo/Usuario"
 export default class Usuario {
     constructor(nome, email, numero_telefone, emailVerificado = false) {
