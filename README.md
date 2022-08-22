@@ -3,23 +3,22 @@
 - Este projecto esta na faze de desenvolvimento
 - Projecto Open Source
 
-clone Projecto
+Clone Projecto
 
 ```
 git clone https://github.com/efrahim20319/Project-IPPIE.git
 ```
-
+Instalar dependecia do projecto
 ```
 cd Project-IPPIE
 npm install
 ```
-or
 ```
 cd Project-IPPIE
 yarn
 ```
 
-start Project
+Inicializar Projecto
 ```
 npm run start
 ```
