@@ -4,7 +4,7 @@
         if (type === 'success-message') {
             swal({
                 title: 'Cadastrado com Sucesso!',
-                text: 'Você digitou dados correta!',
+                text: 'Você digitou dados corretos!',
                 type: 'success',
                 button: {
                     text: "Continue",
