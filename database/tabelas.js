@@ -12,7 +12,7 @@ export default class Tabelas {
                 nome varchar(255) NOT NULL,
                 email varchar(255) NOT NULL,
                 numero_telefone varchar(50) NOT NULL,
-                emailVerificado INTEGER,
+                emailVerificado TINYINT,
                 data_criacao timestamp default current_timestamp,
                 data_atualizacao timestamp default current_timestamp on update current_timestamp
             );

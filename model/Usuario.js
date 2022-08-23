@@ -2,33 +2,24 @@ import erros from "../errors"
 import Repositorio from "../repo/Usuario"
 export default class Usuario {
     constructor(nome, email, numero_telefone, emailVerificado = false) {
+        this.id = Number()
         this.nome = nome
         this.email = email
         this.numero_telefone = numero_telefone
         this.emailVerificado = emailVerificado
     }
 
-    // get nome() {
-    //     this._nome = nome
-    // }
-    // get email() {
-    //     this._email = this.email
-    // }
-    // get numero_telefone() {
-    //     this._numero_telefone = this.numero_telefone
-    // }
-
     async valida(options_default = { BloquearNaAusencia: true, BloquearEmailCadastrado: true }) {
         const options = Object.assign({ BloquearNaAusencia: true, BloquearEmailCadastrado: true }, options_default);
-        const emailPattern = /^(\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+)$/
-        const nomePattern = /^([A-Za-zÃÕÁÉÍÓÚÂÊÎÔÛÇãõáéíóúâêîôûç]+)([\sA-Za-zÃÕÁÉÍÓÚÂÊÎÔÛÇãõáéíóúâêîôûç]+)*$/
-        const telefonePattern = /^(\+244\s{0,2})?(9\d{2}([-\s]?)\validad{3}(\3)\d{3})$/
         this.verificarAusencia(options)
         await this.verificarEmailCadastrado(options)
-        this.verificarMaTextuacao(nomePattern, emailPattern, telefonePattern)
+        this.verificarMaTextuacao()
     }
 
-    verificarMaTextuacao(nomePattern, emailPattern, telefonePattern) {
+    verificarMaTextuacao() {
+		const emailPattern = /^(\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+)$/
+        const nomePattern = /^([A-Za-zÃÕÁÉÍÓÚÂÊÎÔÛÇãõáéíóúâêîôûç]+)([\sA-Za-zÃÕÁÉÍÓÚÂÊÎÔÛÇãõáéíóúâêîôûç]+)*$/
+        const telefonePattern = /^(\+244\s{0,2})?(9\d{2}([-\s]?)\d{3}(\3)\d{3})$/
         if (this.nome && !nomePattern.test(String(this.nome).trim()))
             throw new erros.ErroDeFormato("Nome inválido")
         if (this.email && !emailPattern.test(String(this.email).trim()))
@@ -65,21 +56,32 @@ export default class Usuario {
         const dados = {
             nome: String(this.nome).trim(),
             email: String(this.email).trim(),
-            numero_telefone: String(this.numero_telefone).trim()
+            numero_telefone: String(this.numero_telefone).trim(),
+			emailVerificado: this.emailVerificado
         }
         await Repositorio.adiciona(dados)
+        const dadosRetornados = await Repositorio.pegarPorEmail(this.email)
+		const { codigo } = dadosRetornados[0]
+		this.id = codigo
     }
 
     static async pegarPorId(id) {
         const dados = await Repositorio.pegarPorId(id)
         if (!dados.length) throw new erros.UsuarioNaoEncontrado({ id })
-        const { nome, email, numero_telefone } = dados[0]
-        return new Usuario(nome, email, numero_telefone)
+        const { nome, email, numero_telefone, emailVerificado, codigo } = dados[0]
+        const usuario = new Usuario(nome, email, numero_telefone, emailVerificado)
+        usuario.id = codigo
+        return usuario
     }
 
     static async deleta(id) {
         await Usuario.pegarPorId(id) //Verificar se o usuario existe
         await Repositorio.deleta(id)
+    }
+
+    async modificaEmailEnviado() {
+        this.emailVerificado = true
+        Repositorio.modificaEmailVerificado(this.email)
     }
 
     async atualiza(id) {
@@ -110,7 +112,9 @@ export default class Usuario {
         const dados = await Repositorio.pegarPorEmail(emailEnviado)
         if (!dados.length && options.BloquearNaAusencia) throw new erros.UsuarioNaoEncontrado({ email: emailEnviado })
         if (!dados.length) return undefined
-        const { nome, email, numero_telefone } = dados[0]
-        return new Usuario(nome, email, numero_telefone)
+        const { nome, email, numero_telefone, emailVerificado, codigo } = dados[0]
+        const usuario = new Usuario(nome, email, numero_telefone, emailVerificado)
+        usuario.id = codigo
+        return usuario
     }
 }

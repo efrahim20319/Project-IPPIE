@@ -1,4 +1,11 @@
+import tokens from "../infrastructure/tokens";
 import Usuario from "../model/Usuario";
+import EmailVerificacao from "../services/EmailVerificacao";
+
+function geraEndereco(rota, token) {
+  const base_url = process.env.BASE_URL;
+  return `${base_url}/${rota}/${token}`;
+}
 
 export default class UsuarioControlador {
   static async criarUsuario(req, res, next) {
@@ -8,9 +15,34 @@ export default class UsuarioControlador {
       const usuario = new Usuario(nome, email, numero_telefone);
       await usuario.valida();
       await usuario.adiciona();
-      res.status(201).end();
+      UsuarioControlador.enviarEmailVerificacao(usuario);
+      res.status(201).send();
     } catch (erro) {
       next(erro);
+    }
+  }
+
+  static enviarEmailVerificacao(usuario) {
+    const tokenVerificacao = tokens.verificacaoEmail.cria(usuario.id);
+    const endereco = geraEndereco(
+      "api/usuario/verifica_email",
+      tokenVerificacao
+    );
+    const emailVerificacao = new EmailVerificacao(usuario, endereco);
+    emailVerificacao
+      .enviaEmail()
+      .catch((erro) => {
+        console.error("Erro ao enviar email", erro);
+      });
+  }
+
+  static async verificaEmail(req, res) {
+    try {
+      const usuario = req.user;
+      await usuario.modificaEmailEnviado();
+      res.status(200).end();
+    } catch (error) {
+      res.status(500).json(error.message);
     }
   }
 

@@ -40,7 +40,7 @@ export default class Usuario {
 
   static async lista() {
     try {
-      const query = "SELECT codigo, nome, email, numero_telefone FROM Usuario;";
+      const query = "SELECT codigo, nome, email, numero_telefone, emailVerificado FROM Usuario;";
       return await executaQuery(query);
     } catch (error) {
       throw new SQLError(error.message);
@@ -53,6 +53,15 @@ export default class Usuario {
       return await executaQuery(query, email);
     } catch (error) {
         throw new SQLError(error.message)
+    }
+  }
+
+  static async modificaEmailVerificado(email) {
+    try {
+      const query = "UPDATE Usuario SET emailVerificado = 1 WHERE email = ?"
+      await executaQuery(query, email)
+    } catch (error) {
+      throw new SQLError(error.message)
     }
   }
 }
