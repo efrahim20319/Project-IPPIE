@@ -27,6 +27,10 @@
   background-image: url("../../../img/svgs/blob-scene-haikei.svg");
 }
 
-.header__banner--404 {
-  background-image: url("../../../img/svgs/blob-haikei.svg");
+.header__banner--desenhador-projetista {
+  background-image: url("../../../img/svgs/low-poly-grid-haikei.svg");
+}
+
+.header__banner--instalacoes-eletricas {
+  background-image: url("../../../img/svgs/stacked-waves-haikei\ \(1\).svg");
 }

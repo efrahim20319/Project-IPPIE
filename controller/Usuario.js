@@ -36,7 +36,7 @@ export default class UsuarioControlador {
       });
   }
 
-  static async verificaEmail(req, res) {
+  static async modificaEmail(req, res) {
     try {
       const usuario = req.user;
       await usuario.modificaEmailEnviado();

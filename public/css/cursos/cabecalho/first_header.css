@@ -21,3 +21,11 @@
 .motores.first_header::after {
   background-color: #861c1c;
 }
+
+.projetista.first_header::after {
+  background-color: #4f3b21;
+}
+
+.instalacoes.first_header::after {
+  background-color: #073f01;
+}

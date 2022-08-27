@@ -21,7 +21,7 @@ roteador
 roteador.get(
   "/usuario/verifica_email/:token",
   middlewares.MiddlewaresAutenticacao.verificacaoEmail,
-  UsuarioControlador.verificaEmail
+  UsuarioControlador.modificaEmail
 );
 
 export default roteador;

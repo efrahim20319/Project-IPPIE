@@ -13,10 +13,6 @@ conexao.connect(async (erro) => {
     await tabelas.init(); // inicializacao das tabelas da base de dados
     app.use(rotas);
     app.use(middlewares.middlewareErro);
-    app.use((_req, res) => {
-      // rota para página não encontrada, ou seja, tem que ser o último middleware a ser passado na requisição
-      res.status(404).render("tela-404");
-    });
     app.listen(port, console.log("Server up and running at port", port));
   }
 });
