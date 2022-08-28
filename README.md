@@ -1,6 +1,6 @@
 ## Project-IPPIE
 
-- Este projecto esta na faze de desenvolvimento
+- Este projecto está na fase de desenvolvimento
 - Projecto Open Source
 
 Clone Projecto
