@@ -1,7 +1,7 @@
 import erros from "../errors"
 
 function criaObjetoErro(erro) {
-    return { "Tipo de Erro": erro.name, "Mensagem": erro.message, "ID de Erro": erro.idErro }
+    return { "tipo": erro.name, "mensagem": erro.message, "idErro": erro.idErro }
 }
 
 export default (erro, req, res, next) => {
