@@ -16,7 +16,7 @@ export default class UsuarioControlador {
       await usuario.valida();
       await usuario.adiciona();
       UsuarioControlador.enviarEmailVerificacao(usuario);
-      res.status(201).send();
+      res.status(201).end();
     } catch (erro) {
       next(erro);
     }

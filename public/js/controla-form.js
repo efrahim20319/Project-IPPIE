@@ -24,14 +24,20 @@ formulario.addEventListener("submit", async function (event) {
             "Content-type": "application/json; charset=UTF-8"
         }
     })
-    const dados = await response.json()
-    const { erro } = dados
-    if (erro) {
-        console.log(erro);
-        alert(erro.mensagem)
+    const dados = await retornarDados(response)
+    if (dados && dados.erro) {
+        alert(dados.erro.mensagem)
         limparInputs(inputs)
         return
+    } else {
+        window.location.href = `http://localhost:3000/sucess-signin?email=${email}`
     }
-    showSwal('success-signin')
-    limparInputs(inputs)
 })
+
+async function retornarDados(response) {
+    try {
+        return await response.json()
+    } catch (error) {
+        console.log(error);
+    }
+}
