@@ -8,3 +8,8 @@ html {
 footer * {
     font-family: 'Montserrat', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
+
+.active {
+    text-decoration: underline wavy;
+    color: rgb(185, 75, 7) !important;
+}
