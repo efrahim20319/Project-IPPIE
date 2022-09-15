@@ -1,15 +1,25 @@
 import { Router } from "express"
+import UsuarioNaoEncontrado from "../errors/usuarioNaoEncontrado"
+import Usuario from "../model/Usuario"
 import { rotasCursos } from "./rotasCursos"
-
 const roteador = Router()
 
 roteador.get("/", (req, res) => {
-  res.render("home")
+  res.status(200).render("home")
 })
 
-roteador.get("/sucess-signin", (req, res) => {
+roteador.get("/sucess-signin", async (req, res) => {
   const email = req.query.email
-  res.status(200).render("cadastro-usuario-sucesso", { email })
+  try {
+    const usuario = await Usuario.pegarPorEmail(email)
+    if (!usuario.emailVerificado) 
+      return res.status(200).render("cadastro-usuario-sucesso", { email })
+    else return res.status(400).render('home')
+  } catch (erro) {
+    if (erro instanceof UsuarioNaoEncontrado) {
+     return res.status(404).render('home')
+    }
+  }
 })
 
 roteador.use("/cursos", rotasCursos)
