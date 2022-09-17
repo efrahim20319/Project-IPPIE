@@ -20,4 +20,5 @@ form.addEventListener("submit", async function(event){
         }
     })
     showSwal('success-message')
+    limparInputs([inputEmail, inputMensagem, inputNome])
 })

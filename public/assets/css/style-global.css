@@ -1,5 +1,6 @@
 @import url(fontawesome.css);
 @import url("https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900");
+@import url("./animations.css");
 body {
     font-family: 'Montserrat', sans-serif;
 }
@@ -659,6 +660,12 @@ section.coming-soon .continer h4 {
 section.coming-soon .continer h4 em {
     font-style: normal;
     color: #f5a425;
+}
+
+.matricula-sec {
+  display: grid;
+  place-items: center;
+  align-items: center;
 }
 
 @media screen and (max-width: 767px) {
