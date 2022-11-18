@@ -1,11 +1,11 @@
-import executaQuery from "../database/executaQuery";
 import SQLError from "../errors/SQLError";
+import database from "../database/models/index"
+const database = require("../database/models/index")
 
 export default class Usuario {
   static async adiciona(dados) {
     try {
-      const query = "INSERT INTO Usuario SET ?";
-      await executaQuery(query, dados);
+      await database.Usuarios.create(dados)
     } catch (error) {
       throw new SQLError(error.message);
     }
@@ -13,8 +13,7 @@ export default class Usuario {
 
   static async pegarPorId(id) {
     try {
-      const query = "SELECT * FROM Usuario WHERE codigo = ?";
-      return await executaQuery(query, id);
+      return await database.Usuarios.findByPk(id)
     } catch (error) {
       throw new SQLError(error.message);
     }
@@ -22,8 +21,11 @@ export default class Usuario {
 
   static async deleta(id) {
     try {
-      const query = "DELETE FROM Usuario WHERE codigo = ?";
-      await executaQuery(query, id);
+      await database.Usuarios.destroy({
+        where: {
+          id
+        }
+      })
     } catch (error) {
       throw new SQLError(error.message);
     }
@@ -31,8 +33,11 @@ export default class Usuario {
 
   static async atualiza(dados, id) {
     try {
-      const query = "UPDATE Usuario SET ? WHERE codigo = ?";
-      await executaQuery(query, [dados, id]);
+      await database.Usuarios.update(dados, {
+        where: {
+          id
+        }
+      })
     } catch (error) {
       throw new SQLError(error.message);
     }
@@ -40,8 +45,7 @@ export default class Usuario {
 
   static async lista() {
     try {
-      const query = "SELECT codigo, nome, email, numero_telefone, emailVerificado FROM Usuario;";
-      return await executaQuery(query);
+      return await database.Usuarios.findAll()
     } catch (error) {
       throw new SQLError(error.message);
     }
@@ -49,17 +53,23 @@ export default class Usuario {
 
   static async pegarPorEmail(email) {
     try {
-      const query = "SELECT * FROM Usuario WHERE email = ? LIMIT 1";
-      return await executaQuery(query, email);
+      return await database.Usuarios.findOne({
+        where: {
+          email
+        }
+      })
     } catch (error) {
-        throw new SQLError(error.message)
+      throw new SQLError(error.message)
     }
   }
 
   static async modificaEmailVerificado(email) {
     try {
-      const query = "UPDATE Usuario SET emailVerificado = 1 WHERE email = ?"
-      await executaQuery(query, email)
+      await database.Usuarios.update({ emailVerificado: true }, {
+        where: {
+          email
+        }
+      })
     } catch (error) {
       throw new SQLError(error.message)
     }

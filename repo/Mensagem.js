@@ -1,10 +1,7 @@
-import executaQuery from "../database/executaQuery";
+const database = require("../database/models")
 
 export default class RepositorioMensagem {
     static async adicionarMensagem(dados) {
-        const query = 'INSERT INTO Mensagem SET ?'
-        await executaQuery(query, dados)
+        await database.Mensagens.create(dados)
     }
-
-
 }

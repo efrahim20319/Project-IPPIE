@@ -1,32 +1,28 @@
 (function ($) {
     showSwal = function (type) {
         'use strict';
-        if (type === 'success-signin') {
+        if (type === 'error') {
             swal({
-                title: 'Usuário cadastrado com sucesso!',
-                text: 'Dados enviados corretamente.',
-                type: 'success',
-                button: {
-                    text: "Continue",
-                    value: true,
-                    visible: true,
-                    className: "btn btn-primary"
-                }
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Something went wrong!',
+                footer: '<a href="">Why do I have this issue?</a>'
             })
+        }
+        if (type === 'success-signin') {
+            Swal.fire(
+                'Usuário cadastrado com sucesso!',
+                'Dados enviados corretamente.',
+                'success'
+            )
             return
         }
         if (type === 'success-message') {
-            swal({
-                title: 'Mensagem enviada com sucesso!',
-                text: 'Será respondido por email em instantes.',
-                type: 'success',
-                button: {
-                    text: "Continue",
-                    value: true,
-                    visible: true,
-                    className: "btn btn-primary"
-                }
-            })
+            Swal.fire(
+                'Mensagem enviada com sucesso!',
+                'Será respondido por email em instantes.',
+                'success'
+            )
         } else {
             swal("Error occured !");
         }

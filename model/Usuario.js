@@ -27,7 +27,7 @@ export default class Usuario {
         if (this.numero_telefone && !telefonePattern.test(String(this.numero_telefone).trim()))
             throw new erros.ErroDeFormato("Número de telefone inválido")
         if (String(this.nome).length > 150)
-            throw new erros.ErroDeFormato("Nome demaiado longo")
+            throw new erros.ErroDeFormato("Nome demasiado longo")
         if (String(this.email).length > 150)
             throw new erros.ErroDeFormato("Email demasiado longo")
     }
@@ -61,16 +61,16 @@ export default class Usuario {
         }
         await Repositorio.adiciona(dados)
         const dadosRetornados = await Repositorio.pegarPorEmail(this.email)
-		const { codigo } = dadosRetornados[0]
-		this.id = codigo
+		const { id } = dadosRetornados
+		this.id = id
     }
 
-    static async pegarPorId(id) {
-        const dados = await Repositorio.pegarPorId(id)
-        if (!dados.length) throw new erros.UsuarioNaoEncontrado({ id })
-        const { nome, email, numero_telefone, emailVerificado, codigo } = dados[0]
+    static async pegarPorId(idEnviado) {
+        const dados = await Repositorio.pegarPorId(idEnviado)
+        if (!dados) throw new erros.UsuarioNaoEncontrado({ idEnviado })
+        const { nome, email, numero_telefone, emailVerificado, id } = dados
         const usuario = new Usuario(nome, email, numero_telefone, emailVerificado)
-        usuario.id = codigo
+        usuario.id = id
         return usuario
     }
 
@@ -110,11 +110,11 @@ export default class Usuario {
     static async pegarPorEmail(emailEnviado, options_default = { BloquearNaAusencia: true }) {
         const options = Object.assign({ BloquearNaAusencia: true }, options_default)
         const dados = await Repositorio.pegarPorEmail(emailEnviado)
-        if (!dados.length && options.BloquearNaAusencia) throw new erros.UsuarioNaoEncontrado({ email: emailEnviado })
-        if (!dados.length) return undefined
-        const { nome, email, numero_telefone, emailVerificado, codigo } = dados[0]
+        if (!dados && options.BloquearNaAusencia) throw new erros.UsuarioNaoEncontrado({ emailEnviado })
+        if (!dados) return undefined
+        const { nome, email, numero_telefone, emailVerificado, id } = dados
         const usuario = new Usuario(nome, email, numero_telefone, emailVerificado)
-        usuario.id = codigo
+        usuario.id = id
         return usuario
     }
 }

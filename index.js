@@ -10,7 +10,7 @@ conexao.connect(async (erro) => {
   if (erro) {
     console.error(erro);
   } else {
-    await tabelas.init(); // inicializacao das tabelas da base de dados
+    // await tabelas.init(); // inicializacao das tabelas da base de dados
     app.use(rotas);
     app.use(middlewares.middlewareErro);
     app.listen(port, console.log("Server up and running at port", port));

@@ -26,7 +26,12 @@ formulario.addEventListener("submit", async function (event) {
     })
     const dados = await retornarDados(response)
     if (dados && dados.erro) {
-        alert(dados.erro.mensagem)
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: `${dados.erro.mensagem}`,
+            // footer: '<a href="">Why do I have this issue?</a>'
+          })
         limparInputs(inputs)
         return
     } else {
