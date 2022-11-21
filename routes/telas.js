@@ -24,6 +24,10 @@ roteador.get("/sucess-signin", async (req, res) => {
 
 roteador.use("/cursos", rotasCursos)
 
+roteador.get('/matricula', (req, res) => {
+  res.status(200).render('matricula')
+})
+
 roteador.use((_req, res) => {
   // rota para página não encontrada, ou seja, tem que ser o último middleware a ser passado na requisição
   res.status(404).render("tela-404");

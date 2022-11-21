@@ -1,18 +1,18 @@
 require("dotenv").config();
+const db = require("./database/models/index")
 import app from "./custom/expressConfig";
-import conexao from "./database/conexao";
 const port = process.env.APP_PORT;
-import tabelas from "./database/tabelas";
 import middlewares from "./middlewares";
 import rotas from "./routes";
 
-conexao.connect(async (erro) => {
-  if (erro) {
-    console.error(erro);
-  } else {
-    // await tabelas.init(); // inicializacao das tabelas da base de dados
-    app.use(rotas);
-    app.use(middlewares.middlewareErro);
-    app.listen(port, console.log("Server up and running at port", port));
-  }
-});
+try {
+  db.sequelize.authenticate()
+    .then(() => {
+      console.log('Connection has been established successfully.');
+    });
+  app.use(rotas);
+  app.use(middlewares.middlewareErro);
+  app.listen(port, console.log("Server up and running at port", port));
+} catch (error) {
+  console.error('Unable to connect to the database:', error);
+}

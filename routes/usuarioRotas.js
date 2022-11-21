@@ -6,7 +6,8 @@ const roteador = Router();
 roteador
   .route("/usuario")
   .post(UsuarioControlador.criarUsuario)
-  .get(UsuarioControlador.listarUsuarios);
+  .get(UsuarioControlador.listarUsuarios)
+
 
 roteador
   .route(/^\/usuario\/(\d+)$/)

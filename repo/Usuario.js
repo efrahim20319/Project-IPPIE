@@ -1,5 +1,4 @@
 import SQLError from "../errors/SQLError";
-import database from "../database/models/index"
 const database = require("../database/models/index")
 
 export default class Usuario {
