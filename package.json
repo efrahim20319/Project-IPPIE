@@ -8,7 +8,11 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
-    "test:wc": "jest --watch --coverage"
+    "test:wc": "jest --watch --coverage",
+    "db:drop": "npx sequelize-cli db:drop",
+    "db:create": "npx sequelize-cli db:create",
+    "db:restart": "npx sequelize-cli db:drop && npx sequelize-cli db:create",
+    "db:restart:seed": "npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all"
   },
   "keywords": [],
   "author": "",

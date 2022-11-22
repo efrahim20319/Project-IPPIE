@@ -4,6 +4,7 @@ package-lock.json
 .eslintrc.js
 yarn.lock
 database/config/config.json
+database/config/config.js
 public/uploads/*
 yarn.lock
 yarn-error.log
