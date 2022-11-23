@@ -1,4 +1,4 @@
-import { unlink } from "fs";
+import crypto from "crypto"
 import moment from "moment";
 import path from "path";
 const multer = require("multer");
@@ -12,14 +12,19 @@ const storage = multer.diskStorage({
             const dados_aluno = req.body
             const imagem = file.originalname
             const extensao = path.extname(imagem)
-            let imagem_final = ''
-            imagem_final = `${moment().format('YYYYMMDDHHmmss')} - ${dados_aluno.numero_BI} - ${dados_aluno.nome.split(' ')[0]} - ${imagem[0]}${extensao}`
+            const imagem_final = GeraNomeImagem(dados_aluno, imagem, extensao);
             cb(null, imagem_final)
         } catch (error) {
             cb(error)
         }
     }
 })
+
+function GeraNomeImagem(dados_aluno, imagem, extensao) {
+    let imagem_final = '';
+    imagem_final = `${moment().format('YYYYMMDDHHmmss')} - ${crypto.randomUUID()} - ${dados_aluno.numero_BI} - ${dados_aluno.nome.split(' ')[0]} - ${imagem[0]}${extensao}`;
+    return imagem_final;
+}
 
 export default function carregaImagem() {
     const upload = multer({ storage: storage })

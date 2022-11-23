@@ -1,5 +1,5 @@
 import AlunoModelo from "../model/Alunos";
-
+import fs from "fs"
 export default class Aluno {
     static async criarAluno(req, res, next) {
         try {
@@ -9,6 +9,15 @@ export default class Aluno {
             await aluno.adiciona()
             res.end()
         } catch (error) {
+            const files = req.files
+            if (files) {
+                for (const file of files) {
+                    fs.unlink(file.path, (erro) => {
+                        if (erro) console.error("Erro ao eliminar o arquivo");
+                        console.log("Arquivo eliminado com sucesso");
+                    })
+                }
+            }
             next(error)
         }
     }
