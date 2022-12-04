@@ -10,4 +10,24 @@ export default class AdminRepo {
             throw new SQLError(error.message)
         }
     }
+
+    static async pegarPorEmail(email) {
+        try {
+            return await database.Administradores.findOne({
+                where: {
+                    email
+                }
+            })
+        } catch (error) {
+            throw new SQLError(error.message)
+        }
+    }
+
+    static async pegarPorId(id) {
+        try {
+            return await database.Administradores.findByPk(id)
+        } catch (error) {
+            throw new SQLError(error.message)
+        }
+    }
 }

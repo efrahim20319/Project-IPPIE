@@ -16,6 +16,15 @@ export default class Admin {
         }
         await AdminRepo.adiciona(dados)
     }
+
+    static async pegarPorEmail(email) {
+        return await AdminRepo.pegarPorEmail(email)
+    }
+
+    static async pegarPorId(id) {
+        return await AdminRepo.pegarPorId(id)
+    }
+
     static async geraSenhaHash(senha) {
         const custoHash = 12
         return await bcrypt.hash(senha, custoHash)

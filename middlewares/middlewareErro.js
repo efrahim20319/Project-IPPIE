@@ -1,11 +1,18 @@
+import { JsonWebTokenError, TokenExpiredError } from "jsonwebtoken"
 import erros from "../errors"
 
 function criaObjetoErro(erro) {
-    return { "tipo": erro.name, "mensagem": erro.message, "idErro": erro.idErro }
+    return { "tipo": erro.name, "mensagem": erro.message, "idErro": erro.idErro, "expiradoEm": erro.expiredAt }
 }
 
 export default (erro, req, res, next) => {
     let code = 500
+
+    // Erros na Autenticacao e na autorizacao
+    if (erro && (erro instanceof erros.InvalidArgumentError || erro instanceof JsonWebTokenError || erro instanceof TokenExpiredError))
+        code = 401
+    //
+
     if (erro instanceof erros.DadosEmFalta || erro instanceof erros.ErroDeFormato) {
         code = 400
     }

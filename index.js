@@ -1,4 +1,5 @@
 require("dotenv").config();
+import "./authentication/estrategias-autenticacao"
 const db = require("./database/models/index")
 import app from "./custom/expressConfig";
 const port = process.env.APP_PORT;
