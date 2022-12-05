@@ -20,7 +20,8 @@ export default {
 
 async function criarTokenOpaco(id, [tempoQuantidade, tempoUnidade], allowlist) {
     const tokenOpaco = crypto.randomBytes(24).toString("hex")
-    const dataExpiracao = moment().add(tempoQuantidade, tempoUnidade).unix()
+    // const dataExpiracao = moment().add(tempoQuantidade, tempoUnidade).unix()
+    const dataExpiracao = tempoQuantidade * 60
     await allowlist.adiciona(tokenOpaco, id, dataExpiracao)
     return tokenOpaco
 }

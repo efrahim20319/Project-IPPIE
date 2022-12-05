@@ -18,7 +18,7 @@ export default {
     async adiciona(token) {
         const dataExpiracao = jwt.decode(token).exp
         const tokenHash = geraTokenHash(token)
-        await manipulaBlockList.adciona(tokenHash, "", dataExpiracao)
+        await manipulaBlockList.adiciona(tokenHash, "", dataExpiracao)
     },
     async contemToken(token) {
         const tokenHash = geraTokenHash(token)

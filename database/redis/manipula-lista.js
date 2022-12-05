@@ -1,25 +1,18 @@
-import { promisify } from "util"
-
-export default function (lista)  {
-    const setAsync = promisify(lista.set).bind(lista)
-    const existsAsync = promisify(lista.exists).bind(lista)
-    const getAsync = promisify(lista.get).bind(lista)
-    const delAsync = promisify(lista.del).bind(lista)
-
+export default function (lista) {
     return {
         async adiciona(chave, valor, dataExpiracao) {
-            await setAsync(chave, valor)
+            await lista.set(chave, valor)
             await lista.expire(chave, dataExpiracao)
         },
         async contemChave(chave) {
-            const resultado = await existsAsync(chave)
-            return resultado === 1
+            const resultado = await lista.exists(chave)
+            return resultado == 1
         },
         async buscaValor(chave) {
-            return await getAsync(chave)
+            return await lista.get(chave)
         },
         async deleta(chave) {
-            await delAsync(chave)
+            await lista.del(chave)
         }
     }
 }

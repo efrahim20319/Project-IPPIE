@@ -1,13 +1,14 @@
 import Usuario from "../model/Usuario";
 import tokens from "../infrastructure/tokens";
 import passport from "passport";
+import Admin from "../model/Admin"
 
 export default class MiddlewaresAutenticacao {
   static async local(req, res, next) {
     passport.authenticate("local", { session: false },
       (erro, usuario, info) => {
         if (erro) return next(erro)
-        if (!usuario) return res.status(401).json({ erro: erro.message })
+        if (!usuario) return res.status(401).json()
         req.user = usuario
         return next()
       })(req, res, next)
@@ -24,6 +25,19 @@ export default class MiddlewaresAutenticacao {
       })(req, res, next)
   }
 
+  static async refresh(req, res, next) {
+    try {
+      const refresh_token = req.cookies.refresh_token
+      const id = await tokens.refresh.verifica(refresh_token)
+      await tokens.refresh.invalida(refresh_token)
+      const admin = await Admin.pegarPorId(id)
+      req.user = admin
+      return next()
+    } catch (error) {
+      return next(error)
+    }
+  }
+
   static async verificacaoEmail(req, res, next) {
     try {
       const { token } = req.params;
@@ -32,15 +46,7 @@ export default class MiddlewaresAutenticacao {
       req.user = usuario;
       return next();
     } catch (erro) {
-      if (erro.message === "TokenExpiredError")
-        return res
-          .status(401)
-          .json({ erro: erro.message, "Expirado em": erro.expiredAt });
-
-      if (erro.message === "JsonWebTokenError")
-        return res.status(401).json(erro.message);
-
-      return res.status(500).json(erro.message);
+      return next(erro)
     }
   }
 }
