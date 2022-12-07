@@ -12,6 +12,7 @@ AdminController.logout]
 adminRoutes.use("/admin", admin)
 
 admin.post("/", AdminController.adiciona)
+admin.post("/atualizaToken", middlewares.MiddlewaresAutenticacao.refresh, AdminController.login)
 admin.post("/tokensValidos", middlewares.MiddlewaresAutenticacao.bearer, AdminController.estaValido)
 admin.post('/login', middlewares.MiddlewaresAutenticacao.local, AdminController.login)
 admin.post("/logout", logoutMidwares)

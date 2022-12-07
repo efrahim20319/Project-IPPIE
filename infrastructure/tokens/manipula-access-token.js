@@ -3,7 +3,7 @@ import blocklistAcessToken from "../../database/redis/blocklist-access-token";
 
 export default {
     nome: "Acess Token",
-    expiracao: [5, 'd'],
+    expiracao: [10, 's'],
     lista: blocklistAcessToken,
     criar(id) {
         return criaTokenJWT(id, this.expiracao)

@@ -1,32 +1,17 @@
-import axios from "axios";
 import { Router } from "express";
+import middlewares from "../middlewares/index.js";
+
 
 const telas = Router()
 
-async function tokenIsValid(token) {
-    const response = await axios.post("http://localhost:3333/api/admin/tokensValidos", {}, {
-        headers: {
-            "Content-Type": "application/json",
-            authorization: `Bearer ${token}`
-        }
-    })
-    const statusCode = response.status
-    return statusCode >= 200 && statusCode < 300
-}
-
-telas.get("/", async (req, res, next) => {
-    try {
-        const token = req.cookies.access_token
-        if (await tokenIsValid(token))
-            return res.render("dashboard")
-        return res.render("entrar")
-    } catch (error) {
-        res.redirect("/entrar")
-        console.error(error);
-    }
+telas.get("/", middlewares.autenticacao.estaLogado(), async (_req, res, _next) => {
+    res.render("dashboard")
 })
-telas.get("/entrar", (_req, res) => {
-    res.status(200).render('entrar')
+telas.get("/entrar", middlewares.autenticacao.estaLogado(), (req, res) => {
+    const estaLogado = res.getHeader("IsLogged")
+    if (estaLogado)
+        return res.redirect('/')
+    return res.status(401).render('entrar')
 })
 telas.get("/cadastrar", (_req, res) => {
     res.status(200).render('cadastrar')

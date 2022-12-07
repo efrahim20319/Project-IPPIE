@@ -25,9 +25,9 @@ export default class MiddlewaresAutenticacao {
       })(req, res, next)
   }
 
-  static async refresh(req, res, next) {
+  static async refresh(req, _res, next) {
     try {
-      const refresh_token = req.cookies.refresh_token
+      const { refresh_token } = req.body
       const id = await tokens.refresh.verifica(refresh_token)
       await tokens.refresh.invalida(refresh_token)
       const admin = await Admin.pegarPorId(id)

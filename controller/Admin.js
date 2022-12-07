@@ -21,6 +21,7 @@ export default class AdminController {
         try {
             return res.status(200).end()
         } catch (error) {
+            console.log(error);
             return res.status(400).json()
         }
     }

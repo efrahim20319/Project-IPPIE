@@ -5,13 +5,13 @@ import manipulaAllowlist from "../../database/redis/allowlist-refresh-token";
 
 export default {
     nome: "Refresh Token",
-    expiracao: [30, 'm'],
+    expiracao: [1, 'd'],
     lista: manipulaAllowlist,
     async criar(id) {
         return await criarTokenOpaco(id, this.expiracao, this.lista)
     },
     async verifica(token) {
-        await verificaTokenOpaco(token, this.nome, this.lista)
+        return await verificaTokenOpaco(token, this.nome, this.lista)
     },
     async invalida(token) {
         await invalidaTokenOpaco(token, this.lista)
@@ -20,9 +20,10 @@ export default {
 
 async function criarTokenOpaco(id, [tempoQuantidade, tempoUnidade], allowlist) {
     const tokenOpaco = crypto.randomBytes(24).toString("hex")
-    // const dataExpiracao = moment().add(tempoQuantidade, tempoUnidade).unix()
-    const dataExpiracao = tempoQuantidade * 60
-    await allowlist.adiciona(tokenOpaco, id, dataExpiracao)
+    const dataAtual = moment()
+    const dataExpiracao = moment().add(tempoQuantidade, tempoUnidade)
+    const tempoExpiracao = dataExpiracao.diff(dataAtual, 'seconds')
+    await allowlist.adiciona(tokenOpaco, id, tempoExpiracao)
     return tokenOpaco
 }
 

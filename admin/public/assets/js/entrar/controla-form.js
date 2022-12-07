@@ -13,10 +13,11 @@ formulario.addEventListener("submit", async (env) => {
             "Content-Type": "application/json"
         },
         body: JSON.stringify(dados),
-        redirect: "follow"
+        credentials: "include"
     })
-    // const resposta = await requisicao.json()
-    if (requisicao.ok)
+    if (requisicao.ok) {
+        console.log("REquisicao ok");
         window.location.href = "/"
+    }
 
 })
