@@ -1,0 +1,36 @@
+.header__banner {
+  width: 100%;
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  height: calc(100vh - 10em);
+}
+
+.header__banner--eletrico {
+  background-image: url("../../../img/svgs/symbol-scatter-haikei.svg");
+}
+
+.header__banner--tec-informatica {
+  background-image: url("../../../img/svgs/blurry-gradient-haikei.png");
+}
+
+.header__banner--gsi {
+  background-position: 50% 105%;
+  background-image: url("../../../img/svgs/layered-peaks-haikei\ \(2\).svg");
+}
+
+.header__banner--metalomecanica {
+  background-image: url("../../../img/svgs/circle-scatter-haikei.svg");
+}
+
+.header__banner--maquinas-motores {
+  background-image: url("../../../img/svgs/blob-scene-haikei.svg");
+}
+
+.header__banner--desenhador-projetista {
+  background-image: url("../../../img/svgs/low-poly-grid-haikei\ 2.svg");
+}
+
+.header__banner--instalacoes-eletricas {
+  background-image: url("../../../img/svgs/stacked-waves-haikei\ \(1\).svg");
+}

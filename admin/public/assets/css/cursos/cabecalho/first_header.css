@@ -1,0 +1,31 @@
+.first_header {
+}
+
+.first_header::after {
+  content: "";
+  display: block;
+  height: 2em;
+}
+.eletrico.first_header::after {
+  background-color: rgb(46, 60, 165);
+}
+
+.tec-informatica.first_header::after {
+  background-color: rgb(50, 9, 134);
+}
+
+.metalomecanica.first_header::after {
+  background-color: #000000;
+}
+
+.motores.first_header::after {
+  background-color: #861c1c;
+}
+
+.projetista.first_header::after {
+  background-color: #1c206d;
+}
+
+.instalacoes.first_header::after {
+  background-color: #073f01;
+}

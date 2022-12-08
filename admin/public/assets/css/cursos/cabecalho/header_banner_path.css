@@ -1,0 +1,10 @@
+.header_banner_path {
+    position: relative;
+    left: 3em;
+    top: 2em;
+    font-weight: 700;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    /* word-wrap: break-word;
+    overflow-wrap: break-word; */
+}

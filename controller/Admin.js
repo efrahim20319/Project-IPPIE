@@ -44,7 +44,7 @@ export default class AdminController {
         try {
             const token = req.token
             await tokens.access.invalida(token)
-            return res.status(200).end()
+            return res.status(200).send("Tchauzinho")
         } catch (error) {
             return next(error)
         }

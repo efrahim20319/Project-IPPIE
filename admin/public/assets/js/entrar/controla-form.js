@@ -16,7 +16,6 @@ formulario.addEventListener("submit", async (env) => {
         credentials: "include"
     })
     if (requisicao.ok) {
-        console.log("REquisicao ok");
         window.location.href = "/"
     }
 

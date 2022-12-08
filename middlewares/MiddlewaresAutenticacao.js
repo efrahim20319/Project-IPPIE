@@ -49,4 +49,12 @@ export default class MiddlewaresAutenticacao {
       return next(erro)
     }
   }
+
+  static async pegaCookies(req, _res, next) {
+    const access_token = req.cookies.access_token
+    const refresh_token = req.cookies.refresh_token
+    req.headers.authorization = `Bearer ${access_token}`
+    req.body.refresh_token = refresh_token
+    return next()
+  }
 }

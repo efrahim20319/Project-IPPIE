@@ -1,0 +1,11 @@
+.curso-desc {
+    display: flex;
+    width: fit-content;
+    flex-wrap: wrap;
+    align-items: center;
+    position: relative;
+    top: 5rem;
+    left: 3em;
+    gap: 1em;
+    
+}

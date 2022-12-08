@@ -2,8 +2,8 @@ import jwt from "jsonwebtoken";
 import blocklistAcessToken from "../../database/redis/blocklist-access-token";
 
 export default {
-    nome: "Acess Token",
-    expiracao: [10, 's'],
+    nome: "Access Token",
+    expiracao: [20, 'm'],
     lista: blocklistAcessToken,
     criar(id) {
         return criaTokenJWT(id, this.expiracao)
