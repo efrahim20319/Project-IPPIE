@@ -1,5 +1,5 @@
 import { Router } from "express";
-import telas from "./telas";
+import telas from "./screens/telas.js";
 import rotasUsuario from "./usuarioRotas";
 import rotasMensagem from './rotasMensagem'
 import roteadorAluno from "./rotasAlunos";

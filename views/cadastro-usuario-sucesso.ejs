@@ -4,19 +4,24 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../public/css/cadastro-usuario-sucesso/index.css">
+    <link
+      rel="stylesheet"
+      href="/public/css/cadastro-usuario-sucesso/index.css"
+    />
     <title>Document</title>
   </head>
   <body>
     <header class="cabecalho">
       <span class="cabecalho_logo">
-        <a rel="prev" href="http://localhost:3000"
+        <a rel="prev" href="/"
           ><img
             class="logo_img"
-            src="../public/assets/images/logo-da-escola.png"
+            src="/public/assets/images/logo-da-escola.png"
             alt=""
           />
-          <a class="logo_text" rel="prev" href="http://localhost:3000">IPPIE</a></a
+          <a class="logo_text" rel="prev" href="/"
+            >IPPIE</a
+          ></a
         >
       </span>
       <button id="btn-menu-mobile">
@@ -24,18 +29,24 @@
         <span id="humburger"></span>
       </button>
       <ul class="cabecalho_list">
-        <li class="cabecalho_list_item"><a href="http://localhost:3000" rel="prev">HOME</a></li>
-        <li class="cabecalho_list_item"><a href="http://localhost:3000/#porquenos" rel="prev">SOBRE NÓS</a></li>
-        <li class="cabecalho_list_item"><a href="http://localhost:3000/#cursos" rel="prev">CURSOS</a></li>
+        <li class="cabecalho_list_item"><a href="/" rel="prev">HOME</a></li>
+        <li class="cabecalho_list_item">
+          <a href="/#porquenos" rel="prev">SOBRE NÓS</a>
+        </li>
+        <li class="cabecalho_list_item">
+          <a href="/#cursos" rel="prev">CURSOS</a>
+        </li>
       </ul>
     </header>
     <main>
       <div class="box">
-				<img class="box_img" src="../public/img/icons/success.png" alt="">
-				<h1 class="box_title">Conta criada com sucesso</h1>
-        <span class="box_msg">Foi enviado um e-mail de verificação para <%= email %></span>
-				<a class="box_link" href="http://localhost:3000">Voltar ao Início</a>
-			</div>
+        <img class="box_img" src="/public/img/icons/success.png" alt="" />
+        <h1 class="box_title">Conta criada com sucesso</h1>
+        <span class="box_msg"
+          >Foi enviado um e-mail de verificação para <%= email %></span
+        >
+        <a class="box_link" href="/">Voltar ao Início</a>
+      </div>
     </main>
   </body>
 </html>

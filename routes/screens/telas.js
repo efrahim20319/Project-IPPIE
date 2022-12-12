@@ -1,11 +1,15 @@
 import { Router } from "express"
-import UsuarioNaoEncontrado from "../errors/usuarioNaoEncontrado"
-import Usuario from "../model/Usuario"
+import UsuarioNaoEncontrado from "../../errors/usuarioNaoEncontrado"
+import Usuario from "../../model/Usuario"
 import { rotasCursos } from "./rotasCursos"
 const roteador = Router()
 
 roteador.get("/", (req, res) => {
   res.status(200).render("home")
+})
+
+roteador.get("/pagar", (req, res) => {
+  res.status(200).render('pagarStripe')
 })
 
 roteador.get("/sucess-signin", async (req, res) => {

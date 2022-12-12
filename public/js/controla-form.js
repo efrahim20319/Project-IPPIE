@@ -13,7 +13,7 @@ formulario.addEventListener("submit", async function (event) {
     const nome = inputNome.value
     const email = inputEmail.value
     const telefone = inputTelefone.value
-    const response = await fetch("http://localhost:3000/api/usuario", {
+    const response = await fetch("/api/usuario", {
         method: "POST",
         body: JSON.stringify({
             nome: nome,
@@ -35,7 +35,7 @@ formulario.addEventListener("submit", async function (event) {
         limparInputs(inputs)
         return
     } else {
-        window.location.href = `http://localhost:3000/sucess-signin?email=${email}`
+        window.location.href = `/sucess-signin?email=${email}`
     }
 })
 
