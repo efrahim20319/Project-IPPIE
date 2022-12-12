@@ -1,5 +1,5 @@
 const formulario = document.querySelector("form")
-formulario.addEventListener("submit", async (env) => { 
+formulario.addEventListener("submit", async (env) => {
     env.preventDefault()
     const email = formulario.querySelector("#yourUsername").value
     const password = formulario.querySelector("#yourPassword").value
@@ -17,6 +17,18 @@ formulario.addEventListener("submit", async (env) => {
     })
     if (requisicao.ok) {
         window.location.href = "/"
+    } 
+    else if (requisicao.status === 401) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Email ou senha incorretos!'
+        })
+    } else {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: requisicao.statusText
+        })
     }
-
 })
