@@ -1,4 +1,12 @@
 const formulario = document.querySelector("form")
+
+function limpaInputs() {
+    const inputs = document.querySelectorAll("input")
+    for (const input of inputs) {
+        input.value = ''
+    }
+}
+
 formulario.addEventListener("submit", async (env) => {
     env.preventDefault()
     const termoAceitos = formulario.querySelector("input#acceptTerms").checked
@@ -19,7 +27,7 @@ formulario.addEventListener("submit", async (env) => {
             body: JSON.stringify(dados),
             credentials: "include"
         })
-    
+
         if (requisicao.ok) {
             await Swal.fire(
                 'Bom Trabalho!',
@@ -27,9 +35,16 @@ formulario.addEventListener("submit", async (env) => {
                 'success'
             )
             window.location.href = `/entrar?user_email=${email}`
+            return
         }
-        else {
-            console.log(await requisicao.json());
+        const { erro } = await requisicao.json()
+        if (erro && erro.idErro === 3) {
+            await Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: erro.mensagem
+            })
+            limpaInputs()
         }
     }
 })
