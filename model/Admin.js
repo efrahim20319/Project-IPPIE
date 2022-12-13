@@ -10,12 +10,12 @@ export default class Admin {
     }
 
     async adiciona() {
+        const adminExistente = await Admin.pegarPorEmail(this.email)
+        if (adminExistente) throw new EmailJaCadastrado(this.email)
         const dados = {
             ...this,
             password: await Admin.geraSenhaHash(this.password)
         }
-        const adminExistente = await Admin.pegarPorEmail(this.email)
-        if (adminExistente) throw new EmailJaCadastrado(this.email)
         await AdminRepo.adiciona(dados)
     }
 

@@ -1,3 +1,5 @@
+'use strict';
+
 require("dotenv").config();
 import "./authentication/estrategias-autenticacao"
 const db = require("./database/models/index")
@@ -7,6 +9,7 @@ const port = process.env.APP_PORT;
 import middlewares from "./middlewares";
 import rotas from "./routes";
 
+
 async function initialize() {
   try {
     await db.sequelize.authenticate();
@@ -14,12 +17,12 @@ async function initialize() {
     await ConexaoListas()
     app.use(rotas);
     app.use(middlewares.middlewareErro);
-    app.listen(port, console.log("Server up and running at port", port));
+    app.listen(port, () => console.log("Server up and running at port", port));
   } catch (error) {
     console.error('Unable to connect to the database:', error);
   }
 }
 
-initialize().then(console.log("Up and running"))
+initialize().then(() => console.log("Up and running"))
 
 export default app

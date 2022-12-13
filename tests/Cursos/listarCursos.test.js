@@ -9,7 +9,7 @@ let server;
 beforeEach(async () => {
     const port = process.env.APP_PORT
     await db.sequelize.authenticate()
-    server = app.listen(port+1, () => console.log("Rodando na porta de Teste"))
+    server = app.listen(port + 1, () => console.log("Rodando na porta de Teste"))
 })
 
 afterEach(() => {
@@ -27,5 +27,18 @@ describe('Testes na classe cursos', () => {
             createdAt: expect.any(Date),
             updatedAt: expect.any(Date)
         }))
+    });
+
+    it('Deve retornar um Map com informacoes dos cursos', async () => {
+        const cursosMap = await Cursos.listarCursosMap()
+        expect(cursosMap.get(1)).toEqual(
+            expect.objectContaining({
+                nome: expect.any(String),
+                preco: expect.any(Number),
+                carga_horaria: expect.any(Number),
+                createdAt: expect.any(Date),
+                updatedAt: expect.any(Date)
+            })
+        )
     });
 });

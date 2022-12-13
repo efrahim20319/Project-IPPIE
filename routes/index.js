@@ -4,8 +4,10 @@ import rotasUsuario from "./usuarioRotas";
 import rotasMensagem from './rotasMensagem'
 import roteadorAluno from "./rotasAlunos";
 import adminRoutes from "./rotasAdmin";
+import rotasPagamento from "./rotasPagamento.js";
+
 const roteador = Router();
-const rotasAPI = [rotasUsuario, rotasMensagem, roteadorAluno, adminRoutes]
+const rotasAPI = [rotasUsuario, rotasMensagem, roteadorAluno, adminRoutes, rotasPagamento]
 roteador.use("/api", rotasAPI); // todas as rotas da para a api começarão com o prefixo api
 roteador.use("/", telas); // telas do site estarão aqui
 

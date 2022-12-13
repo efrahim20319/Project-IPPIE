@@ -1,7 +1,6 @@
 const { Router } = require("express");
 import AdminController from "../controller/Admin"
 import middlewares from "../middlewares"
-
 const admin = Router()
 const adminRoutes = Router()
 const logoutMidwares = [middlewares.MiddlewaresAutenticacao.pegaCookies, middlewares.MiddlewaresAutenticacao.bearer, middlewares.MiddlewaresAutenticacao.refresh,

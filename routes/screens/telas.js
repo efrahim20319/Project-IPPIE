@@ -12,6 +12,14 @@ roteador.get("/pagar", (req, res) => {
   res.status(200).render('pagarStripe')
 })
 
+roteador.get('/sucessPayment', (req, res) => {
+  res.status(200).render("succesfull-payment")
+})
+
+roteador.get('/canceledPayment', (req, res) => {
+  res.status(200).render("cancel-payment")
+})
+
 roteador.get("/sucess-signin", async (req, res) => {
   const email = req.query.email
   try {
