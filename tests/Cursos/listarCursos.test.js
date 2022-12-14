@@ -5,6 +5,7 @@ import { config } from "dotenv";
 import db from "../../database/models";
 config()
 let server;
+jest.setTimeout(1000000000)
 
 beforeEach(async () => {
     const port = process.env.APP_PORT
@@ -31,6 +32,7 @@ describe('Testes na classe cursos', () => {
 
     it('Deve retornar um Map com informacoes dos cursos', async () => {
         const cursosMap = await Cursos.listarCursosMap()
+        console.log(cursosMap);
         expect(cursosMap.get(1)).toEqual(
             expect.objectContaining({
                 nome: expect.any(String),

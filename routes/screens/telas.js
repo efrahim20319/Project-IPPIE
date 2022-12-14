@@ -9,7 +9,9 @@ roteador.get("/", (req, res) => {
 })
 
 roteador.get("/pagar", (req, res) => {
-  res.status(200).render('pagarStripe')
+  res.status(200).render('pagarStripe', {
+    paypalClientID: process.env.PAYPAL_CLIENT_ID
+  })
 })
 
 roteador.get('/sucessPayment', (req, res) => {

@@ -34,7 +34,7 @@ formulario.addEventListener("submit", async (env) => {
                 'Conta Criada com sucesso!',
                 'success'
             )
-            window.location.href = `/entrar?user_email=${email}`
+            window.location = `/entrar?user_email=${email}`
             return
         }
         const { erro } = await requisicao.json()
