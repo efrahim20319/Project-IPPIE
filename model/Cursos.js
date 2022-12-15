@@ -1,4 +1,4 @@
-import precoEmEuro from "../infrastructure/utils/conversorDeMoeda.js"
+import { precoEmEuro } from "../infrastructure/utils/conversorDeMoeda"
 import CursosRepo from "../repo/Cursos.js"
 
 export default class Cursos {
@@ -6,7 +6,7 @@ export default class Cursos {
         return await CursosRepo.listarCursos()
     }
 
-    static async listarCursosMap(options = { precoEmEuro: false }) { //Pode ser otimizado
+    static async listarCursosMap(options = { precoEmEuro: false }) {
         const cursos = await this.listarCursos()
         let mapCursos = new Map()
         let id, valor

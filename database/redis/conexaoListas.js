@@ -1,5 +1,6 @@
 import { allowlist } from "./allowlist-refresh-token";
 import { blockList } from "./blocklist-access-token";
+import { converterList } from "./conversao-moeda-list";
 
 const listas = [
     {
@@ -9,6 +10,10 @@ const listas = [
     {
         nome: "Blocklist",
         valor: blockList
+    }, 
+    {
+        nome: "ConverterList",
+        valor: converterList
     }
 ]
 
@@ -19,6 +24,18 @@ export default async function ConexaoListas() {
             console.log(`${lista.nome} conectada com sucesso`);
         } catch (error) {
             console.error(`Erro ao conectar a ${lista.nome}`);
+            continue
+        }
+    }
+}
+
+export async function fecharConexoesListas() {
+    for (const lista of listas) {
+        try {
+            await lista.valor.disconnect()
+            console.log(`${lista.nome} desconectada com sucesso`);
+        } catch (error) {
+            console.error(`Erro ao desconectar a ${lista.nome}`);
             continue
         }
     }
