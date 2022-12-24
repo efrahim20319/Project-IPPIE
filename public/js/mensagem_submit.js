@@ -1,6 +1,5 @@
 const form = document.querySelector(".form-mensagem")
-console.log(form);
-form.addEventListener("submit", async function(event){
+form.addEventListener("submit", async function (event) {
     event.preventDefault()
     const inputNome = form.querySelector("input#name")
     const inputEmail = form.querySelector("input#email")
@@ -8,17 +7,39 @@ form.addEventListener("submit", async function(event){
     const nome = inputNome.value
     const email = inputEmail.value
     const mensagem = inputMensagem.value
-    await fetch("http://localhost:3000/api/mensagem", {
-        method: "POST",
-        body: JSON.stringify({
-            nome: nome,
-            email: email,
-            mensagem: mensagem
-        }),
-        headers: {
-            "Content-type": "application/json; charset=UTF-8"
+    try {
+        const resposta = await fetch("/api/mensagem", {
+            method: "POST",
+            body: JSON.stringify({
+                nome: nome,
+                email: email,
+                mensagem: mensagem
+            }),
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            }
+        })
+        if (resposta.ok) {
+            Swal.fire(
+                'Mensagem enviada com sucesso!',
+                'Será respondido por email em instantes.',
+                'success'
+            )
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: `Erro ao enviar mensagem`,
+                // footer: '<a href="">Why do I have this issue?</a>'
+            })
         }
-    })
-    showSwal('success-message')
+    } catch (error) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: `Erro ao enviar mensagem`,
+            // footer: '<a href="">Why do I have this issue?</a>'
+        })
+    }
     limparInputs([inputEmail, inputMensagem, inputNome])
 })

@@ -1,8 +1,10 @@
 const stripe = require("stripe")(process.env.STRIPE_PRIVATE_KEY)
+import tokens from "../infrastructure/tokens"
 import Cursos from "../model/Cursos"
 export default class StripePayment {
     static async checkoutSession(req, res, next) {
         const cursosMap = await Cursos.listarCursosMap()
+        const token = tokens.manipulaPaymentToken.cria(req.body.email)
         try {
             const session = await stripe.checkout.sessions.create({
                 payment_method_types: ['card'],
@@ -20,7 +22,7 @@ export default class StripePayment {
                         quantity: item.quantidade
                     }
                 }),
-                success_url: `${process.env.SERVER_URL}/sucessPayment`,
+                success_url: `${process.env.SERVER_URL}/sucessPayment?email=${token}`,
                 cancel_url: `${process.env.SERVER_URL}/canceledPayment`
             })
             return res.json({url: session.url})

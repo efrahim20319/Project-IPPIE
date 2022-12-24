@@ -41,7 +41,7 @@ export default class MiddlewaresAutenticacao {
   static async verificacaoEmail(req, res, next) {
     try {
       const { token } = req.params;
-      const id = tokens.verificacaoEmail.verifica(token);
+      const id = await tokens.verificacaoEmail.verifica(token);
       const usuario = await Usuario.pegarPorId(id);
       req.user = usuario;
       return next();

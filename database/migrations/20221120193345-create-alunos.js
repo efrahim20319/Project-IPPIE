@@ -66,7 +66,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       comprovativo_img: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.STRING
       },
       createdAt: {

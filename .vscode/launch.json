@@ -4,6 +4,14 @@
     // Para obter mais informações, acesse: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+    {
+        "name": "Attach to Chrome",
+        "request": "launch",
+        "type": "chrome",
+        "webRoot": "${workspaceFolder}/views/matricula.html",
+        "address": "127.0.0.1",
+        "url": "http://127.0.0.1:5500/views/matricula.html",
+    },
         {
             "type": "node",
             "request": "attach",

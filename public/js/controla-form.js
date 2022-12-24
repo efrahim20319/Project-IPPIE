@@ -24,25 +24,27 @@ formulario.addEventListener("submit", async function (event) {
             "Content-type": "application/json; charset=UTF-8"
         }
     })
-    const dados = await retornarDados(response)
+    
+    if (response.ok) {
+        console.log("Mister bombastic");
+        window.location.href = `/sucess-signin?email=${email}`
+        return
+    }
+    const dados = await response.json() 
     if (dados && dados.erro) {
         Swal.fire({
             icon: 'error',
             title: 'Oops...',
             text: `${dados.erro.mensagem}`,
             // footer: '<a href="">Why do I have this issue?</a>'
-          })
-        limparInputs(inputs)
-        return
+        })
     } else {
-        window.location.href = `/sucess-signin?email=${email}`
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: `Ocorreu um erro, tente novamente.`,
+            // footer: '<a href="">Why do I have this issue?</a>'
+        })
     }
+    limparInputs(inputs)
 })
-
-async function retornarDados(response) {
-    try {
-        return await response.json()
-    } catch (error) {
-        console.log(error);
-    }
-}

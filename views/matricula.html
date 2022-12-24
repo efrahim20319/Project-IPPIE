@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <link
+      href="/public/vendor/bootstrap/css/bootstrap.min.css"
+      rel="stylesheet"
+    /> -->
+    <link href="/public/assets/bootsrap/css/bs.css" rel="stylesheet" />
+    <script src="/public/assets/bootsrap/js/bs.js"></script>
+    <link rel="stylesheet" href="/public/assets/css/fontawesome.css" />
+    <link rel="stylesheet" href="/public/assets/css/style-global.css" />
+    <link rel="stylesheet" href="/public/css/cursos/index.css" />
+    <link rel="stylesheet" href="/public/css/matricula/index.css" />
+    <link
+      rel="shortcut icon"
+      href="/public/assets/images/favicon.png"
+      type="image/x-icon"
+    />
+    <script src="/public/js/matricula/index.js" defer></script>
+    <title>Desenhador Projetista | IPPIE</title>
+  </head>
+  <body>
+    <section class="first_header">
+      <header class="cabecalho">
+        <span class="cabecalho_logo">
+          <a rel="prev" href="/"
+            ><img
+              class="logo_img"
+              src="/public/assets/images/logo-da-escola.png"
+              alt=""
+            />
+            <a class="logo_text" rel="prev" href="/">IPPIE</a></a
+          >
+        </span>
+        <button id="btn-menu-mobile">
+          MENU
+          <span id="humburger"></span>
+        </button>
+        <ul class="cabecalho_list">
+          <li class="cabecalho_list_item"><a href="/" rel="prev">HOME</a></li>
+          <li class="cabecalho_list_item">
+            <a href="/#porquenos" rel="prev">SOBRE NÓS</a>
+          </li>
+          <li class="cabecalho_list_item">
+            <a href="/#cursos" rel="prev">CURSOS</a>
+          </li>
+        </ul>
+      </header>
+    </section>
+    <main class="d-flex justify-content-center">
+      <div class="col-md-5 border-2">
+        <form enctype="multipart/form-data">
+          <div class="row form-row">
+            <div class="form-group col-md-6">
+              <label for="inputEmail4">Nome</label>
+              <input
+                type="text"
+                class="form-control"
+                id="inputNome"
+                placeholder="Seu nome"
+              />
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputPassword4">Sobrenome</label>
+              <input
+                type="text"
+                class="form-control"
+                id="inputSobrenome"
+                placeholder="Último nome"
+              />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputAddress">Endereço</label>
+            <input
+              type="text"
+              class="form-control"
+              id="inputAddress"
+              placeholder="Avenida São Pedro"
+            />
+          </div>
+          <div class="form-group">
+            <label for="inputAddress">Data de Nascimento</label>
+            <input
+              type="date"
+              class="form-control"
+              id="inputAddress"
+              placeholder="Avenida São Pedro"
+            />
+          </div>
+          <div class="row form-row">
+            <div class="form-group col-md-6">
+              <label for="inputCity">Município</label>
+              <input
+                type="text"
+                placeholder="Huambo"
+                class="form-control"
+                id="inputCity"
+              />
+            </div>
+            <div class="form-group col">
+              <label for="inputState">Província</label>
+              <select id="inputState" class="form-control">
+                <option selected>Escolher...</option>
+                <option>...</option>
+              </select>
+            </div>
+          </div>
+          <div class="row form-row">
+            <div class="form-group col-md-6">
+              <label for="inputFather">Nome do Pai</label>
+              <input type="text" class="form-control" id="inputFather" />
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputMother">Nome da Mãe</label>
+              <input type="text" class="form-control" id="inputMother" />
+            </div>
+          </div>
+          <div class="row form-row">
+            <div class="form-group col-md-6">
+              <label for="inputBI">Numero do BI</label>
+              <input type="text" class="form-control" id="inputBI" />
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputPhone">Numero de telefone</label>
+              <input type="text" class="form-control" id="inputPhone" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputAddress">Email</label>
+            <input
+              type="email"
+              class="form-control"
+              id="inputEmail"
+              placeholder="exemplo@gmail.com"
+            />
+          </div>
+          <div class="form-group">
+            <div class="custom-file">
+              <label class="custom-file-label" for="customFile"
+                >Foto de tipo passe</label
+              >
+              <span>Clique aqui ou arraste a foto</span>
+              <div>
+                <input
+                  required
+                  accept=".jpg, .jpeg, .png"
+                  type="file"
+                  class="custom-file-input"
+                  id="customFile"
+                />
+              </div>
+              <p>Nenhum arquivo selecionado</p>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="custom-file">
+              <label class="custom-file-label" for="customFile">
+                Foto-cópia do BI</label
+              >
+              <span>Clique aqui ou arraste a foto</span>
+              <div>
+                <input
+                  required
+                  accept=".jpg, .jpeg, .png"
+                  type="file"
+                  class="custom-file-input"
+                  id="customFile"
+                />
+              </div>
+              <p>Nenhum arquivo selecionado</p>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="custom-file">
+              <label class="custom-file-label" for="customFile"
+                >Certificado de habilitações</label
+              >
+              <span>Clique aqui ou arraste a foto</span>
+              <div>
+                <input
+                  required
+                  accept=".jpg, .jpeg, .png"
+                  type="file"
+                  class="custom-file-input"
+                  id="customFile"
+                />
+              </div>
+              <p>Nenhum arquivo selecionado</p>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="gridCheck" />
+              <label class="form-check-label" for="gridCheck">
+                Check me out
+              </label>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">Sign in</button>
+        </form>
+      </div>
+    </main>
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <p>
+              <i class="fa fa-copyright"></i>
+              <a href="#" rel="sponsored" target="_parent">Endereço</a>
+              Viana-Kapalanga, Setor 18 via expressa cacuaco-viana junto as
+              unidades policias da DII (ex Bet) e guarda fronteira
+              <br />
+              Numero :
+              <a href="#" rel="sponsored" target="_blank">931 512 924 </a> |
+              <a href="#" rel="sponsored" target="_blank">911 866 758</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="/public/assets/js/responsive-menu.js"></script>
+  </body>
+</html>

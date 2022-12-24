@@ -12,7 +12,7 @@ export default class Usuario {
 
   static async pegarPorId(id) {
     try {
-      return await database.Usuarios.findByPk(id)
+      return await database.Usuarios.findByPk(Number(id))
     } catch (error) {
       throw new SQLError(error.message);
     }

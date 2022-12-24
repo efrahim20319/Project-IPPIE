@@ -18,6 +18,10 @@ module.exports = {
         type: Sequelize.INTEGER,
         references: { model: "Alunos", key: "id" }
       },
+      pago: {
+        allowNull: false,
+        type: Sequelize.BOOLEAN,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

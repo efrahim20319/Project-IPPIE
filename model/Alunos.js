@@ -1,7 +1,8 @@
+import errors from "../errors"
 import AlunoRepo from "../repo/Aluno"
 
 export default class Aluno {
-    constructor(nome,
+    constructor({ nome,
         numero_BI,
         endereco,
         data_nascimento,
@@ -14,8 +15,9 @@ export default class Aluno {
         foto_perfil,
         BI_img,
         certificado_img,
-        comprovativo_img
+        comprovativo_img }
     ) {
+        this.id = Number()
         this.nome = nome
         this.numero_BI = numero_BI
         this.endereco = endereco
@@ -34,5 +36,17 @@ export default class Aluno {
 
     async adiciona() {
         await AlunoRepo.adiciona(this)
+    }
+
+    static async pegarPorEmail(emailEnviado, options_default = { BloquearNaAusencia: true }) {
+        const options = Object.assign({ BloquearNaAusencia: true }, options_default)
+        const dados = await AlunoRepo.pegarPorEmail(emailEnviado)
+        if (!dados) {
+            if (options.BloquearNaAusencia) throw new errors.UsuarioNaoEncontrado({ emailEnviado })
+            return undefined
+        }
+        const aluno = new Aluno(dados)
+        aluno.id = dados.id
+        return aluno
     }
 }

@@ -16,7 +16,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Matriculas.init({
-    status: DataTypes.ENUM("confirmado", "pendente", "cancelado")
+    status: DataTypes.ENUM("confirmado", "pendente", "cancelado"),
+    pago: DataTypes.BOOLEAN
   }, {
     sequelize,
     modelName: 'Matriculas',
