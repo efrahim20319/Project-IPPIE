@@ -1,4 +1,5 @@
 const button = document.querySelector("button")
+const urlParams = new URLSearchParams(window.location.search)
 
 button.addEventListener("click", () => {
     fetch("/api/create-checkot-session", { //Esta rota retorna uma url para completar o paganebto com o stripe
@@ -12,7 +13,7 @@ button.addEventListener("click", () => {
                 { id: 5, quantidade: 2 },
                 { id: 7, quantidade: 3 }
             ],
-            email: "efrahimtks@gmail.com"
+            email: urlParams.get('email')
         })
     })
         .then(async (res) => {

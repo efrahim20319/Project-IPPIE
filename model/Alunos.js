@@ -38,11 +38,11 @@ export default class Aluno {
         await AlunoRepo.adiciona(this)
     }
 
-    static async pegarPorEmail(emailEnviado, options_default = { BloquearNaAusencia: true }) {
-        const options = Object.assign({ BloquearNaAusencia: true }, options_default)
+    static async pegarPorEmail(emailEnviado, options_default = { bloquearNaAusencia: true }) {
+        const options = Object.assign({ bloquearNaAusencia: true }, options_default)
         const dados = await AlunoRepo.pegarPorEmail(emailEnviado)
         if (!dados) {
-            if (options.BloquearNaAusencia) throw new errors.UsuarioNaoEncontrado({ emailEnviado })
+            if (options.bloquearNaAusencia) throw new errors.UsuarioNaoEncontrado({ emailEnviado })
             return undefined
         }
         const aluno = new Aluno(dados)

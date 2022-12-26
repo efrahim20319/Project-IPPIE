@@ -19,27 +19,30 @@ formulario.addEventListener('submit', async (event) => {
     const curso = retornaValorInput('inputCurso', 'select')
     const [foto_perfil, foto_BI, foto_certificado] = formulario.querySelectorAll('input[type=file]')
     const formData = new FormData()
-    formData.append('nome',`${nome} ${sobrenome}`)
-    formData.append('numero_BI',`${numero_BI}`)
-    formData.append('endereco',`${endereco} - ${municipio}`)
-    formData.append('data_nascimento',`${dataNascimento}`)
-    formData.append('nome_pai',`${nome_pai}`)
-    formData.append('nome_mae',`${nome_mae}`)
-    formData.append('numero_telefone',`${numero_telefone}`)
-    formData.append('email',`${email}`)
-    formData.append('provincia_id',`${provincia}`)
-    formData.append('curso_id',`${curso}`)
-    formData.append('files',foto_perfil.files[0])
-    formData.append('files',foto_BI.files[0])
-    formData.append('files',foto_certificado.files[0])
-
+    consfiguraFormData({ formData, nome, sobrenome, numero_BI, endereco, municipio, dataNascimento, nome_pai, nome_mae, numero_telefone, email, provincia, curso, foto_perfil, foto_BI, foto_certificado });
     const response = await fetch('/api/alunos', {
         method: 'POST',
         body: formData
     })
     console.log(response);
     if (response.ok) {
-        const result = await response.json()
-        console.log('YES', result);
-    }  
+        window.localStorage.setItem('ippie_user_email', email)
+        window.location = `/pagar?email=${email}`
+    }
 })
+
+function consfiguraFormData({ formData, nome, sobrenome, numero_BI, endereco, municipio, dataNascimento, nome_pai, nome_mae, numero_telefone, email, provincia, curso, foto_perfil, foto_BI, foto_certificado }) {
+    formData.append('nome', `${nome} ${sobrenome}`);
+    formData.append('numero_BI', `${numero_BI}`);
+    formData.append('endereco', `${endereco} - ${municipio}`);
+    formData.append('data_nascimento', `${dataNascimento}`);
+    formData.append('nome_pai', `${nome_pai}`);
+    formData.append('nome_mae', `${nome_mae}`);
+    formData.append('numero_telefone', `${numero_telefone}`);
+    formData.append('email', `${email}`);
+    formData.append('provincia_id', `${provincia}`);
+    formData.append('curso_id', `${curso}`);
+    formData.append('files', foto_perfil.files[0]);
+    formData.append('files', foto_BI.files[0]);
+    formData.append('files', foto_certificado.files[0]);
+}
