@@ -11,26 +11,36 @@ roteador.get("/", (req, res) => {
   res.status(200).render("home")
 })
 
-roteador.get("/pagar", async (req, res) => { 
-  const { email } = req.query
-  const aluno = await Aluno.pegarPorEmail(email, { bloquearNaAusencia: false }) //Deve ser modificado, deve verificar se o aluno ja foi matriculado
-  if (aluno)
-    return res.status(200).render('pagarStripe', {
-      paypalClientID: process.env.PAYPAL_CLIENT_ID
-    })
-  return res.status(401).redirect('/')
+roteador.get("/pagar", async (req, res) => {
+  try {
+    const { email } = req.query
+    const aluno = await Aluno.pegarPorEmail(email, { bloquearNaAusencia: false }) //Deve ser modificado, deve verificar se o aluno ja foi matriculado
+    if (aluno && !aluno.matriculado) {
+      return res.status(200).render('pagarStripe', {
+        paypalClientID: process.env.PAYPAL_CLIENT_ID
+      })
+    }
+    console.log('Aluno Ja Matriculado');
+    return res.status(401).redirect('/')
+  } catch (error) {
+    return res.status(401).redirect('/')
+  }
 })
 
 roteador.get('/sucessPayment', async (req, res) => {
-  const token = req.query.email
-  const email = await tokens.manipulaPaymentToken.verifica(token)
-  const aluno = await Aluno.pegarPorEmail(email, { bloquearNaAusencia: false })
-  if (aluno) {
-    const matricula = new Matricula({ status: "pendente", aluno_id: aluno.id, pago: true })
-    await matricula.adicionar()
-    return res.status(200).render("succesfull-payment")
+  try {
+    const token = req.query.email
+    const email = await tokens.manipulaPaymentToken.verifica(token)
+    const aluno = await Aluno.pegarPorEmail(email, { bloquearNaAusencia: false })
+    if (aluno && !aluno.matriculado) {
+      const matricula = new Matricula({ status: "pendente", aluno_id: aluno.id, pago: true })
+      await matricula.adicionar()
+      return res.status(200).render("succesfull-payment")
+    }
+    return res.status(401).redirect('/')
+  } catch (error) {
+    return res.status(401).redirect('/')
   }
-  return res.status(401).redirect('/')
 })
 
 roteador.get('/canceledPayment', (req, res) => {

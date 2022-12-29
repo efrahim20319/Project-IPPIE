@@ -32,21 +32,47 @@ export default class Aluno {
         this.BI_img = BI_img
         this.certificado_img = certificado_img
         this.comprovativo_img = comprovativo_img
+        this.matriculado = Boolean(false)
     }
 
     async adiciona() {
         await AlunoRepo.adiciona(this)
     }
 
+    static async pergarPorCampo(campo, valor, options_default = { bloquearNaAusencia: true }) {
+        const options = Object.assign({ bloquearNaAusencia: true }, options_default)
+        if (!campo || !valor) return null
+        const dados = await AlunoRepo.pegarPorCampo(campo, valor)
+        if (!dados) {
+            if (options.bloquearNaAusencia) throw new errors.UsuarioNaoEncontrado(campo, valor)
+            return null
+        }
+        const aluno = new Aluno(dados)
+        aluno.id = dados.id
+        aluno.matriculado = await aluno.estaMatriculado()
+        return aluno
+    }
+
     static async pegarPorEmail(emailEnviado, options_default = { bloquearNaAusencia: true }) {
         const options = Object.assign({ bloquearNaAusencia: true }, options_default)
+        if (!emailEnviado) return null
         const dados = await AlunoRepo.pegarPorEmail(emailEnviado)
         if (!dados) {
-            if (options.bloquearNaAusencia) throw new errors.UsuarioNaoEncontrado({ emailEnviado })
+            if (options.bloquearNaAusencia) throw new errors.UsuarioNaoEncontrado('EMAIL', emailEnviado)
             return undefined
         }
         const aluno = new Aluno(dados)
         aluno.id = dados.id
+        aluno.matriculado = await aluno.estaMatriculado()
         return aluno
+    }
+
+    async estaMatriculado() {
+        try {
+            const matriculas = await AlunoRepo.estaMatriculado(this.id)
+            return matriculas.length > 0
+        } catch (error) {
+            return false
+        }
     }
 }

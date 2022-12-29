@@ -24,11 +24,16 @@ formulario.addEventListener('submit', async (event) => {
         method: 'POST',
         body: formData
     })
-    console.log(response);
     if (response.ok) {
         window.localStorage.setItem('ippie_user_email', email)
         window.location = `/pagar?email=${email}`
+        return
     }
+    const { erro } = await response.json()
+    if (erro.tipo == 'Usuario ja Cadastrado') {
+        alert(erro.mensagem)
+    }
+    console.log(await response.json());
 })
 
 function consfiguraFormData({ formData, nome, sobrenome, numero_BI, endereco, municipio, dataNascimento, nome_pai, nome_mae, numero_telefone, email, provincia, curso, foto_perfil, foto_BI, foto_certificado }) {

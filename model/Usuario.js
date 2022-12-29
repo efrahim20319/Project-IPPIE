@@ -17,7 +17,7 @@ export default class Usuario {
     }
 
     verificarMaTextuacao() {
-		const emailPattern = /^(\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+)$/
+        const emailPattern = /^(\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+)$/
         const nomePattern = /^([A-Za-zÃÕÁÉÍÓÚÂÊÎÔÛÇãõáéíóúâêîôûç]{2,60})([\sA-Za-zÃÕÁÉÍÓÚÂÊÎÔÛÇãõáéíóúâêîôûç]{2,60})*$/
         const telefonePattern = /^(\+244\s{0,2})?(9\d{2}([-\s]?)\d{3}(\3)\d{3})$/
         if (this.nome && !nomePattern.test(String(this.nome).trim()))
@@ -57,17 +57,17 @@ export default class Usuario {
             nome: String(this.nome).trim(),
             email: String(this.email).trim(),
             numero_telefone: String(this.numero_telefone).trim(),
-			emailVerificado: this.emailVerificado
+            emailVerificado: this.emailVerificado
         }
         await Repositorio.adiciona(dados)
         const dadosRetornados = await Repositorio.pegarPorEmail(this.email)
-		const { id } = dadosRetornados
-		this.id = id
+        const { id } = dadosRetornados
+        this.id = id
     }
 
     static async pegarPorId(idEnviado) {
         const dados = await Repositorio.pegarPorId(idEnviado)
-        if (!dados) throw new erros.UsuarioNaoEncontrado({ idEnviado })
+        if (!dados) throw new erros.UsuarioNaoEncontrado('ID', idEnviado)
         const { nome, email, numero_telefone, emailVerificado, id } = dados
         const usuario = new Usuario(nome, email, numero_telefone, emailVerificado)
         usuario.id = id
@@ -110,7 +110,7 @@ export default class Usuario {
     static async pegarPorEmail(emailEnviado, options_default = { BloquearNaAusencia: true }) {
         const options = Object.assign({ BloquearNaAusencia: true }, options_default)
         const dados = await Repositorio.pegarPorEmail(emailEnviado)
-        if (!dados && options.BloquearNaAusencia) throw new erros.UsuarioNaoEncontrado({ emailEnviado })
+        if (!dados && options.BloquearNaAusencia) throw new erros.UsuarioNaoEncontrado('Email', emailEnviado)
         if (!dados) return undefined
         const { nome, email, numero_telefone, emailVerificado, id } = dados
         const usuario = new Usuario(nome, email, numero_telefone, emailVerificado)

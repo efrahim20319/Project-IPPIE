@@ -2,7 +2,7 @@ import { JsonWebTokenError, TokenExpiredError } from "jsonwebtoken"
 import erros from "../errors"
 
 function criaObjetoErro(erro) {
-    return { "tipo": erro.name, "mensagem": erro.message, "idErro": erro.idErro, "expiradoEm": erro.expiredAt }
+    return { "tipo": erro.name, "mensagem": erro.message, "idErro": erro.idErro, "expiradoEm": erro.expiredAt, "campoRepetido": erro.campoRepetido }
 }
 
 export default (erro, req, res, next) => {
@@ -20,7 +20,7 @@ export default (erro, req, res, next) => {
     if (erro instanceof erros.UsuarioNaoEncontrado)
         code = 404
 
-    if (erro instanceof erros.EmailJaCadastrado) {
+    if (erro instanceof erros.EmailJaCadastrado || erro instanceof erros.UsuarioJaCadastrado) {
         code = 406
     }
 

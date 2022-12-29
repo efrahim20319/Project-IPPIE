@@ -36,7 +36,7 @@ describe('Testes na classe cursos', () => {
 
     it('Deve retornar um Map com informacoes dos cursos', async () => {
         const cursosMap = await Cursos.listarCursosMap()
-        console.log(cursosMap);
+        // console.log(cursosMap);
         expect(cursosMap.get(1)).toEqual(
             expect.objectContaining({
                 nome: expect.any(String),
@@ -50,7 +50,7 @@ describe('Testes na classe cursos', () => {
 
     it('Deve retornar um Map com informacoes dos cursos com preco em Euro', async () => {
         const cursosMap = await Cursos.listarCursosMap({precoEmEuro: true})
-        console.log(cursosMap);
+        // console.log(cursosMap);
         expect(cursosMap.get(1)).toEqual(
             expect.objectContaining({
                 nome: expect.any(String),
