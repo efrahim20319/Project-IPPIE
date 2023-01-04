@@ -10,7 +10,7 @@ let server;
 // jest.setTimeout(1000000000)
 
 beforeEach(async () => {
-    const port = process.env.APP_PORT
+    const port = process.env.TEST_PORT
     await ConexaoListas()
     await db.sequelize.authenticate()
     server = app.listen(port, () => console.log("Rodando na porta de Teste"))

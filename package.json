@@ -46,6 +46,7 @@
     "supertest": "^6.3.3"
   },
   "devDependencies": {
+    "@faker-js/faker": "^7.6.0",
     "@sucrase/jest-plugin": "^3.0.0",
     "eslint": "^8.23.1",
     "nodemon": "^2.0.19",

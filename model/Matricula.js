@@ -11,4 +11,12 @@ export default class Matricula {
     async adicionar() {
         await MatriculaRepo.adiciona(this)
     }
+
+    static async alunosMatriculados() {
+        return await MatriculaRepo.alunosMatriculados()
+    }
+
+    static async cursoPorMatricula() {
+        return await MatriculaRepo.cursoPorMatricula()
+    }
 }
