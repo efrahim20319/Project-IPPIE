@@ -6,3 +6,7 @@
 .infos .row {
     gap: 1em;
 }
+body {
+    background-color: #f6f9ff;
+    color: #444444;
+}

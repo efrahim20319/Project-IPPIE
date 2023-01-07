@@ -13,6 +13,26 @@ telas.get("/entrar", middlewares.autenticacao.estaLogado(), (req, res) => {
         return res.redirect('/')
     return res.status(401).render('entrar')
 })
+
+telas.get('/user/id/:id', middlewares.autenticacao.estaLogado(), async (req, res) => {
+    try {
+        const { id } = req.params
+        const response = await fetch(`http://localhost:3333/api/matriculas/aluno-matriculado/${id}`)
+        const { Aluno } = await response.json()
+        Object.defineProperty(Aluno, 'Matricula', {
+            value: Aluno.Matriculas[0],
+            enumerable: true,
+            writable: true
+        })
+        delete Aluno.Matriculas
+        if (Aluno)
+            return res.render('user-info', { Aluno })
+        return res.send('Nao Encontrado')
+    } catch (error) {
+        return res.send('Nao Encontrado')
+    }
+})
+
 telas.get("/cadastrar", (_req, res) => {
     res.status(200).render('cadastrar')
 })

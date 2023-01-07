@@ -16,7 +16,7 @@ function criaLinha(aluno) {
     const tdNome = document.createElement('td')
     const tdCurso = document.createElement('td')
     const tdStatus = document.createElement('td')
-    tdId.innerHTML = `<a href="">${aluno.idAluno}</a>`
+    tdId.innerHTML = `<a href='/user/id/${aluno.idAluno}'>${aluno.idAluno}</a>`
     tdNome.innerText = aluno.nome
     tdCurso.innerText = aluno.curso
     tdStatus.innerHTML = `<span class="${badgeClass}">${aluno.status}</span>`

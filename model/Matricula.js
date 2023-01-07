@@ -19,4 +19,8 @@ export default class Matricula {
     static async cursoPorMatricula() {
         return await MatriculaRepo.cursoPorMatricula()
     }
+
+    static async modificaStatusMatricula(id, status) {
+        await MatriculaRepo.modificaStatusMatricula(id)
+    }
 }

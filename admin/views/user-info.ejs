@@ -5,69 +5,125 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
-      href="../public/assets/vendor/bootstrap/css/bootstrap.min.css"
+      href="/assets/vendor/bootstrap/css/bootstrap.min.css"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../public/assets/css/user-info/index.css" />
+    <link rel="stylesheet" href="/assets/css/user-info/index.css" />
     <title>Document</title>
+    <link
+      href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css"
+      rel="stylesheet"
+    />
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+    <script defer src="/assets/js/dashboard/logout-handler.js"></script>
+    <script>
+      function dispararBI() {
+        Swal.fire({
+          imageUrl: "http://localhost:3333/<%-Aluno.BI_img %>",
+          imageHeight: 500,
+          imageAlt: "A tall image",
+        });
+      }
+
+      function dispararCertificado() {
+        Swal.fire({
+          imageUrl: "http://localhost:3333/<%-Aluno.certificado_img %>",
+          imageHeight: 500,
+          imageAlt: "A tall image",
+        });
+      }
+    </script>
+    <script src="/assets/js/user-info/AlteraMatricula.js" defer></script>
   </head>
-  <body class="container mt-5 bg-dark">
+  <body class="container mt-3">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <h2 class="navbar-brand" style="font-size: 2em; font-weight: bold;" href="#">Informações do Aluno</h2>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" style="font-weight: bold;"  aria-current="page" href="/">Dashboard</a>
+            </li>
+            <li class="nav-item">
+              <form id="logoutLink"><button class="nav-link active border-0" style="font-weight: bold; background-color: #f6f9ff;"  aria-current="page" href="#">Logout</button></form>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
     <div class="container text-center infos">
       <div class="row">
         <div class="col-sm-4 p-2 bg-white photoBox rounded">
           <img
-            src="../public/assets/img/me.jpg"
+            src="http://localhost:3333/<%-Aluno.foto_perfil %>"
             alt=""
             class="img-fluid rounded profile-photo"
           />
-          <h2 class="nome-aluno">Nsimba Tamaku</h2>
-          <button class="btn btn-outline-primary">Confirmar</button>
-          <button class="btn btn-outline-danger">Rejeitar</button>
+          <script>
+            const nome = "<%-Aluno.nome%>";
+            const tamanho = nome.length;
+            const nomeLista = nome.split(" ");
+            const nomeCompleto = `${nomeLista[0]} ${
+              nomeLista[nomeLista.length - 1]
+            }`;
+            document.write(`<h2>${nomeCompleto}</h2>`);
+          </script>
+          <button class="btn btn-outline-primary" id="btn-confirm">
+            Confirmar
+          </button>
+          <button class="btn btn-outline-danger" id="btn-reject">
+            Rejeitar
+          </button>
         </div>
         <div class="col rounded p-4 bg-white">
           <div class="campo">
             <span class="campo__nome">Nome Completo</span>
-            <span class="campo__valor">Nsimba Antonio Diandonga Tamaku</span>
+            <span class="campo__valor"><%= Aluno.nome %> </span>
           </div>
           <div class="campo">
             <span class="campo__nome">Email</span>
-            <span class="campo__valor">efrahimtks@gmail.com</span>
+            <span class="campo__valor"><%= Aluno.email %></span>
           </div>
           <div class="campo">
             <span class="campo__nome">Numero de Telefone</span>
-            <span class="campo__valor">+244949856976</span>
+            <span class="campo__valor"><%= Aluno.numero_telefone %></span>
           </div>
           <div class="campo">
             <span class="campo__nome">Numero BI</span>
-            <span class="campo__valor">56345645464</span>
+            <span class="campo__valor"><%= Aluno.numero_BI %></span>
           </div>
           <div class="campo">
             <span class="campo__nome">Endereco</span>
-            <span class="campo__valor">Luanda - Viana - Luanda</span>
+            <span class="campo__valor"><%= Aluno.endereco %></span>
           </div>
           <div class="campo">
             <span class="campo__nome">Data de Nascimento</span>
-            <span class="campo__valor">09/10/2003</span>
+            <span class="campo__valor"
+              ><%= String(Aluno.data_nascimento).toUpperCase() %></span
+            >
           </div>
           <div class="campo">
             <span class="campo__nome">Nome do Pai</span>
-            <span class="campo__valor">Tony Tamaku</span>
+            <span class="campo__valor"><%= Aluno.nome_pai %></span>
           </div>
           <div class="campo">
             <span class="campo__nome">Nome da Mãe</span>
-            <span class="campo__valor">Albertina Diandonga</span>
+            <span class="campo__valor"><%= Aluno.nome_mae %></span>
           </div>
           <div class="campo">
             <span class="campo__nome">Provincia</span>
-            <span class="campo__valor">Luanda</span>
+            <span class="campo__valor"><%= Aluno.Provincia.nome %></span>
           </div>
           <div class="campo">
             <span class="campo__nome">Curso</span>
-            <span class="campo__valor">Tecnico de Informatica</span>
+            <span class="campo__valor"><%= Aluno.Curso.nome %></span>
           </div>
           <div class="campo">
             <span class="campo__nome">Estado da Matricula</span>
-            <span class="campo__valor">Pendente</span>
+            <span class="campo__valor"><%= Aluno.Matricula.status %></span>
           </div>
         </div>
       </div>
@@ -123,15 +179,62 @@
           class="col bg-white rounded p-2 d-flex flex-column justify-content-center align-content-center"
         >
           <h3>Cópia do BI</h3>
-          <button class="btn btn-secondary">Abrir</button>
+          <button class="btn btn-secondary" onclick="dispararBI()">
+            Abrir
+          </button>
         </div>
         <div
           class="col bg-white rounded p-2 d-flex flex-column justify-content-center align-content-center"
         >
           <h3>Cópia do Certificado de Habilitações</h3>
-          <button class="btn btn-secondary">Abrir</button>
+          <button class="btn btn-secondary" onclick="dispararCertificado()">
+            Abrir
+          </button>
         </div>
       </div>
     </div>
   </body>
+  <script>
+    const btnConfirm = document.querySelector("#btn-confirm");
+    const btnReject = document.querySelector("#btn-reject");
+    btnConfirm.addEventListener("click", async function () {
+      const response = await fetch(
+        "http://localhost:3333/api/matriculas/confirmar/<%-Aluno.Matricula.id%>",
+        {
+          method: "POST",
+        }
+      );
+
+      if (response.ok) {
+        await Swal.fire("Matricula Confirmada com sucesso", "", "success");
+        location.reload();
+      }
+    });
+
+    btnReject.addEventListener("click", async function () {
+      const response = await fetch(
+        "http://localhost:3333/api/matriculas/rejeitar/<%-Aluno.Matricula.id%>",
+        {
+          method: "POST",
+        }
+      );
+
+      if (response.ok) {
+        const result = await Swal.fire({
+          title: "Tem certeza que deseja cancelar esta matricula",
+          text: "",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          cancelButtonText: "Cancelar",
+          confirmButtonText: "Sim, Rejeitar!",
+        });
+        if (result.isConfirmed) {
+          await Swal.fire("Matricula Rejeitada com sucesso!", "", "success");
+          location.reload();
+        }
+      }
+    });
+  </script>
 </html>

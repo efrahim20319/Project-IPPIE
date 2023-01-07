@@ -86,4 +86,16 @@ export default class MatriculaRepo {
         const total = await database.Matriculas.count()
         return total
     }
+
+    static async modificaStatusMatricula(id, status = 'confirmado') {
+        try {
+            await database.Matriculas.update({ status: status }, {
+                where: {
+                    id
+                }
+            }) 
+        } catch (error) {
+            throw new Error(error.message)
+        }
+    }
 } 

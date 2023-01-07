@@ -55,4 +55,14 @@ describe('Testes no model Alunos', () => { //Nao esquecer de escrever este teste
         const total = await AlunoRepo.calculaTotal()
         console.log(total);
     });
+
+    it('Deve retornar os dados dos alunos matriculados pelo id', async () => {
+        const matriculas = await AlunoRepo.matriculas(17, true)
+        console.log(matriculas);
+    });
+
+    it('Deve retornar os dados dos alunos curso  matriculados pelo id', async () => {
+        const matriculas = await AlunoRepo.obterMatriculasEhCurso(17)
+        console.log(matriculas);
+    });
 });

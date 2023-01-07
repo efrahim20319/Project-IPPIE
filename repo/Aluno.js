@@ -26,7 +26,7 @@ export default class AlunoRepo {
         function formataData(dias_a_Reduzir) {
             return moment().subtract(dias_a_Reduzir, 'days').format('YYYY-MM-DD')
         }
-        function criaQueryUnida (n_queries) {
+        function criaQueryUnida(n_queries) {
             let query = ''
             for (let index = 0, dias_a_Reduzir = 6; index < n_queries; index++, dias_a_Reduzir--) {
                 query = String(query) + ` Select count(*) as Total from Alunos
@@ -58,7 +58,7 @@ export default class AlunoRepo {
         })
     }
 
-    static async estaMatriculado(aluno_id) {
+    static async matriculas(aluno_id, raw = false) {
         const matriculas = await database.Matriculas.findAll({
             include: {
                 model: database.Alunos,
@@ -66,7 +66,28 @@ export default class AlunoRepo {
             },
             where: {
                 aluno_id
-            }
+            },
+            raw
+        })
+        return matriculas
+    }
+
+    static async obterMatriculasEhCurso(aluno_id, raw = false) { //Ha uma confusao aqui
+        const matriculas = await database.Alunos.findAll({
+            include: [{
+                model: database.Matriculas,
+                required: true
+            }, {
+                model: database.Cursos,
+                required: true
+            }, {
+                model: database.Provincias,
+                required: true
+            }],
+            where: {
+                id: aluno_id
+            },
+            raw
         })
         return matriculas
     }

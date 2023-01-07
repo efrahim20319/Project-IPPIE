@@ -18,4 +18,10 @@ export default class Dados {
         const totalReceitas = await MatriculaRepo.pegaReceitaTotal()
         return { totalAlunos, totalMatriculas, totalReceitas: totalReceitas[0].total }
     }
+
+    static async obterAlunoMatriculado(id) {
+        const aluno = await AlunoRepo.obterMatriculasEhCurso(id)
+        console.log('Eieiei', aluno);
+        return aluno
+    }
 }

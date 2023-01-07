@@ -69,7 +69,7 @@ export default class Aluno {
 
     async estaMatriculado() {
         try {
-            const matriculas = await AlunoRepo.estaMatriculado(this.id)
+            const matriculas = await AlunoRepo.matriculas(this.id)
             return matriculas.length > 0
         } catch (error) {
             return false
