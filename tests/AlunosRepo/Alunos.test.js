@@ -50,4 +50,9 @@ describe('Testes no model Alunos', () => { //Nao esquecer de escrever este teste
         console.log(valores);
     });
     
+
+    it('Deve retornar o numero de alunos cadastrados', async () => {
+        const total = await AlunoRepo.calculaTotal()
+        console.log(total);
+    });
 });

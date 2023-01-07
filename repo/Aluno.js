@@ -70,4 +70,9 @@ export default class AlunoRepo {
         })
         return matriculas
     }
+
+    static async calculaTotal() {
+        const total = await database.Alunos.count()
+        return total
+    }
 } 

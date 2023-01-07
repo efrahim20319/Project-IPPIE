@@ -27,4 +27,9 @@ describe('Testes na Classe Dados', () => { //Nao esquecer de escrever este teste
         const dados = await Dados.graficoGeral()
         console.log(dados);
     });  
+
+    it('Deve retornar o total de alunos, matriculas e receita', async () => {
+        const dados = await Dados.dadosCards()
+        console.log(dados);
+    }); 
 });

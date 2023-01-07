@@ -46,6 +46,17 @@ export default class MatriculaRepo {
         return await database.sequelize.query(query, { type: QueryTypes.SELECT })
     }
 
+    static async pegaReceitaTotal() {
+        const query = `select sum(Total) as total from 
+        (select Cursos.nome, sum(Cursos.preco) as Total
+        from Alunos
+        inner join Matriculas on Alunos.id = Matriculas.aluno_id
+        inner join Cursos on Alunos.curso_id = Cursos.id
+        where Matriculas.status = 'confirmado'
+        group by Cursos.nome) as TotalMatriculasCurso;`
+        return await database.sequelize.query(query, { type: QueryTypes.SELECT })
+    }
+
     static async alunosMatriculados() {
         const query = `SELECT Alunos.id as idAluno, Alunos.nome, Cursos.nome as curso, Matriculas.status 
         FROM Alunos
@@ -69,5 +80,10 @@ export default class MatriculaRepo {
             group by nome
             order by inscricoes desc;`
         return await database.sequelize.query(query, { type: QueryTypes.SELECT })
+    }
+
+    static async calculaTotal() {
+        const total = await database.Matriculas.count()
+        return total
     }
 } 

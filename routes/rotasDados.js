@@ -9,4 +9,6 @@ roteadorDados.use('/dados', dados)
 
 dados.get('/grafico-geral', DadosController.graficoGeral)
 
+dados.get('/total-ocorrencias', DadosController.totalDeOcorrencias)
+
 export default roteadorDados

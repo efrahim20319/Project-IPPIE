@@ -54,6 +54,7 @@
     <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet" />
     <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet" />
     <script defer src="assets/js/dashboard/logout-handler.js"></script>
+    <script defer src="assets/js/dashboard/calculaTotal.js"></script>
 
     <!-- Template Main CSS File -->
     <link href="assets/css/style.css" rel="stylesheet" />
@@ -124,7 +125,7 @@
                         <i class="bi bi-person-fill"></i>
                       </div>
                       <div class="ps-3">
-                        <h6>145</h6>
+                        <h6 id="totalAlunos"></h6>
                         <span class="text-success small pt-1 fw-bold">12%</span>
                         <span class="text-muted small pt-2 ps-1">increase</span>
                       </div>
@@ -164,7 +165,7 @@
                         <i class="bi bi-currency-dollar"></i>
                       </div>
                       <div class="ps-3">
-                        <h6>$3,264</h6>
+                        <h6 id="totalReceita"></h6>
                         <span class="text-success small pt-1 fw-bold">8%</span>
                         <span class="text-muted small pt-2 ps-1">increase</span>
                       </div>
@@ -206,7 +207,7 @@
                         <i class="bi bi-people"></i>
                       </div>
                       <div class="ps-3">
-                        <h6>1244</h6>
+                        <h6 id="totalMatriculas"></h6>
                         <span class="text-danger small pt-1 fw-bold">12%</span>
                         <span class="text-muted small pt-2 ps-1">decrease</span>
                       </div>
@@ -331,7 +332,7 @@
               <!-- End Recent Sales -->
 
               <!-- Top Selling -->
-              <div class="col-12">
+              <!-- <div class="col-12">
                 <div class="card top-selling overflow-auto">
                   <div class="filter">
                     <a class="icon" href="#" data-bs-toggle="dropdown"
@@ -435,7 +436,7 @@
                     </table>
                   </div>
                 </div>
-              </div>
+              </div> -->
               <!-- End Top Selling -->
             </div>
           </div>

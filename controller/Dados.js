@@ -8,4 +8,13 @@ export default class DadosController {
             next(error)
         }
     }
+
+    static async totalDeOcorrencias(req, res, next) {
+        try {
+            const dados = await Dados.totalDeOcorrencias()
+            res.json(dados)
+        } catch (error) {
+            next(error)
+        }
+    }
 }

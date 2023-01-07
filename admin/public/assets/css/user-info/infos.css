@@ -1,0 +1,8 @@
+.infos {
+    display: grid;
+    gap: 1em;
+}
+
+.infos .row {
+    gap: 1em;
+}

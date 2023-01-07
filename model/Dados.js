@@ -11,4 +11,11 @@ export default class Dados {
         let dadosReceita = formataDadosRetorno(await MatriculaRepo.pegaReceitaUltimaSemana())
         return { dadosAlunos, dadosMatriculas, dadosReceita }
     }
+
+    static async totalDeOcorrencias() {
+        const totalAlunos = await AlunoRepo.calculaTotal()
+        const totalMatriculas = await MatriculaRepo.calculaTotal()
+        const totalReceitas = await MatriculaRepo.pegaReceitaTotal()
+        return { totalAlunos, totalMatriculas, totalReceitas: totalReceitas[0].total }
+    }
 }

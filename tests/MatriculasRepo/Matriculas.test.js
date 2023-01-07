@@ -38,5 +38,15 @@ describe('Testes no Repositorio Matriculas', () => { //Nao esquecer de escrever 
         const valores = await MatriculaRepo.pegaReceitaUltimaSemana()
         console.log(valores);
     });
+
+    it('Deve retornar o numero de matriculas cadastradas', async () => {
+        const total = await MatriculaRepo.calculaTotal()
+        console.log(total);
+    });
+
+    it('Deve retornar o total das recitas', async () => {
+        const total = await MatriculaRepo.pegaReceitaTotal()
+        console.log(total);
+    });
     
 });
