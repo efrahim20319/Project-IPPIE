@@ -55,7 +55,7 @@ function getFileInfo(file) {
     sizeSpan.innerText = 'Tamanho: ' + size
     let name = file.name
     let nameSpan = document.createElement('span')
-    nameSpan.innerText = 'Nome: ' + name
+    nameSpan.innerText = `Nome: ${ String(name).substring(0, 10)}...`
     fileInfo.append(sizeSpan, nameSpan)
     return fileInfo
 }

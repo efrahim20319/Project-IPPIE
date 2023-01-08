@@ -38,17 +38,46 @@
   <body class="container mt-3">
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
-        <h2 class="navbar-brand" style="font-size: 2em; font-weight: bold;" href="#">Informações do Aluno</h2>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <h2
+          class="navbar-brand"
+          style="font-size: 2em; font-weight: bold"
+          href="#"
+        >
+          Informações do Aluno
+        </h2>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link active" style="font-weight: bold;"  aria-current="page" href="/">Dashboard</a>
+              <a
+                class="nav-link active"
+                style="font-weight: bold"
+                aria-current="page"
+                href="/"
+                >Dashboard</a
+              >
             </li>
             <li class="nav-item">
-              <form id="logoutLink"><button class="nav-link active border-0" style="font-weight: bold; background-color: #f6f9ff;"  aria-current="page" href="#">Logout</button></form>
+              <form id="logoutLink">
+                <button
+                  class="nav-link active border-0"
+                  style="font-weight: bold; background-color: #f6f9ff"
+                  aria-current="page"
+                  href="#"
+                >
+                  Logout
+                </button>
+              </form>
             </li>
           </ul>
         </div>
@@ -212,25 +241,24 @@
     });
 
     btnReject.addEventListener("click", async function () {
-      const response = await fetch(
-        "http://localhost:3333/api/matriculas/rejeitar/<%-Aluno.Matricula.id%>",
-        {
-          method: "POST",
-        }
-      );
-
-      if (response.ok) {
-        const result = await Swal.fire({
-          title: "Tem certeza que deseja cancelar esta matricula",
-          text: "",
-          icon: "warning",
-          showCancelButton: true,
-          confirmButtonColor: "#3085d6",
-          cancelButtonColor: "#d33",
-          cancelButtonText: "Cancelar",
-          confirmButtonText: "Sim, Rejeitar!",
-        });
-        if (result.isConfirmed) {
+      const result = await Swal.fire({
+        title: "Tem certeza que deseja cancelar esta matricula",
+        text: "",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        cancelButtonText: "Cancelar",
+        confirmButtonText: "Sim, Rejeitar!",
+      });
+      if (result.isConfirmed) {
+        const response = await fetch(
+          "http://localhost:3333/api/matriculas/rejeitar/<%-Aluno.Matricula.id%>",
+          {
+            method: "POST",
+          }
+        );
+        if (response.ok) {
           await Swal.fire("Matricula Rejeitada com sucesso!", "", "success");
           location.reload();
         }

@@ -1,0 +1,7 @@
+.first_header::after {
+    height: 0px;
+}
+
+form * {
+    font-weight: bold;
+}
