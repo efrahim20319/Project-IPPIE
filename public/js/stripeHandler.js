@@ -10,8 +10,6 @@ button.addEventListener("click", () => {
         body: JSON.stringify({
             items: [
                 { id: 3, quantidade: 1 },
-                { id: 5, quantidade: 2 },
-                { id: 7, quantidade: 3 }
             ],
             email: urlParams.get('email')
         })

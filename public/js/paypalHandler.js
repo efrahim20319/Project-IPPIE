@@ -9,8 +9,6 @@ paypal.Buttons({
       body: JSON.stringify({
         items: [
           { id: 3, quantidade: 1 },
-          { id: 5, quantidade: 2 },
-          { id: 7, quantidade: 3 }
         ] //items a serem comprados
       })
     }).then(res => {

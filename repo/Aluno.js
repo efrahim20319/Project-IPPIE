@@ -92,6 +92,23 @@ export default class AlunoRepo {
         return matriculas
     }
 
+    static async alunoPreCadastrado(email) {
+        const aluno = await database.Alunos.findOne({
+            include: [{
+                model: database.Cursos,
+                required: true
+            }, {
+                model: database.Provincias,
+                required: true
+            }],
+            where: {
+                email
+            },
+            raw: false
+        })
+        return aluno
+    }
+
     static async calculaTotal() {
         const total = await database.Alunos.count()
         return total

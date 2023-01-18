@@ -39,4 +39,9 @@ describe('Testes no model Alunos', () => { //Nao esquecer de escrever este teste
         const aluno = await Aluno.pergarPorCampo('numero_BI', '95159369', {bloquearNaAusencia: false})
         console.log("Aluno tks: ", aluno);
     });
+
+    it('', () => {
+        
+    });
+    
 });

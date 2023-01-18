@@ -75,4 +75,9 @@ export default class Aluno {
             return false
         }
     }
+
+    static async alunoPreCadastrado(email) {
+        const aluno = await AlunoRepo.alunoPreCadastrado(email)
+        return aluno
+    }
 }

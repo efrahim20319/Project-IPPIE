@@ -24,4 +24,14 @@ export default class Aluno {
             next(error)
         }
     }
+
+    static async pegarPorEmail(req, res, next) {
+        try {
+            const { email } = req.params
+            const aluno = await AlunoModelo.alunoPreCadastrado(email)
+            res.status(200).json({ aluno })
+        } catch (error) {
+            next(error)
+        }
+    }
 }

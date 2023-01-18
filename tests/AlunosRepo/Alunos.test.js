@@ -62,7 +62,12 @@ describe('Testes no model Alunos', () => { //Nao esquecer de escrever este teste
     });
 
     it('Deve retornar os dados dos alunos curso  matriculados pelo id', async () => {
-        const matriculas = await AlunoRepo.obterMatriculasEhCurso(17)
+        const matriculas = await AlunoRepo.obterMatriculasEhCurso(4)
         console.log(matriculas);
+    }); //alunosAssociadosCursosProvincias
+
+    it('Deve retornar os dados dos alunos Associados com Cursos e Provincias', async () => {
+        const aluno = await AlunoRepo.alunoPreCadastrado('efrahimtks@gmail.com')
+        console.log(aluno);
     });
 });
