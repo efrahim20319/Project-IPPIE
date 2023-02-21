@@ -1,7 +1,9 @@
 const button = document.querySelector("button")
 const urlParams = new URLSearchParams(window.location.search)
 
-button.addEventListener("click", () => {
+button.addEventListener("click", async () => {
+    const response = await fetch(`/api/alunos/email/${urlParams.get('email')}`)
+    const { aluno } = await response.json()
     fetch("/api/create-checkot-session", { //Esta rota retorna uma url para completar o paganebto com o stripe
         method: 'POST',
         headers: {
@@ -9,7 +11,7 @@ button.addEventListener("click", () => {
         },
         body: JSON.stringify({
             items: [
-                { id: 3, quantidade: 1 },
+                { id: aluno.Curso.id, quantidade: 1 },
             ],
             email: urlParams.get('email')
         })

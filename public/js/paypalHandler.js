@@ -1,6 +1,9 @@
 paypal.Buttons({
   // Sets up the transaction when a payment button is clicked
-  createOrder: (data, actions) => {
+  createOrder: async (data, actions) => {
+    const urlParams = new URLSearchParams(window.location.search)
+    const response = await fetch(`/api/alunos/email/${urlParams.get('email')}`)
+    const { aluno } = await response.json()
     return fetch("/api/create-paypal-order", { //Retorna o OrderID
       method: "POST",
       headers: {
@@ -8,7 +11,7 @@ paypal.Buttons({
       },
       body: JSON.stringify({
         items: [
-          { id: 3, quantidade: 1 },
+          { id: aluno.Curso.id, quantidade: 1 },
         ] //items a serem comprados
       })
     }).then(res => {
