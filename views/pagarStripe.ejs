@@ -1,16 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://www.paypal.com/sdk/js?client-id=<%= paypalClientID %>&currency=EUR"></script>
+    <link
+      rel="stylesheet"
+      href="/public/css/cadastro-usuario-sucesso/index.css"
+    />
+    <link rel="stylesheet" href="/public/css/metodo-pagamento/index.css" />
     <script defer src="public/js/paypalHandler.js"></script>
     <script defer src="public/js/stripeHandler.js"></script>
     <title>Document</title>
-</head>
-<body>
-    <button>Checkout with stripe</button>
-    <div id="paypal"></div>
-</body>
+  </head>
+  <body>
+    <header class="cabecalho">
+      <span class="cabecalho_logo">
+        <a rel="prev" href="/"
+          ><img
+            class="logo_img"
+            src="/public/assets/images/logo-da-escola.png"
+            alt=""
+          />
+          <a class="logo_text" rel="prev" href="/">IPPIE</a></a
+        >
+      </span>
+      <button id="btn-menu-mobile">
+        MENU
+        <span id="humburger"></span>
+      </button>
+      <ul class="cabecalho_list">
+        <li class="cabecalho_list_item"><a href="/" rel="prev">HOME</a></li>
+        <li class="cabecalho_list_item">
+          <a href="/#porquenos" rel="prev">SOBRE NÓS</a>
+        </li>
+        <li class="cabecalho_list_item">
+          <a href="/#cursos" rel="prev">CURSOS</a>
+        </li>
+      </ul>
+    </header>
+    <main class="content">
+      <div class="main-card">
+        <h2 class="card-title">Escolher metodo de pagamento</h2>
+        <button id="stripe">Pagar com cartão visa, mastercard</button>
+        <div id="paypal"></div>
+      </div>
+    </main>
+  </body>
 </html>

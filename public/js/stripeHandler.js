@@ -1,4 +1,4 @@
-const button = document.querySelector("button")
+const button = document.querySelector("#stripe")
 const urlParams = new URLSearchParams(window.location.search)
 
 button.addEventListener("click", async () => {

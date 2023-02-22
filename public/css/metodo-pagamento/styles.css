@@ -1,0 +1,34 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#stripe {
+    border-radius: 5px;
+    padding: .7em;
+    margin-bottom: .5em;
+    background-color: rgb(60, 60, 152);
+    width: 100%;
+    color: white;
+    border: none;
+    transition: filter ease .5s;
+}
+
+h2.card-title {
+    margin: auto;
+    margin-bottom: .5em;
+}
+
+#stripe:hover {
+    filter: brightness(80%);
+
+}
+
+.content {
+    background-image: url('/public/img/svgs/layered-peaks-haikei\ \(2\).svg');
+    background-position: 10% 50%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+}
