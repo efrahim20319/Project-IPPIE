@@ -1,0 +1,45 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.content {
+    background-image: url('/public/img/svgs/polygon-scatter-haikei.svg');
+    background-position: 10% 50%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+}
+
+.payment-doc img {
+    height: 5em;
+    width: 5em;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2em;
+}
+.payment-doc > div h2 {
+    font-size: 2em;
+}
+
+.student-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.payment-doc {
+    width: 35em;
+    height: 30em;
+    padding: 1em;
+    border-radius: 5px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+}

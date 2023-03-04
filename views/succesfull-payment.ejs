@@ -1,12 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="/public/css/cadastro-usuario-sucesso/index.css"
+    />
+    <link rel="stylesheet" href="/public/css/success-payment/index.css" />
     <title>Document</title>
-</head>
-<body>
-    <h1>Sucess Payment BRO</h1>
-</body>
+  </head>
+  <body>
+    <header class="cabecalho">
+      <span class="cabecalho_logo">
+        <a rel="prev" href="/"
+          ><img
+            class="logo_img"
+            src="/public/assets/images/logo-da-escola.png"
+            alt=""
+          />
+          <a class="logo_text" rel="prev" href="/">IPPIE</a></a
+        >
+      </span>
+      <button id="btn-menu-mobile">
+        MENU
+        <span id="humburger"></span>
+      </button>
+      <ul class="cabecalho_list">
+        <li class="cabecalho_list_item"><a href="/" rel="prev">HOME</a></li>
+        <li class="cabecalho_list_item">
+          <a href="/#porquenos" rel="prev">SOBRE NÓS</a>
+        </li>
+        <li class="cabecalho_list_item">
+          <a href="/#cursos" rel="prev">CURSOS</a>
+        </li>
+      </ul>
+    </header>
+    <main class="content">
+      <div class="payment-doc">
+        <div class="header">
+            <img src="/public/assets/images/logo-da-escola.png" alt="">
+            <h2>Pagamento feito com sucesso</h2>
+        </div>
+        <div class="student-info">
+            <h3>Dados do Aluno</h3>
+            <span>Nome: </span>
+            <span>Curso: </span>
+            <span>Endereço: </span>
+            <span>Numero do BI: </span>
+            <span>Estado da matricula: </span>    
+        </div>
+      </div>
+    </main>
+  </body>
 </html>
