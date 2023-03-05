@@ -25,6 +25,18 @@ export default class Aluno {
         }
     }
 
+    static async enviarCertificado(req, res, next) {
+        try {
+            const [ comprovativo ] = req.files
+            const { email } = req.body 
+            const aluno = await AlunoModelo.pegarPorEmail(email, { bloquearNaAusencia: true })
+            await aluno.atualizarComprovativo(comprovativo.path)
+            res.status(200).end()
+        } catch (error) {
+            next(error)
+        }
+    }
+
     static async pegarPorEmail(req, res, next) {
         try {
             const { email } = req.params

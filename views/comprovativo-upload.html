@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/public/assets/bootsrap/css/bs.css" rel="stylesheet" />
+    <script src="/public/assets/bootsrap/js/bs.js"></script>
+    <link rel="stylesheet" href="/public/css/cadastro-usuario-sucesso/index.css"/>
+    <link rel="stylesheet" href="/public/css/metodo-pagamento/index.css" />
+    <link rel="stylesheet" href="/public/css/matricula/custom-file.css">
+    <script defer src="public/js/paypalHandler.js"></script>
+    <script defer src="public/js/stripeHandler.js"></script>
+    <link rel="stylesheet" href="/public/css/comprovativo upload/index.css">
+    <script src="/public/js/matricula/index.js" defer></script>
+    <title>Document</title>
+</head>
+<body>
+    <header class="cabecalho">
+        <span class="cabecalho_logo">
+          <a rel="prev" href="/"
+            ><img
+              class="logo_img"
+              src="/public/assets/images/logo-da-escola.png"
+              alt=""
+            />
+            <a class="logo_text" rel="prev" href="/"
+              >IPPIE</a
+            ></a
+          >
+        </span>
+        <button id="btn-menu-mobile">
+          MENU
+          <span id="humburger"></span>
+        </button>
+        <ul class="cabecalho_list">
+          <li class="cabecalho_list_item"><a href="/" rel="prev">HOME</a></li>
+          <li class="cabecalho_list_item">
+            <a href="/#porquenos" rel="prev">SOBRE NÓS</a>
+          </li>
+          <li class="cabecalho_list_item">
+            <a href="/#cursos" rel="prev">CURSOS</a>
+          </li>
+        </ul>
+      </header>
+      <main>
+        <div class="box">
+          <form action="" enctype="multipart/form-data">
+            <h1 class="box_title">Upload de Comprovativo de pagamento</h1>
+            <div class="form-group">
+              <div class="custom-file">
+                <label class="custom-file-label" for="customFile">Comprovativo de pagamento</label>
+                <span>Clique aqui ou arraste a foto</span>
+                <div>
+                  <input
+                    required
+                    accept=".jpg, .jpeg, .png"
+                    type="file"
+                    class="custom-file-input"
+                    id="customFile"
+                  />
+                </div>
+                <p>Nenhum arquivo selecionado</p>
+              </div>
+              <input type="submit" value="Enviar">
+            </div>
+          </form>
+        </div>
+      </main>
+</body>
+</html>

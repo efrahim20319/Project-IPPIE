@@ -3,11 +3,17 @@ import moment from "moment";
 import path from "path";
 const multer = require("multer");
 
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
+const configuracoesDestination = {
+    async matricula(req, file, cb) {
         cb(null, "./public/uploads")
     },
-    filename: async function (req, file, cb) {
+    async comprovativo(req, file, cb) {
+        cb(null, "./public/uploads/comprovativos") 
+    }
+}
+
+const configuracoesFilename = {
+    async matricula(req, file, cb) {
         try {
             const dados_aluno = req.body
             const imagem = file.originalname
@@ -17,16 +23,41 @@ const storage = multer.diskStorage({
         } catch (error) {
             cb(error)
         }
+    },
+    async comprovativo(_req, file, cb) {
+        try {
+            const imagem = file.originalname
+            const extensao = path.extname(imagem)
+            const imagem_final = `${crypto.randomUUID()}${extensao}`
+            cb(null, imagem_final)
+        } catch (error) {
+            cb(error)
+        }
     }
-})
+}
 
 function GeraNomeImagem(dados_aluno, imagem, extensao) {
     let imagem_final = '';
-    imagem_final = `${moment().format('YYYYMMDDHHmmss')} - ${crypto.randomUUID()} - ${dados_aluno.numero_BI} - ${dados_aluno.nome.split(' ')[0]} - ${imagem[0]}${extensao}`;
+    const {numero_BI, nome} = dados_aluno
+    imagem_final = `${moment().format('YYYYMMDDHHmmss')} - ${crypto.randomUUID()} - ${numero_BI} - ${nome.split(' ')[0]} - ${imagem[0]}${extensao}`;
     return imagem_final;
 }
 
-export default function carregaImagem() {
-    const upload = multer({ storage: storage })
-    return upload.array('files', 4)
+export function carregaImagem() {
+    return {
+        matricula(numeroArquivos) {
+            const upload = multer({ storage: multer.diskStorage({
+                destination: configuracoesDestination.matricula,
+                filename: configuracoesFilename.matricula
+            }) })
+            return upload.array('files', numeroArquivos)
+        },
+        comprovativo(numeroArquivos) {
+            const upload = multer({ storage: multer.diskStorage({
+                destination: configuracoesDestination.comprovativo,
+                filename: configuracoesFilename.comprovativo
+            }) })
+            return upload.array('files', numeroArquivos)
+        }
+    }
 }

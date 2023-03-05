@@ -76,6 +76,14 @@ export default class Aluno {
         }
     }
 
+    async atualizarComprovativo(comprovativo) {
+        try {
+            await AlunoRepo.atualizarComprovativo(comprovativo, this.email)
+        } catch (error) {
+            throw new Error(error.message)
+        }
+    }
+
     static async alunoPreCadastrado(email) {
         const aluno = await AlunoRepo.alunoPreCadastrado(email)
         return aluno

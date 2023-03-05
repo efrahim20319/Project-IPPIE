@@ -4,15 +4,19 @@ body {
     align-items: center;
 }
 
-#stripe {
+.main-card__method {
     border-radius: 5px;
     padding: .7em;
     margin-bottom: .5em;
-    background-color: rgb(60, 60, 152);
+    background-color: rgb(223, 121, 25);
     width: 100%;
     color: white;
     border: none;
     transition: filter ease .5s;
+}
+
+#stripe {
+    background-color: rgb(60, 60, 152);
 }
 
 h2.card-title {
@@ -20,8 +24,8 @@ h2.card-title {
     margin-bottom: .5em;
 }
 
-#stripe:hover {
-    filter: brightness(80%);
+.main-card__method:hover {
+    filter: brightness(90%);
 
 }
 
