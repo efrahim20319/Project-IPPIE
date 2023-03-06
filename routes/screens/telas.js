@@ -5,6 +5,7 @@ import { rotasCursos } from "./rotasCursos"
 import tokens from "../../infrastructure/tokens"
 import Aluno from "../../model/Alunos"
 import Matricula from "../../model/Matricula"
+import Dados from "../../model/Dados"
 const roteador = Router()
 
 roteador.get("/", (req, res) => {
@@ -32,11 +33,28 @@ roteador.get('/sucessPayment', async (req, res) => {
     const token = req.query.email
     const email = await tokens.manipulaPaymentToken.verifica(token)
     const aluno = await Aluno.pegarPorEmail(email, { bloquearNaAusencia: false })
+    const [dadosMatricula] = await Dados.obterAlunoMatriculado(aluno.id, true)
+    console.log(dadosMatricula);
+    if (aluno && aluno.matriculado) {
+      return res.status(200).render("succesfull-payment", { dados: dadosMatricula })
+    }
     if (aluno && !aluno.matriculado) {
       const matricula = new Matricula({ status: "pendente", aluno_id: aluno.id, pago: true })
       await matricula.adicionar()
-      return res.status(200).render("succesfull-payment")
+      return res.status(200).render("succesfull-payment", { dados: dadosMatricula })
     }
+    return res.status(401).redirect('/')
+  } catch (error) {
+    return res.status(401).redirect('/')
+  }
+})
+
+roteador.get('/comprovativoUpload', async (req, res) => {
+  try {
+    const email = req.query.email
+    const aluno = await Aluno.pegarPorEmail(email, { bloquearNaAusencia: false })
+    if (aluno && !aluno.matriculado)
+      return res.status(200).render("comprovativo-upload")
     return res.status(401).redirect('/')
   } catch (error) {
     return res.status(401).redirect('/')

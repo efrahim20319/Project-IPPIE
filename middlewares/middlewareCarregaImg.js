@@ -38,26 +38,26 @@ const configuracoesFilename = {
 
 function GeraNomeImagem(dados_aluno, imagem, extensao) {
     let imagem_final = '';
-    const {numero_BI, nome} = dados_aluno
+    const { numero_BI, nome } = dados_aluno
     imagem_final = `${moment().format('YYYYMMDDHHmmss')} - ${crypto.randomUUID()} - ${numero_BI} - ${nome.split(' ')[0]} - ${imagem[0]}${extensao}`;
     return imagem_final;
 }
 
-export function carregaImagem() {
-    return {
-        matricula(numeroArquivos) {
-            const upload = multer({ storage: multer.diskStorage({
-                destination: configuracoesDestination.matricula,
-                filename: configuracoesFilename.matricula
-            }) })
-            return upload.array('files', numeroArquivos)
-        },
-        comprovativo(numeroArquivos) {
-            const upload = multer({ storage: multer.diskStorage({
-                destination: configuracoesDestination.comprovativo,
-                filename: configuracoesFilename.comprovativo
-            }) })
-            return upload.array('files', numeroArquivos)
-        }
+const carregaImagem = {
+    matricula(numeroArquivos) {
+        const upload = multer({ storage: multer.diskStorage({
+            destination: configuracoesDestination.matricula,
+            filename: configuracoesFilename.matricula
+        }) })
+        return upload.array('files', numeroArquivos)
+    },
+    comprovativo(numeroArquivos) {
+        const upload = multer({ storage: multer.diskStorage({
+            destination: configuracoesDestination.comprovativo,
+            filename: configuracoesFilename.comprovativo
+        }) })
+        return upload.array('files', numeroArquivos)
     }
+    
 }
+export default carregaImagem

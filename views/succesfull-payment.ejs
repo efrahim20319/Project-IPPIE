@@ -8,6 +8,7 @@
       rel="stylesheet"
       href="/public/css/cadastro-usuario-sucesso/index.css"
     />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
     <link rel="stylesheet" href="/public/css/success-payment/index.css" />
     <title>Document</title>
   </head>
@@ -40,17 +41,32 @@
     <main class="content">
       <div class="payment-doc">
         <div class="header">
-            <img src="/public/assets/images/logo-da-escola.png" alt="">
-            <h2>Pagamento feito com sucesso</h2>
+          <img src="/public/assets/images/logo-da-escola.png" alt="" />
+          <h2>Pagamento feito com sucesso</h2>
         </div>
         <div class="student-info">
-            <h3>Dados do Aluno</h3>
-            <span>Nome: </span>
-            <span>Curso: </span>
-            <span>Endereço: </span>
-            <span>Numero do BI: </span>
-            <span>Estado da matricula: </span>    
+          <h3>Dados do Aluno</h3>
+          <span>Nome: <%= dados.nome %></span>
+          <span>Curso: <%= dados['Curso.nome'] %></span>
+          <span>Endereço: <%= dados.endereco %></span>
+          <span>Numero do BI: <%= dados.numero_BI %></span>
+          <span>Estado da matricula: <%= dados['Matriculas.status'] %></span>
         </div>
+        <canvas style="height: 10em; width: 10em;" id="qrcode-2"></canvas>
+        <script type="text/javascript">
+          const url = window.location.href
+          var qrcode = new QRious({
+            element: document.getElementById("qrcode-2"),
+            background: "#ffffff",
+            backgroundAlpha: 1,
+            foreground: "#000000",
+            foregroundAlpha: 1,
+            level: "H",
+            padding: 0,
+            size: 2048,
+            value: url
+          });
+        </script>
       </div>
     </main>
   </body>

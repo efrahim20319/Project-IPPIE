@@ -19,9 +19,8 @@ export default class Dados {
         return { totalAlunos, totalMatriculas, totalReceitas: totalReceitas[0].total }
     }
 
-    static async obterAlunoMatriculado(id) {
-        const aluno = await AlunoRepo.obterMatriculasEhCurso(id)
-        console.log('Eieiei', aluno);
+    static async obterAlunoMatriculado(id, raw=false) {
+        const aluno = await AlunoRepo.obterMatriculasEhCurso(id, raw)
         return aluno
     }
 }
