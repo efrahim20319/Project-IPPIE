@@ -4,6 +4,16 @@ body {
     align-items: center;
 }
 
+.print-btn {
+    background-color: rgb(19, 84, 205);
+    color: aliceblue;
+    font-weight: bold;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 5px;
+    padding: 1em;
+}
+
 
 .content {
     background-image: url('/public/img/svgs/polygon-scatter-haikei.svg');
@@ -36,7 +46,7 @@ body {
 
 .payment-doc {
     width: 35em;
-    height: 30em;
+    height: fit-content;
     padding: 1em;
     border-radius: 5px;
     background-color: white;

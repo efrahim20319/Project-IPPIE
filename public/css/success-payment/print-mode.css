@@ -1,0 +1,16 @@
+@media print {
+    header, header * {
+        display: none;
+    }
+    .print-btn {
+        display: none;
+    }
+    .content {
+        margin-top: -20em;
+    }
+
+    /* .payment-doc {
+        display: block;
+    } */
+
+}

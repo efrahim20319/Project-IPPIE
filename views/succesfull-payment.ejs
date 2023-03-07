@@ -9,6 +9,8 @@
       href="/public/css/cadastro-usuario-sucesso/index.css"
     />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+    <script defer src="/public/js/success-payment/qrious.js"></script>
+    <script defer src="/public/js/success-payment/index.js"></script>
     <link rel="stylesheet" href="/public/css/success-payment/index.css" />
     <title>Document</title>
   </head>
@@ -52,21 +54,11 @@
           <span>Numero do BI: <%= dados.numero_BI %></span>
           <span>Estado da matricula: <%= dados['Matriculas.status'] %></span>
         </div>
-        <canvas style="height: 10em; width: 10em;" id="qrcode-2"></canvas>
-        <script type="text/javascript">
-          const url = window.location.href
-          var qrcode = new QRious({
-            element: document.getElementById("qrcode-2"),
-            background: "#ffffff",
-            backgroundAlpha: 1,
-            foreground: "#000000",
-            foregroundAlpha: 1,
-            level: "H",
-            padding: 0,
-            size: 2048,
-            value: url
-          });
-        </script>
+        <div>
+          <canvas style="height: 10em; width: 10em;" id="qrcode-2"></canvas>
+          <a id="qr-link" href="">Ou acesse aqui</a>
+        </div>
+        <button class="print-btn">Imprimir</button>
       </div>
     </main>
   </body>
