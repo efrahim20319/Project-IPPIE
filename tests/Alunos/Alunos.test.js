@@ -23,11 +23,11 @@ afterEach(async () => {
 
 describe('Testes no model Alunos', () => { //Nao esquecer de escrever este teste
     it('Deve retorar as matriculas de um aluno', async () => {
-        const aluno = await Aluno.pegarPorEmail('cristiano@gmail.com', {bloquearNaAusencia: false})
+        const aluno = await Aluno.pegarPorEmail('efrahimtks@gmail.com', {bloquearNaAusencia: false})
         if (aluno) {
             const matriculado = await aluno.estaMatriculado()
+            console.log("Matriculado ", matriculado);
         }
-        // console.log("Matriculado ", matriculado);
     }); 
 
     it('Deve retorar um aluno pelo seu email', async () => {
