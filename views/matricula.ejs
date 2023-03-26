@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -63,6 +63,7 @@
                 class="form-control"
                 id="inputNome"
                 placeholder="Seu nome"
+                pattern="^([A-Za-zÃÕÁÉÍÓÚÂÊÎÔÛÇãõáéíóúâêîôûç]{2,60})([\sA-Za-zÃÕÁÉÍÓÚÂÊÎÔÛÇãõáéíóúâêîôûç]{2,60})*$"
               />
             </div>
             <div class="form-group col-md-6">
@@ -72,6 +73,7 @@
                 class="form-control"
                 id="inputSobrenome"
                 placeholder="Último nome"
+                pattern="^([A-Za-zÃÕÁÉÍÓÚÂÊÎÔÛÇãõáéíóúâêîôûç]{2,60})$"
               />
             </div>
           </div>
@@ -82,11 +84,14 @@
               class="form-control"
               id="inputAddress"
               placeholder="Avenida São Pedro"
+              pattern="^(\w+.+)$"
             />
           </div>
           <div class="form-group">
             <label for="inputBirthDate">Data de Nascimento</label>
             <input
+              min="1990-01-01"
+              max="2008-12-31"
               type="date"
               class="form-control"
               id="inputData"
@@ -101,6 +106,7 @@
                 placeholder="Huambo"
                 class="form-control"
                 id="inputCity"
+                pattern="^(\w+.+)$"
               />
             </div>
             <div class="form-group col">
@@ -112,21 +118,21 @@
           <div class="row form-row">
             <div class="form-group col-md-6">
               <label for="inputFather">Nome do Pai</label>
-              <input type="text" class="form-control" id="inputFather" />
+              <input type="text" class="form-control" id="inputFather" pattern="^([A-Za-zÃÕÁÉÍÓÚÂÊÎÔÛÇãõáéíóúâêîôûç]{2,60})([\sA-Za-zÃÕÁÉÍÓÚÂÊÎÔÛÇãõáéíóúâêîôûç]{2,60})*$" />
             </div>
             <div class="form-group col-md-6">
               <label for="inputMother">Nome da Mãe</label>
-              <input type="text" class="form-control" id="inputMother" />
+              <input type="text" class="form-control" id="inputMother" pattern="^([A-Za-zÃÕÁÉÍÓÚÂÊÎÔÛÇãõáéíóúâêîôûç]{2,60})([\sA-Za-zÃÕÁÉÍÓÚÂÊÎÔÛÇãõáéíóúâêîôûç]{2,60})*$" />
             </div>
           </div>
           <div class="row form-row">
             <div class="form-group col-md-6">
               <label for="inputBI">Numero do BI</label>
-              <input type="text" class="form-control" id="inputBI" />
+              <input type="text" class="form-control" id="inputBI" pattern="^(\d{9}[A-Za-z]{2}\d{3})$" />
             </div>
             <div class="form-group col-md-6">
               <label for="inputPhone">Numero de telefone</label>
-              <input type="text" class="form-control" id="inputPhone" />
+              <input type="text" class="form-control" id="inputPhone" pattern="^(\+244\s{0,2})?(9\d{2}([-\s]?)\d{3}(\3)\d{3})$" />
             </div>
           </div>
           <div class="form-group">
@@ -135,7 +141,9 @@
               type="email"
               class="form-control"
               id="inputEmail"
+              title="Exemplo: exemplo@email.com"
               placeholder="exemplo@gmail.com"
+              pattern="^(\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+)$"
             />
           </div>
           <div class="form-group">
