@@ -27,6 +27,20 @@ telas.get('/user/id/:id', middlewares.autenticacao.estaLogado(), async (req, res
         delete Aluno.Matriculas
         if (Aluno)
             return res.render('user-info', { Aluno })
+        return res.status(404).send('Nao Encontrado')
+    } catch (error) {
+        return res.status(404).send('Nao Encontrado')
+    }
+})
+
+telas.get('/mensagem/id/:id', middlewares.autenticacao.estaLogado(), async (req, res) => {
+    try {
+        const { id } = req.params
+        const response = await fetch(`http://localhost:3333/api/mensagem/${id}`)
+        const mensagem = await response.json()
+        console.log(mensagem);
+        if (mensagem)
+            return res.render('msg-info', { mensagem })
         return res.send('Nao Encontrado')
     } catch (error) {
         return res.send('Nao Encontrado')

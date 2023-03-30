@@ -4,7 +4,7 @@ async function alunosMatriculados() {
     return await response.json()
 }
 
-function criaLinha(aluno) {
+function criaLinhaAluno(aluno) {
     let badgeClass = ''
     if (aluno.status === 'confirmado')
         badgeClass = 'badge bg-success'
@@ -24,17 +24,9 @@ function criaLinha(aluno) {
     return linha
 }
 const tBodyMatriculas = document.querySelector("#tabela-matriculas")
-async function renderLista() {
+export async function renderListaAluno() {
     const alunos = await alunosMatriculados()
     for (const aluno of alunos) {
-        tBodyMatriculas.append(criaLinha(aluno))
+        tBodyMatriculas.append(criaLinhaAluno(aluno))
     }
 }
-
-
-
-
-document.addEventListener('DOMContentLoaded', async function () {
-    await renderLista()
-    let table = new DataTable('#table_students');
-});

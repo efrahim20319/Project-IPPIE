@@ -16,12 +16,7 @@
       type="text/css"
       href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css"
     />
-    <script
-      type="module"
-      defer
-      type="text/javascript"
-      src="assets/js/dashboard/table.js"
-    ></script>
+    
     <script
       type="text/javascript"
       charset="utf8"
@@ -55,6 +50,9 @@
     <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet" />
     <script defer src="assets/js/dashboard/logout-handler.js"></script>
     <script defer src="assets/js/dashboard/calculaTotal.js"></script>
+    <script type="module" defer type="text/javascript" src="assets/js/dashboard/tableAlunos.js"></script>
+    <script type="module" defer src="assets/js/dashboard/tabelaMensagem.js"></script>
+    <script type="module"  defer src="assets/js/dashboard/tables.js"></script>
 
     <!-- Template Main CSS File -->
     <link href="assets/css/style.css" rel="stylesheet" />
@@ -238,7 +236,7 @@
                   </div>
 
                   <div class="card-body">
-                    <h5 class="card-title">Reports <span>/Today</span></h5>
+                    <h5 class="card-title">Alunos matriculados nesta semana 
 
                     <!-- Line Chart -->
                     <div id="reportsChart"></div>
@@ -274,7 +272,7 @@
                   </div>
 
                   <div class="card-body">
-                    <h5 class="card-title">Reports <span>/Today</span></h5>
+                    <h5 class="card-title">Matriculas por curso</h5>
 
                     <!-- Line Chart -->
                     <div id="grMatriculaCurso"></div>
@@ -329,11 +327,10 @@
                   </div>
                 </div>
               </div>
-              <!-- End Recent Sales -->
 
-              <!-- Top Selling -->
-              <!-- <div class="col-12">
-                <div class="card top-selling overflow-auto">
+
+              <div class="col-12">
+                <div class="card recent-sales overflow-auto">
                   <div class="filter">
                     <a class="icon" href="#" data-bs-toggle="dropdown"
                       ><i class="bi bi-three-dots"></i
@@ -351,93 +348,25 @@
                     </ul>
                   </div>
 
-                  <div class="card-body pb-0">
+                  <div class="card-body">
                     <h5 class="card-title">
-                      Alunos Cadastrados hoje <span>| Today</span>
+                      Mensagens
                     </h5>
 
-                    <table class="table table-borderless">
+                    <table id="table-msg" class="display">
                       <thead>
                         <tr>
-                          <th scope="col">Preview</th>
-                          <th scope="col">Product</th>
-                          <th scope="col">Price</th>
-                          <th scope="col">Sold</th>
-                          <th scope="col">Revenue</th>
+                          <th>#</th>
+                          <th>Autor</th>
+                          <th>Email</th>
+                          <th>Data</th>
                         </tr>
                       </thead>
-                      <tbody>
-                        <tr>
-                          <th scope="row">
-                            <a href="#"
-                              ><img src="assets/img/product-1.jpg" alt=""
-                            /></a>
-                          </th>
-                          <td>
-                            <a href="#" class="text-primary fw-bold"
-                              >Ut inventore ipsa voluptas nulla</a
-                            >
-                          </td>
-                          <td class="fw-bold">124</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">
-                            <a href="#"
-                              ><img src="assets/img/product-2.jpg" alt=""
-                            /></a>
-                          </th>
-                          <td>
-                            <a href="#" class="text-primary fw-bold"
-                              >Exercitationem similique doloremque</a
-                            >
-                          </td>
-                          <td class="fw-bold">98</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">
-                            <a href="#"
-                              ><img src="assets/img/product-3.jpg" alt=""
-                            /></a>
-                          </th>
-                          <td>
-                            <a href="#" class="text-primary fw-bold"
-                              >Doloribus nisi exercitationem</a
-                            >
-                          </td>
-                          <td class="fw-bold">74</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">
-                            <a href="#"
-                              ><img src="assets/img/product-4.jpg" alt=""
-                            /></a>
-                          </th>
-                          <td>
-                            <a href="#" class="text-primary fw-bold"
-                              >Officiis quaerat sint rerum error</a
-                            >
-                          </td>
-                          <td class="fw-bold">63</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">
-                            <a href="#"
-                              ><img src="assets/img/product-5.jpg" alt=""
-                            /></a>
-                          </th>
-                          <td>
-                            <a href="#" class="text-primary fw-bold"
-                              >Sit unde debitis delectus repellendus</a
-                            >
-                          </td>
-                          <td class="fw-bold">41</td>
-                        </tr>
-                      </tbody>
+                      <tbody id="table-msg__body"></tbody>
                     </table>
                   </div>
                 </div>
-              </div> -->
-              <!-- End Top Selling -->
+              </div>
             </div>
           </div>
           <!-- End Left side columns -->

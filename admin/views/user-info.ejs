@@ -131,7 +131,10 @@
           <div class="campo">
             <span class="campo__nome">Data de Nascimento</span>
             <span class="campo__valor"
-              ><%= String(Aluno.data_nascimento).toUpperCase() %></span
+              ><%= Intl.DateTimeFormat('pt-pt', {
+                dateStyle: 'long',
+                
+            }).format(new Date(Aluno.data_nascimento)) %></span
             >
           </div>
           <div class="campo">
