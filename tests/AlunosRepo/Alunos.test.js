@@ -45,8 +45,8 @@ describe('Testes no model Alunos', () => { //Nao esquecer de escrever este teste
           }))
     }); 
 
-    it('Deve retornar os alunos cadastrados na ultima semanda', async () => {
-        const valores = await AlunoRepo.pegaCadastradosUltimaSemana()
+    it('Deve retornar os alunos cadastrados nos ultimos X dias', async () => {
+        const valores = await AlunoRepo.pegaCadastradosUltimosDias(7)
         console.log(valores);
     });
     

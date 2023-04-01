@@ -3,6 +3,7 @@ import db from "../database/models";
 const { QueryTypes } = require("sequelize");
 import SQLError from "../errors/SQLError";
 import UsuarioJaCadastrado from "../errors/UsuarioJaCadastrado";
+import { unificadorQueries } from "../infrastructure/utils/unificadorQueries";
 const database = require("../database/models");
 
 export default class AlunoRepo {
@@ -23,29 +24,14 @@ export default class AlunoRepo {
     }
   }
 
-  static async pegaCadastradosUltimaSemana() {
-    function formataData(dias_a_Reduzir) {
-      return moment().subtract(dias_a_Reduzir, "days").format("YYYY-MM-DD");
-    }
-    function criaQueryUnida(n_queries) {
-      let query = "";
-      for (
-        let index = 0, dias_a_Reduzir = 6;
-        index < n_queries;
-        index++, dias_a_Reduzir--
-      ) {
-        query =
-          String(query) +
-          ` Select count(*) as Total from Alunos
-                where createdAt like '${formataData(dias_a_Reduzir)}%'`;
-        if (index == n_queries - 1) continue;
-        query = String(query) + " union all";
-      }
-      return query;
-    }
-    const query = criaQueryUnida(7);
-    return await db.sequelize.query(query, { type: QueryTypes.SELECT });
-  }
+  static async pegaCadastradosUltimosDias(numero_de_dias) {
+    const query = ` Select count(*) as Total from Alunos
+    where createdAt like '+*+*%'`
+    const queryFinal = unificadorQueries(numero_de_dias, query)
+    return await database.sequelize.query(queryFinal, {
+        type: QueryTypes.SELECT,
+    })
+}
 
   static async pegarPorEmail(email) {
     return await database.Alunos.findOne({

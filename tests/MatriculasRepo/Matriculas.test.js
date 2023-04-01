@@ -24,8 +24,8 @@ afterEach(async () => {
 
 describe('Testes no Repositorio Matriculas', () => { //Nao esquecer de escrever este teste
 
-    it('Deve retornar as matriculas feitas na ultima semana', async () => {
-        const valores = await MatriculaRepo.pegaMatriculadosUltimaSemana()
+    it('Deve retornar as matriculas nos ultimos X dias', async () => {
+        const valores = await MatriculaRepo.pegaMatriculadosUltimosDias(7)
         console.log(valores);
     });
 
@@ -34,9 +34,10 @@ describe('Testes no Repositorio Matriculas', () => { //Nao esquecer de escrever 
         console.log(matriculas);
     });
 
-    it('Deve retornar a receita da ultima semana', async () => {
-        const valores = await MatriculaRepo.pegaReceitaUltimaSemana()
-        console.log(valores);
+
+    it('Deve retornar a receita da ultimos X dias', async () => {
+        const valores = await MatriculaRepo.pegaReceitaUltimosDias(10)
+        console.log('Tipo tou maluco 2',valores);
     });
 
     it('Deve retornar o numero de matriculas cadastradas', async () => {

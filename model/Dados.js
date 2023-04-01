@@ -6,9 +6,10 @@ function formataDadosRetorno(dados) {
 
 export default class Dados {
     static async graficoGeral() {
-        let dadosAlunos = formataDadosRetorno(await AlunoRepo.pegaCadastradosUltimaSemana())
-        let dadosMatriculas = formataDadosRetorno(await MatriculaRepo.pegaMatriculadosUltimaSemana())
-        let dadosReceita = formataDadosRetorno(await MatriculaRepo.pegaReceitaUltimaSemana())
+        const alcance = 90
+        let dadosAlunos = formataDadosRetorno(await AlunoRepo.pegaCadastradosUltimosDias(alcance))
+        let dadosMatriculas = formataDadosRetorno(await MatriculaRepo.pegaMatriculadosUltimosDias(alcance))
+        let dadosReceita = formataDadosRetorno(await MatriculaRepo.pegaReceitaUltimosDias(alcance))
         return { dadosAlunos, dadosMatriculas, dadosReceita }
     }
 
