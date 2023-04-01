@@ -1,7 +1,7 @@
-function dateCategories() {
-    let categories = new Array(6)
-    for (let index = 6, c = 0; index >= 0; index--, c++) {
-        categories[index] = `${moment().subtract(c, 'days').format('YYYY-MM-DD')}T00:00:00.000Z`
+function dateCategories(dias_a_Reduzir) {
+    let categories = []
+    for (let index = dias_a_Reduzir, c = 0; index >= 0; index--, c++) {
+        categories.unshift(`${moment().subtract(c, 'days').format('YYYY-MM-DD')}T00:00:00.000Z`)
     }
     return categories
 }
@@ -12,7 +12,7 @@ async function dadosGraficoGeral() {
 }
 
 dadosGraficoGeral().then(({ dadosAlunos,dadosReceita,dadosMatriculas }) => {
-        new ApexCharts(document.querySelector("#reportsChart"), {
+        const grafico = new ApexCharts(document.querySelector("#reportsChart"), {
             series: [{
                 name: 'Alunos',
                 data: dadosAlunos
@@ -52,7 +52,7 @@ dadosGraficoGeral().then(({ dadosAlunos,dadosReceita,dadosMatriculas }) => {
             },
             xaxis: {
                 type: 'datetime',
-                categories: dateCategories()
+                categories: dateCategories(6)
             },
             tooltip: {
                 x: {
@@ -60,4 +60,5 @@ dadosGraficoGeral().then(({ dadosAlunos,dadosReceita,dadosMatriculas }) => {
                 },
             }
         }).render();
+        
 })
