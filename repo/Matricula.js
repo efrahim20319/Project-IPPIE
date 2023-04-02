@@ -61,6 +61,7 @@ export default class MatriculaRepo {
             ON Cursos.id = Alunos.curso_id
             inner join Matriculas
             ON Alunos.id = Matriculas.aluno_id
+            where Matriculas.status != 'cancelado'
             group by Cursos.nome
             union
             select Cursos.nome, 0 as inscricoes from Cursos) as MatriculasPorCurso 
