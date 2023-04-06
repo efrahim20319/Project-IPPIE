@@ -1,4 +1,4 @@
-import { precoEmEuro } from "../infrastructure/utils/conversorDeMoeda"
+import utils from "../infrastructure/utils"
 import CursosRepo from "../repo/Cursos.js"
 
 export default class Cursos {
@@ -18,7 +18,7 @@ export default class Cursos {
                 if ((precosCalculados.has(curso.preco)))
                     curso.preco = precosCalculados.get(curso.preco)
                 else {
-                    precoConvertido = await precoEmEuro(curso.preco)
+                    precoConvertido = await utils.precoEmEuro(curso.preco)
                     precosCalculados.set(curso.preco, precoConvertido)
                     curso.preco = precoConvertido
                 }

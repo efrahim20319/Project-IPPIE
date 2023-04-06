@@ -2,7 +2,7 @@ import manipulaConverterList from '../../database/redis/conversao-moeda-list'
 
 const CC = require('currency-converter-lt')
 
-export async function convert_to_Euro(valor) {
+async function convert_to_Euro(valor) {
     let converterCC = new CC({
         from: 'AOA',
         to: "EUR",

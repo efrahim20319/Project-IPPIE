@@ -1,9 +1,9 @@
 import moment from "moment";
-import db from "../database/models";
 const { QueryTypes } = require("sequelize");
 import SQLError from "../errors/SQLError";
 import UsuarioJaCadastrado from "../errors/UsuarioJaCadastrado";
-import { unificadorQueries } from "../infrastructure/utils/unificadorQueries";
+import utils from "../infrastructure/utils";
+
 const database = require("../database/models");
 
 export default class AlunoRepo {
@@ -27,7 +27,7 @@ export default class AlunoRepo {
   static async pegaCadastradosUltimosDias(numero_de_dias) {
     const query = ` Select count(*) as Total from Alunos
     where createdAt like '+*+*%'`
-    const queryFinal = unificadorQueries(numero_de_dias, query)
+    const queryFinal = utils.unificadorQueries(numero_de_dias, query) //unificadorQueries(numero_de_dias, query)
     return await database.sequelize.query(queryFinal, {
         type: QueryTypes.SELECT,
     })

@@ -1,5 +1,4 @@
-import moment from 'moment'
-import { unificadorQueries } from '../infrastructure/utils/unificadorQueries'
+import utils from '../infrastructure/utils'
 const { QueryTypes } = require('sequelize')
 const database = require('../database/models')
 export default class MatriculaRepo {
@@ -9,7 +8,7 @@ export default class MatriculaRepo {
     static async pegaMatriculadosUltimosDias(numero_de_dias) {
         const query = ` Select count(*) as Total from 
         Matriculas where createdAt like '+*+*%'`
-        const queryFinal = unificadorQueries(numero_de_dias, query)
+        const queryFinal = utils.unificadorQueries(numero_de_dias, query)
         return await database.sequelize.query(queryFinal, {
             type: QueryTypes.SELECT,
         })
@@ -23,7 +22,7 @@ export default class MatriculaRepo {
         inner join Cursos on Alunos.curso_id = Cursos.id
         where Matriculas.createdAt like '+*+*%' and Matriculas.status = 'confirmado'
         group by Cursos.nome) as TotalMatriculasCurso`
-        const queryFinal = unificadorQueries(numero_de_dias, query)
+        const queryFinal = utils.unificadorQueries(numero_de_dias, query)
         return await database.sequelize.query(queryFinal, {
             type: QueryTypes.SELECT,
         })

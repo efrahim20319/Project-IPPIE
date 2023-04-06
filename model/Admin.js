@@ -1,6 +1,6 @@
-import bcrypt from "bcrypt"
 import AdminRepo from "../repo/Admin"
 import EmailJaCadastrado from "../errors/EmailJaCadastrado"
+import utils from "../infrastructure/utils"
 
 export default class Admin {
     constructor(admin) {
@@ -14,7 +14,7 @@ export default class Admin {
         if (adminExistente) throw new EmailJaCadastrado(this.email)
         const dados = {
             ...this,
-            password: await Admin.geraSenhaHash(this.password)
+            password: await utils.geradorSenhaHash(this.password) //await Admin.geraSenhaHash(this.password)
         }
         await AdminRepo.adiciona(dados)
     }
@@ -27,8 +27,4 @@ export default class Admin {
         return await AdminRepo.pegarPorId(id)
     }
 
-    static async geraSenhaHash(senha) {
-        const custoHash = 12
-        return await bcrypt.hash(senha, custoHash)
-    }
 }

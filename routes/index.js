@@ -9,10 +9,22 @@ import rotasProvincias from "./rotasProvincias.js";
 import rotasCursos from "./rotasCursos.js";
 import roteadorDados from "./rotasDados.js";
 import roteadorMatriculas from "./rotasMatriculas.js";
+import rotasSuperAdmin from "./rotasSuperAdminRepo.js";
 
 
 const roteador = Router();
-const rotasAPI = [rotasUsuario, rotasMensagem, roteadorAluno, adminRoutes, rotasPagamento, rotasProvincias, rotasCursos, roteadorDados, roteadorMatriculas]
+const rotasAPI = [
+    rotasCursos,
+    adminRoutes,
+    rotasUsuario,
+    roteadorAluno,
+    roteadorDados,
+    rotasMensagem,
+    rotasPagamento,
+    rotasProvincias,
+    rotasSuperAdmin,
+    roteadorMatriculas
+]
 roteador.use("/api", rotasAPI); // todas as rotas da para a api começarão com o prefixo api
 roteador.use("/", telas); // telas do site estarão aqui
 

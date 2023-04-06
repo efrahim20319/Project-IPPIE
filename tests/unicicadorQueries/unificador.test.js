@@ -1,5 +1,4 @@
-import { unificadorQueries } from "../../infrastructure/utils/unificadorQueries";
-
+import utils from "../../infrastructure/utils";
 it('Deve unir as queries corretamente', () => {
     const query = `select sum(Total) as Total from 
     (select Cursos.nome, sum(Cursos.preco) as Total
@@ -8,6 +7,6 @@ it('Deve unir as queries corretamente', () => {
     inner join Cursos on Alunos.curso_id = Cursos.id
     where Matriculas.createdAt like '+*+*' and Matriculas.status = 'confirmado'
     group by Cursos.nome) as TotalMatriculasCurso`
-    const queryFinal = unificadorQueries(7, query)
+    const queryFinal = utils.unificadorQueries(7, query)
     console.log(queryFinal);
 });
