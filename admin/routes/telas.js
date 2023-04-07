@@ -51,4 +51,8 @@ telas.get("/cadastrar", (_req, res) => {
     res.status(200).render('cadastrar')
 })
 
+telas.get('/adminLogin', (req, res, next) => {
+    res.render('super-adm-login')
+})
+
 export default telas
