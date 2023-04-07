@@ -18,7 +18,7 @@ export default {
     }
 }
 
-async function criarTokenOpaco(id, [tempoQuantidade, tempoUnidade], allowlist) {
+export async function criarTokenOpaco(id, [tempoQuantidade, tempoUnidade], allowlist) {
     const tokenOpaco = crypto.randomBytes(24).toString("hex")
     const dataAtual = moment()
     const dataExpiracao = moment().add(tempoQuantidade, tempoUnidade)
@@ -27,13 +27,13 @@ async function criarTokenOpaco(id, [tempoQuantidade, tempoUnidade], allowlist) {
     return tokenOpaco
 }
 
-async function verificaTokenOpaco(token, nome, allowlist) {
+export async function verificaTokenOpaco(token, nome, allowlist) {
     verificaTokenEnviado(token, nome)
     const id = await allowlist.buscaValor(token)
     verificaValidadeToken(id, nome)
     return id
 }
 
-async function invalidaTokenOpaco(token, allowlist) {
+export async function invalidaTokenOpaco(token, allowlist) {
     await allowlist.deleta(token)
 }

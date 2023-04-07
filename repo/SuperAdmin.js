@@ -9,5 +9,13 @@ export class SuperAdminRepo {
             throw new Error(error.message)
         }
     }
+
+    static async obterSuperAdmin() {
+        try {
+            return await database.SuperAdministradores.findOne({})
+        } catch (error) {
+            throw new Error(error.message)
+        }
+    }
 }
 

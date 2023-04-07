@@ -9,7 +9,7 @@ import rotasProvincias from "./rotasProvincias.js";
 import rotasCursos from "./rotasCursos.js";
 import roteadorDados from "./rotasDados.js";
 import roteadorMatriculas from "./rotasMatriculas.js";
-import rotasSuperAdmin from "./rotasSuperAdminRepo.js";
+import rotasSuperAdmin from "./rotasSuperAdmin.js";
 
 
 const roteador = Router();

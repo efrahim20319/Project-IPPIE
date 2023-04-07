@@ -1,5 +1,5 @@
 import { SuperAdminModel } from "../model/SuperAdminModel"
-
+import tokens from '../infrastructure/tokens/'
 export class SuperAdminController {
 
     static async adiciona(req, res, next) {
@@ -12,4 +12,19 @@ export class SuperAdminController {
             next(error)
         }
     }
-}   
+
+    static async login(req, res, next) {
+        try {
+            const { senha } = req.body
+            const superAdmin = await SuperAdminModel.obterSuperAdmin()
+            const senhaValida = await superAdmin.validaSenha(senha)
+            if (senhaValida) {
+                const token = await tokens.manipulaSuperAdminToken.criar(superAdmin.nome)
+                return res.status(200).json({ token })
+            }
+            return res.status(401).send()
+        } catch (error) {
+            next(error)
+        }
+    }
+}

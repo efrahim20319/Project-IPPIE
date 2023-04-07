@@ -1,6 +1,7 @@
 import { allowlist } from "./allowlist-refresh-token";
 import { blockList } from "./blocklist-access-token";
 import { converterList } from "./conversao-moeda-list";
+import { superAdminList } from "./super-admin-list";
 
 const listas = [
     {
@@ -14,6 +15,10 @@ const listas = [
     {
         nome: "ConverterList",
         valor: converterList
+    },
+    {
+        nome: "SuperAdminList",
+        valor: superAdminList
     }
 ]
 
