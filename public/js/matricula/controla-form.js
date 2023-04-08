@@ -26,7 +26,7 @@ formulario.addEventListener('submit', async (event) => {
     })
     if (response.ok) {
         window.localStorage.setItem('ippie_user_email', email)
-        window.location = `/pagar?email=${email}`
+        window.location.replace(`/pagar?email=${email}`)
         return
     }
     const { erro } = await response.json()

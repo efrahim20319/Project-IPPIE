@@ -9,6 +9,6 @@ formulario.addEventListener("submit", async (env) => {
         credentials: "include" //Para enviar outras informacoes na requesicao, como os cookies
     })
     if (requisicao.ok) {
-        window.location.href = "/entrar"
+        window.location.replace("/entrar") 
     }
 })

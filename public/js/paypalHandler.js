@@ -31,7 +31,7 @@ paypal.Buttons({
       const email = window.localStorage.getItem('ippie_user_email')
       const resposta = await fetch(`/api/geraToken/${email}`)
       const { token } = await resposta.json()
-      window.location = `/sucessPayment?email=${token}`
+      window.location.replace(`/sucessPayment?email=${token}`)
       // alert(`Transaction ${transaction.status}: ${transaction.id}\n\nSee console for all available details`);
       // When ready to go live, remove the alert and show a success message within this page. For example:
       // const element = document.getElementById('paypal-button-container');

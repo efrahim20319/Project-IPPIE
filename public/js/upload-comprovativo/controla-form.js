@@ -14,7 +14,7 @@ formulario.addEventListener("submit", async (event) => {
     window.localStorage.setItem("ippie_user_email", email);
     const resposta = await fetch(`/api/geraToken/${email}`);
     const { token } = await resposta.json();
-    window.location = `/sucessPayment?email=${token}`;
+    window.location.replace(`/sucessPayment?email=${token}`)
     console.log("Everything is awesome");
     return;
   }

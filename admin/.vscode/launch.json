@@ -12,6 +12,16 @@
                 "<node_internals>/**"
             ],
             "program": "${workspaceFolder}/routes/telas.js"
+        },
+        {
+            "type": "node",
+            "request": "attach",
+            "restart": true,
+            "protocol": "inspector",
+            "name": "Launch Program",
+            "skipFiles": [
+                "<node_internals>/**"
+            ]
         }
     ]
 }

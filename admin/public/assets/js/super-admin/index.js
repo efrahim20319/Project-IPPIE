@@ -1,24 +1,21 @@
 const formulario = document.querySelector('form')
-console.log('123', formulario);
-
 formulario.addEventListener('submit', async function (event) {
     event.preventDefault()
-
     const senha = this.querySelector('input').value
     const request = await fetch('http://localhost:3333/api/sp-admin/login', {
-        method: "POST",
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
         body: JSON.stringify({
-            senha
-        })
+            senha: senha,
+        }),
     })
-    console.log(senha);
     if (request.ok) {
         const response = await request.json()
         const { token } = response
-        console.log(token);
+        window.location.replace(`/cadastrar?token=${token}`)
     } else {
-        console.log(request);
+        console.log(request)
     }
-
-
 })

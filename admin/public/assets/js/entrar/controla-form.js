@@ -16,7 +16,7 @@ formulario.addEventListener("submit", async (env) => {
         credentials: "include"
     })
     if (requisicao.ok) {
-        window.location.href = "/"
+        window.location.replace("/")
     } 
     else if (requisicao.status === 401) {
         Swal.fire({

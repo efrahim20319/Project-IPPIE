@@ -1,17 +1,20 @@
-import tokens from "../infrastructure/tokens"
-import Admin from "../model/Admin"
+import tokens from '../infrastructure/tokens'
+import manipulaSuperAdminToken from '../infrastructure/tokens/manipula-superAdminToken'
+import Admin from '../model/Admin'
 
 const cookieOptions = {
     httpOnly: true,
-    secure: false
+    secure: false,
 }
 export default class AdminController {
     static async adiciona(req, res, next) {
         try {
+            const { token } = req.query
             const { nome, email, password } = req.body
             const admin = new Admin({ nome, email, password })
             await admin.adiciona()
-            res.status(201).send("Criado com sucesso")
+            await manipulaSuperAdminToken.invalida(token)
+            res.status(201).send('Criado com sucesso')
         } catch (error) {
             next(error)
         }
@@ -21,7 +24,7 @@ export default class AdminController {
         try {
             return res.status(200).end()
         } catch (error) {
-            console.log(error);
+            console.log(error)
             return res.status(400).json()
         }
     }
@@ -31,9 +34,9 @@ export default class AdminController {
             const usuario = req.user
             const accessToken = tokens.access.criar(usuario.id)
             const refreshToken = await tokens.refresh.criar(usuario.id)
-            res.cookie("access_token", accessToken, cookieOptions)
-            res.cookie("refresh_token", refreshToken, cookieOptions)
-            res.set("Authorization", accessToken)
+            res.cookie('access_token', accessToken, cookieOptions)
+            res.cookie('refresh_token', refreshToken, cookieOptions)
+            res.set('Authorization', accessToken)
             return res.status(200).json({ refreshToken })
         } catch (error) {
             return next(error)
@@ -44,10 +47,9 @@ export default class AdminController {
         try {
             const token = req.token
             await tokens.access.invalida(token)
-            return res.status(200).send("Tchauzinho")
+            return res.status(200).send('Tchauzinho')
         } catch (error) {
             return next(error)
         }
-
     }
 }

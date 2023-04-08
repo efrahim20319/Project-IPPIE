@@ -1,5 +1,6 @@
 import { Router } from "express";
 import middlewares from "../middlewares/index.js";
+import manipulaSuperAdmin from "../database/redis/super-admin-list.js";
 
 
 const telas = Router()
@@ -47,8 +48,17 @@ telas.get('/mensagem/id/:id', middlewares.autenticacao.estaLogado(), async (req,
     }
 })
 
-telas.get("/cadastrar", (_req, res) => {
-    res.status(200).render('cadastrar')
+telas.get("/cadastrar", async (req, res) => {
+    try {
+        const { token } = req.query
+        const tokenEhvalido = await manipulaSuperAdmin.contemChave(token)
+        if (tokenEhvalido)
+            return res.status(200).render('cadastrar')
+        else 
+            return res.status(401).render('entrar')
+    } catch (error) {
+        return res.status(401).render('entrar')
+    }
 })
 
 telas.get('/adminLogin', (req, res, next) => {

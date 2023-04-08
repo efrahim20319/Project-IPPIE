@@ -1,4 +1,5 @@
 const formulario = document.querySelector("form")
+const urlParams = new URLSearchParams(window.location.search)
 
 function limpaInputs() {
     const inputs = document.querySelectorAll("input")
@@ -19,7 +20,7 @@ formulario.addEventListener("submit", async (env) => {
         password
     }
     if (termoAceitos) {
-        const requisicao = await fetch("http://localhost:3333/api/admin/signin", {
+        const requisicao = await fetch(`http://localhost:3333/api/admin/signin?token=${urlParams.get('token')}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -34,7 +35,7 @@ formulario.addEventListener("submit", async (env) => {
                 'Conta Criada com sucesso!',
                 'success'
             )
-            window.location = `/entrar?user_email=${email}`
+            window.location.replace(`/entrar?user_email=${email}`)
             return
         }
         const { erro } = await requisicao.json()
