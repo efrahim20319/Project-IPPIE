@@ -1,6 +1,7 @@
 import { Router } from "express";
 import middlewares from "../middlewares/index.js";
 import manipulaSuperAdmin from "../database/redis/super-admin-list.js";
+import { jwtTokenIsValid } from "../middlewares/Autenticacao.js";
 
 
 const telas = Router()
@@ -8,8 +9,9 @@ const telas = Router()
 telas.get("/", middlewares.autenticacao.estaLogado(), async (_req, res, _next) => {
     res.render("dashboard")
 })
-telas.get("/entrar", middlewares.autenticacao.estaLogado(), (req, res) => {
-    const estaLogado = res.getHeader("IsLogged")
+telas.get("/entrar", async (req, res) => {
+    const { access_token } = req.cookies
+    const estaLogado = await jwtTokenIsValid(access_token)
     if (estaLogado)
         return res.redirect('/')
     return res.status(401).render('entrar')

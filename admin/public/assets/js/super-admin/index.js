@@ -16,6 +16,10 @@ formulario.addEventListener('submit', async function (event) {
         const { token } = response
         window.location.replace(`/cadastrar?token=${token}`)
     } else {
-        console.log(request)
+        await Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Senha Incorreta',
+        })
     }
 })

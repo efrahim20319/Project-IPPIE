@@ -1,13 +1,12 @@
 import axios from "axios";
 export default class Autenticacao {
-    static estaLogado(rotaPorInvalidacao = 'entrar') {
+    static estaLogado(rotaPorInvalidacao = '/entrar') {
         return async (req, res, next) => {
             try {
                 const access_token = req.cookies.access_token
                 const refresh_token = req.cookies.refresh_token
                 const tokenIsValid = await jwtTokenIsValid(access_token)
                 if (tokenIsValid) {
-                    res.header('IsLogged', true);
                     return next()
                 }
                 else {
@@ -26,21 +25,19 @@ export default class Autenticacao {
                         if (accessToken && refreshToken) {
                             res.cookie("access_token", accessToken)
                             res.cookie("refresh_token", refreshToken)
-                            res.header('IsLogged', true);
                             return next()
                         }
                     }
-                    return res.render(rotaPorInvalidacao)
+                    return res.redirect(rotaPorInvalidacao)
                 }
             } catch (error) {
-                console.error("Lascou", error);
-                return res.render(rotaPorInvalidacao)
+                return res.redirect(rotaPorInvalidacao)
             }
         }
     }
 }
 
-async function jwtTokenIsValid(token) {
+export async function jwtTokenIsValid(token) {
     try {
         const response = await axios.post("http://localhost:3333/api/admin/tokensValidos", {}, {
             headers: {

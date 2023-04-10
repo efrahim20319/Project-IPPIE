@@ -80,11 +80,12 @@
         <div class="col rounded p-4 bg-white">
           <div class="campo">
             <span class="campo__nome">Nome Completo</span>
-            <span class="campo__valor"><%= mensagem.nome %> </span>
+            <span class="campo__valor"><span id="txt-nome"><%= mensagem.nome %></span><button class="btn btn-primary m-lg-1" onclick="copyContent('txt-nome', this)">Copiar</butto> </span>
           </div>
           <div class="campo">
             <span class="campo__nome">Email</span>
-            <span class="campo__valor"><%= mensagem.email %></span>
+            <span class="campo__valor"><span id="txt-email"><%= mensagem.email %></span> 
+            <button class="btn btn-primary m-lg-1" onclick="copyContent('txt-email', this)">Copiar</butto></span>
           </div>
           <div  class="pt-1 campo" style="display: block; text-align: justify;" >
             <span class="campo__nome">Mensagem</span><br>  
@@ -97,4 +98,19 @@
       </div>
     </div>
   </body>
+  <script>
+    async function copyContent (id, btn) {
+      const elemento = document.getElementById(id);
+      const mensagem = elemento.innerHTML
+      try {
+        await navigator.clipboard.writeText(mensagem);
+        setTimeout(() => {
+          btn.innerText = 'Copiar'
+        }, 2000)
+        btn.innerText = 'Copiado!'
+      } catch (err) {
+        console.error('Failed to copy: ', err);
+      }
+    }
+  </script>
 </html>
