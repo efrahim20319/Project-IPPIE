@@ -40,8 +40,9 @@ export default class UsuarioControlador {
     try {
       const usuario = req.user;
       await usuario.modificaEmailEnviado();
+      console.log(usuario);
       console.log(`Usuario ${usuario.nome} verificado com sucesso`);
-      res.status(200).end();
+      res.status(200).render('usuario-verificado', {usuario});
     } catch (error) {
       res.status(500).json(error.message);
     }

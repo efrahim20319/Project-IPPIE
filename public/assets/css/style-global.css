@@ -829,6 +829,7 @@ section.courses {
 section.courses .item img {
     border-top-right-radius: 5px;
     border-top-left-radius: 5px;
+    height: 10em;
 }
 
 section.courses .item .down-content {
@@ -836,6 +837,7 @@ section.courses .item .down-content {
     background-color: #fff;
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
+    height: 10em;
 }
 
 section.courses .item .down-content h4 {
@@ -846,6 +848,7 @@ section.courses .item .down-content h4 {
     font-weight: 700;
     margin-top: 0px;
     margin-bottom: 20px;
+    height: 50%;
 }
 
 section.courses .item .down-content p {

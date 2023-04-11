@@ -4,16 +4,11 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://www.paypal.com/sdk/js?client-id=<%= paypalClientID %>&currency=EUR"></script>
     <link
       rel="stylesheet"
       href="/public/css/cadastro-usuario-sucesso/index.css"
     />
-    <link rel="stylesheet" href="/public/css/metodo-pagamento/index.css" />
-    <script defer src="public/js/paypalHandler.js"></script>
-    <script defer src="public/js/stripeHandler.js"></script>
-    <script defer src="/public/js/metodo-pagamento/botaoUpload.js"></script>
-    <title>IPPIE | Metodo de pagamento</title>
+    <title>IPPIE | Usuario verificado</title>
   </head>
   <body>
     <header class="cabecalho">
@@ -24,7 +19,9 @@
             src="/public/assets/images/logo-da-escola.png"
             alt=""
           />
-          <a class="logo_text" rel="prev" href="/">IPPIE</a></a
+          <a class="logo_text" rel="prev" href="/"
+            >IPPIE</a
+          ></a
         >
       </span>
       <button id="btn-menu-mobile">
@@ -41,12 +38,14 @@
         </li>
       </ul>
     </header>
-    <main class="content">
-      <div class="main-card">
-        <h2 class="card-title">Escolher metodo de pagamento</h2>
-        <button class="main-card__method" id="upload-express"> Upload do Comprovativo de Transferência </button>
-        <button class="main-card__method" id="stripe" >Pagar com cartão visa, mastercard</button>
-        <div id="paypal"></div>
+    <main>
+      <div class="box">
+        <img class="box_img" src="/public/img/icons/success.png" alt="" />
+        <h1 class="box_title" style="font-size: 1.3em;">Conta verificada com sucesso</h1>
+        <p class="box_msg" style="text-align: justify; text-indent: 1em;"
+          >Obrigado por confirmar o email <%= usuario.email %>. Daqui em diante receberá notificações por email sobre a nossa instituição.</p
+        >
+        <a class="box_link" href="/">Voltar ao Início</a>
       </div>
     </main>
   </body>

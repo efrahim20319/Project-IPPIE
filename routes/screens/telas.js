@@ -33,14 +33,14 @@ roteador.get('/sucessPayment', async (req, res) => {
     const token = req.query.email
     const email = await tokens.manipulaPaymentToken.verifica(token)
     const aluno = await Aluno.pegarPorEmail(email, { bloquearNaAusencia: false })
-    const [dadosMatricula] = await Dados.obterAlunoMatriculado(aluno.id, true)
-    console.log(dadosMatricula);
     if (aluno && aluno.matriculado) {
+      const [dadosMatricula] = await Dados.obterAlunoMatriculado(aluno.id, true)
       return res.status(200).render("succesfull-payment", { dados: dadosMatricula })
     }
     if (aluno && !aluno.matriculado) {
       const matricula = new Matricula({ status: "pendente", aluno_id: aluno.id, pago: true })
       await matricula.adicionar()
+      const [dadosMatricula] = await Dados.obterAlunoMatriculado(aluno.id, true)
       return res.status(200).render("succesfull-payment", { dados: dadosMatricula })
     }
     return res.status(401).redirect('/')

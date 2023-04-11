@@ -1,6 +1,8 @@
 .box {
-    padding: 1em;
-    width: 30em;
+    padding: 0em;
+    width: 35em;
     justify-content: flex-start;
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
 }
-
