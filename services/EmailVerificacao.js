@@ -12,6 +12,6 @@ export default class EmailVerificacao extends Email {
     this.text = "";
     this.html = `<h1>Olá ${nome}!</h1>
     <p>Obrigado por cadastra-se no IPPIE e fazer parte da nossa comunidade.</p>
-    Verifique seu e-mail clicando <a href="http://${endereco}">aqui</a>`;
+    Verifique seu e-mail clicando <a href="${endereco}">aqui</a>`;
   }
 }
