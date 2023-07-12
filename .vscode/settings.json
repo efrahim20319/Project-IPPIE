@@ -6,5 +6,22 @@
         "yarn.lock": true,
         "yarn-error.log": true
     },
-    "dotenv.enableAutocloaking": false
+    "dotenv.enableAutocloaking": false,
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default",
+                "enableSsl": "Enabled",
+                "ssl": {}
+            },
+            "previewLimit": 50,
+            "server": "aws.connect.psdb.cloud",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "dev life",
+            "database": "db_ippie",
+            "username": "qsp0166udzlukd2altr7",
+            "askForPassword": true
+        }
+    ]
 }

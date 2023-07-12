@@ -67,7 +67,6 @@ roteador.get('/canceledPayment', (req, res) => {
 })
 
 roteador.get("/sucess-signin", async (req, res) => {
-  res.redirect('/')
   const email = req.query.email
   try {
     const usuario = await Usuario.pegarPorEmail(email)

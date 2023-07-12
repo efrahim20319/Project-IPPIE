@@ -26,6 +26,7 @@ form.addEventListener("submit", async function (event) {
                 'success'
             )
         } else {
+            console.log(resposta);
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
