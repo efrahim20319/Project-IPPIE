@@ -1,0 +1,13 @@
+User-agent: *
+Disallow: *.png
+Disallow: *.jpg
+Disallow: *.svg
+Allow: /cursos/eletricidade-baixa-tensao
+Allow: /cursos/informatica-tecnica
+Allow: /cursos/gestao-sistemas
+Allow: /cursos/metalomecanica-torneiro
+Allow: /cursos/maquinas-motores
+Allow: /cursos/desenhador-projetista
+Allow: /cursos/instalacoes-eletricas
+
+sitemap: https://ippie.co/sitemap.xml
