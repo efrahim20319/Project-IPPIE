@@ -6,6 +6,7 @@ import tokens from "../../infrastructure/tokens"
 import Aluno from "../../model/Alunos"
 import Matricula from "../../model/Matricula"
 import Dados from "../../model/Dados"
+const fs = require('fs')
 const roteador = Router()
 
 roteador.get("/", (req, res) => {
@@ -85,6 +86,18 @@ roteador.use("/cursos", rotasCursos)
 roteador.get('/matricula', (req, res) => {
   res.redirect('/')
   // res.status(200).render('matricula')
+})
+
+roteador.get('/robots.txt', (req, res) => {
+  const arquivo = fs.readFileSync("./robots.txt")
+  res.setHeader('Content-type', 'text/plain')
+  return res.send(arquivo)
+})
+
+roteador.get('/sitemap.xml', (req, res) => {
+  const arquivo = fs.readFileSync("./sitemap.xml")
+  res.setHeader('Content-type', 'application/xml')
+  return res.send(arquivo)
 })
 
 roteador.use((_req, res) => {
