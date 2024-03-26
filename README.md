@@ -12,7 +12,9 @@
 
 
 ## Como installar e rodar
-Este projeto foi desenvolvido usando **NodeJS**, portanto, tenha instalada a **versão 14 LTS** ou superior. Mysql é SGBD utilizado durante o desenvolvimento, mas poderá utilizar outras base de dados ralacionais porque tilizou-se o ORM Sequelize. Também foi utlizado o **redis** para cache da aplicação [Duck Duck Go](https://duckduckgo.com)
+Este projeto foi desenvolvido usando **NodeJS**, portanto, tenha instalada a **versão 14 LTS** ou superior. Mysql é SGBD utilizado durante o desenvolvimento, mas poderá utilizar outras base de dados ralacionais porque foi utilizado o ORM Sequelize. Também foi utlizado o **redis** para cache da aplicação ([Link da instalacao](https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-redis-on-ubuntu-22-04))
+
+
 Clone Projecto
 
 ```
