@@ -15,7 +15,7 @@
   \******************************/
 /***/ ((module) => {
 
-eval("module.exports =  {\n   \n}\n\n//# sourceURL=webpack://projeto-ippie/./variable-exporter.js?");
+eval("module.exports =  {\r\n   \r\n}\n\n//# sourceURL=webpack://projeto-ippie/./variable-exporter.js?");
 
 /***/ })
 
