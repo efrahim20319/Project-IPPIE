@@ -1,8 +1,9 @@
 const selectProvincia = document.querySelector('select#inputProv')
 const selectCurso = document.querySelector('select#inputCurso')
+const port = 3333;
 
 async function pegaRecurso(recurso) {
-    const response = await fetch(`http://localhost:3333/api/${recurso}`) //pode ser cachead
+    const response = await fetch(`http://localhost:${port}/api/${recurso}`) //pode ser cachead
     const provincias = await response.json()
     return provincias
 }

@@ -1,5 +1,7 @@
+const port = 3333
+
 async function listarMensagens() {
-    const response = await fetch('http://localhost:3333/api/mensagem')
+    const response = await fetch(`http://localhost:${port}/api/mensagem`)
     return await response.json() 
 }
 

@@ -1,8 +1,11 @@
 const formulario = document.querySelector('form')
+const port = 3333
+
+
 formulario.addEventListener('submit', async function (event) {
     event.preventDefault()
     const senha = this.querySelector('input').value
-    const request = await fetch('http://localhost:3333/api/sp-admin/login', {
+    const request = await fetch(`http://localhost:${port}/api/sp-admin/login`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

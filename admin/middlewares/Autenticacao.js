@@ -1,4 +1,7 @@
 import axios from "axios";
+import { config } from 'dotenv'
+config()
+const port = process.env.APP_PORT
 export default class Autenticacao {
     static estaLogado(rotaPorInvalidacao = '/entrar') {
         return async (req, res, next) => {
@@ -10,7 +13,7 @@ export default class Autenticacao {
                     return next()
                 }
                 else {
-                    const requisicao = await fetch('http://localhost:3333/api/admin/atualizaToken', {
+                    const requisicao = await fetch(`http://localhost:${port}/api/admin/atualizaToken`, {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json",
@@ -39,7 +42,7 @@ export default class Autenticacao {
 
 export async function jwtTokenIsValid(token) {
     try {
-        const response = await axios.post("http://localhost:3333/api/admin/tokensValidos", {}, {
+        const response = await axios.post(`http://localhost:${port}/api/admin/tokensValidos`, {}, {
             headers: {
                 "Content-Type": "application/json",
                 authorization: `Bearer ${token}`

@@ -1,7 +1,8 @@
 const formulario = document.querySelector("#logoutLink")
+// const port = 3333
 formulario.addEventListener("submit", async (env) => {
     env.preventDefault()
-    const requisicao = await fetch("http://localhost:3333/api/admin/logout", {
+    const requisicao = await fetch(`http://localhost:${3333}/api/admin/logout`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

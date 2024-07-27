@@ -1,8 +1,10 @@
 import { Router } from "express";
+import { config } from 'dotenv'
+config()
 import middlewares from "../middlewares/index.js";
 import manipulaSuperAdmin from "../database/redis/super-admin-list.js";
 import { jwtTokenIsValid } from "../middlewares/Autenticacao.js";
-
+const port = process.env.APP_PORT
 
 const telas = Router()
 
@@ -20,7 +22,7 @@ telas.get("/entrar", async (req, res) => {
 telas.get('/user/id/:id', middlewares.autenticacao.estaLogado(), async (req, res) => {
     try {
         const { id } = req.params
-        const response = await fetch(`http://localhost:3333/api/matriculas/aluno-matriculado/${id}`)
+        const response = await fetch(`http://localhost:${port}/api/matriculas/aluno-matriculado/${id}`)
         const { Aluno } = await response.json()
         Object.defineProperty(Aluno, 'Matricula', {
             value: Aluno.Matriculas[0],
@@ -39,7 +41,7 @@ telas.get('/user/id/:id', middlewares.autenticacao.estaLogado(), async (req, res
 telas.get('/mensagem/id/:id', middlewares.autenticacao.estaLogado(), async (req, res) => {
     try {
         const { id } = req.params
-        const response = await fetch(`http://localhost:3333/api/mensagem/${id}`)
+        const response = await fetch(`http://localhost:${port}/api/mensagem/${id}`)
         const mensagem = await response.json()
         console.log(mensagem);
         if (mensagem)

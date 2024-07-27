@@ -1,5 +1,7 @@
+// const port = 3333
+
 async function dadosGraficoCursos() {
-    const response = await fetch('http://localhost:3333/api/matriculas/lista-cursosMatricula')
+    const response = await fetch(`http://localhost:${3333}/api/matriculas/lista-cursosMatricula`)
     return await response.json()
 }
 

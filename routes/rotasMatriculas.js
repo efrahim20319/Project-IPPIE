@@ -13,7 +13,7 @@ roteadorMatriculas.use('/matriculas', matriculas)
 matriculas.get('/lista-alunos', MatriculasController.listarAlunoMatriculados)
 matriculas.get('/lista-cursosMatricula', MatriculasController.listarCursosPorMatricula)
 
-matriculas.get('/aluno-matriculado/:id', DadosController.obterAlunoMatriculado) //Devia Ser Matricula controller depois eu resolvo
+matriculas.get('/aluno-matriculado/:id', DadosController.obterAlunoMatriculado) //Devia Ser Matricula controller depois eu resolvo, 2 anos depois e nao resolvi
 matriculas.post('/confirmar/:id', MatriculasController.confirmarMatricula)
 matriculas.post('/rejeitar/:id', MatriculasController.rejeitarMatricula)
 

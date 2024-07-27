@@ -1,6 +1,8 @@
 //table_students
+// const port = 3333
+
 async function alunosMatriculados() {
-    const response = await fetch('http://localhost:3333/api/matriculas/lista-alunos')
+    const response = await fetch(`http://localhost:${3333}/api/matriculas/lista-alunos`)
     return await response.json()
 }
 

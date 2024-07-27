@@ -1,3 +1,5 @@
+// const port = 3333
+
 function dateCategories(dias_a_Reduzir) {
     let categories = []
     for (let index = dias_a_Reduzir - 1, c = 0; index >= 0; index--, c++) {
@@ -10,7 +12,7 @@ function dateCategories(dias_a_Reduzir) {
 
 async function dadosGraficoGeral() {
     const response = await fetch(
-        'http://localhost:3333/api/dados/grafico-geral'
+        `http://localhost:${3333}/api/dados/grafico-geral`
     )
     return await response.json()
 }

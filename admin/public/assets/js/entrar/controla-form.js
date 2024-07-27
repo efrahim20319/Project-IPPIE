@@ -1,4 +1,6 @@
 const formulario = document.querySelector("form")
+const port = 3333
+
 formulario.addEventListener("submit", async (env) => {
     env.preventDefault()
     const email = formulario.querySelector("#yourUsername").value
@@ -7,7 +9,7 @@ formulario.addEventListener("submit", async (env) => {
         email,
         password
     }
-    const requisicao = await fetch("http://localhost:3333/api/admin/login", {
+    const requisicao = await fetch(`http://localhost:${port}/api/admin/login`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

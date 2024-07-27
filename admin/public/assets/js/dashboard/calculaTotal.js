@@ -1,8 +1,11 @@
 const alunosElement = document.querySelector('#totalAlunos')
 const receitasElement = document.querySelector('#totalReceita')
 const matriculasElement = document.querySelector('#totalMatriculas')
+// const port = 3333
 
-fetch('http://localhost:3333/api/dados/total-ocorrencias')
+console.log(process.env.nome);
+
+fetch(`http://localhost:${3333}/api/dados/total-ocorrencias`)
     .then(res => {
         return res.json()
     })

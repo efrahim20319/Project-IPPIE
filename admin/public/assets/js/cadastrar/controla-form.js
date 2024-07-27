@@ -1,5 +1,6 @@
 const formulario = document.querySelector("form")
 const urlParams = new URLSearchParams(window.location.search)
+const port = 3333
 
 function limpaInputs() {
     const inputs = document.querySelectorAll("input")
@@ -20,7 +21,7 @@ formulario.addEventListener("submit", async (env) => {
         password
     }
     if (termoAceitos) {
-        const requisicao = await fetch(`http://localhost:3333/api/admin/signin?token=${urlParams.get('token')}`, {
+        const requisicao = await fetch(`http://localhost:${port}/api/admin/signin?token=${urlParams.get('token')}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

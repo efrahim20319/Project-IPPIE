@@ -6,12 +6,14 @@
     "scripts": {
         "start": "node -r sucrase/register server.js",
         "test": "jest --detectOpenHandles",
+        "build": "webpack",
         "test:watch": "jest --watch",
         "test:coverage": "jest --coverage",
         "test:wc": "jest --watch --coverage",
         "db:drop": "npx sequelize-cli db:drop",
         "db:create": "npx sequelize-cli db:create",
         "db:restart": "npx sequelize-cli db:drop && npx sequelize-cli db:create",
+        "db:setup": "npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate",
         "db:restart:seed": "npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all"
     },
     "keywords": [],
@@ -50,6 +52,8 @@
         "@faker-js/faker": "^7.6.0",
         "@sucrase/jest-plugin": "^3.0.0",
         "eslint": "^8.23.1",
-        "nodemon": "^2.0.19"
+        "nodemon": "^2.0.19",
+        "webpack": "^5.91.0",
+        "webpack-cli": "^5.1.4"
     }
 }

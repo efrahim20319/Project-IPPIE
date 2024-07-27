@@ -84,8 +84,8 @@ roteador.get("/sucess-signin", async (req, res) => {
 roteador.use("/cursos", rotasCursos)
 
 roteador.get('/matricula', (req, res) => {
-  res.redirect('/')
-  // res.status(200).render('matricula')
+  // res.redirect('/')
+  res.status(200).render('matricula')
 })
 
 roteador.get('/robots.txt', (req, res) => {
