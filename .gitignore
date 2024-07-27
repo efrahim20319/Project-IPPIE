@@ -2,7 +2,7 @@
 node_modules/
 coverage/
 package-lock.json
-.env
+#.env
 .eslintrc.js
 yarn.lock
 public/uploads/*
